@@ -37,10 +37,11 @@ an open-set method reports and tunes, carries almost no information about how ag
 the system will actually reject once it is installed in another building.
 
 The cause is the one running through this study. A threshold is a statistic of the source
-distribution, and source statistics do not transfer across buildings; this is the same
-property that makes replacing batch-norm statistics harmful
-and per-sensor features anti-informative in the closed-set study \cite{kbaier_closedset}, arriving now at
-the rejection rule. There is nothing specific to our detector in it: any open-set or
+distribution, and source statistics do not transfer across buildings. This is the property
+responsible for two separate findings in the closed-set study \cite{kbaier_closedset}:
+that replacing batch-norm statistics with the target stream's is harmful, and that
+per-sensor features are anti-informative across buildings. It arrives here at a third
+place, the rejection rule. There is nothing specific to our detector in it: any open-set or
 universal method that fixes a threshold on source data inherits the problem, and any that
 fixes one on target data has left the test-time setting.
 
