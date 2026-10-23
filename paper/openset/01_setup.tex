@@ -1,0 +1,43 @@
+% ---------------------------------------------------------------- motivation & setup
+\subsection{Motivation and protocol}
+\label{sec:os-setup}
+
+Measured against a model trained on the target building at matched sample size, the
+cross-building penalty for activity recognition in this pair of apartments is $0.6$
+macro-F1 points entering $\text{S}_2$ and $21.3$ entering $\text{S}_1$: in one direction
+there is essentially no distribution shift for an adaptation method to recover, and in the
+other there is a substantial one. That asymmetry, rather than any single method's score,
+is what decided the outcome of our closed-set study, and the methods tracked it --- losing
+ground wherever there was no headroom and gaining only where there was.
+
+This section asks whether a second, simultaneous shift changes that. We withhold two
+activities, \texttt{toileting} and \texttt{cleaning}, from source training and treat them
+as target-private, so the model faces a change of building and a change of label space at
+once. The retained classes are \texttt{meal\_prep}, \texttt{watching\_tv} and
+\texttt{music}; \texttt{cleaning} is placed in the unknown set deliberately, since at $113$
+target windows it is not learnable in this data and leaving it among the known classes
+would confound open-set performance with a sample-size limit. The experiment is a
+$2\times2$ grid, $\{\text{S}_1\!\to\!\text{S}_2, \text{S}_2\!\to\!\text{S}_1\}$ crossed
+with $\{$closed-set, open-set$\}$, and because withholding classes changes the source
+model, every cell is given its own penalty measurement before any method is run.
+
+Throughout we hold to the Tier-1 definition of test-time adaptation used in the
+closed-set study: the source model is trained once and then frozen, with no further
+multi-epoch training on target data; adaptation is online, in a single pass over the
+unlabelled target stream, in recording order, with each batch predicted before the model
+is updated on it; source data is unavailable during adaptation; and no target labels are
+used anywhere, including for selecting hyperparameters and for calibrating the
+unknown-rejection threshold, which is fixed from source validation before the target
+stream is read. Any quantity a method relies on --- scalers, prototypes, thresholds ---
+must be estimable without target labels. Where we report a figure that violates this, as
+with the labelled ceiling of Section~\ref{sec:os-depth} and the matched-rejection-rate
+comparison of Section~\ref{sec:os-maha}, it is labelled a diagnostic and is used to bound
+what a method could achieve rather than to claim what one did.
+
+The constraint matters because the reference implementations in this area do not observe
+it. Section~\ref{sec:os-lead} documents four places where the released code for LEAD
+leaves the test-time setting, including fifty offline epochs over the target set and an
+evaluation loader that wraps the same data the model adapted on. Results obtained that way
+are not comparable with results obtained under the constraints above, which is why every
+number in this section is reported against our own Tier-1 source-only baseline rather than
+against published figures.

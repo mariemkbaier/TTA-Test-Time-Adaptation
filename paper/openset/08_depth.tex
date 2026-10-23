@@ -1,17 +1,19 @@
 % ---------------------------------------------------------------- representation depth
-\subsection{The learned representation contributes nothing to novelty detection}
+\subsection{Depth does not help, and the detector is leaving signal unused}
 \label{sec:os-depth}
 
-The prototypes of Section~\ref{sec:os-maha} are built in the model's final $64$-dimensional
-embedding, which is trained to separate three known activities and therefore to discard
-whatever does not serve that. Whether novelty survives that compression is testable at no
-cost, by building the same prototypes at three other depths, including none at all.
+The prototypes of Section~\ref{sec:os-maha} are built in the model's final
+$64$-dimensional embedding, which is trained to separate three known activities and
+therefore to discard whatever does not serve that. Whether novelty survives the
+compression is testable at no cost, by building the same prototypes at three other
+depths, including none at all.
 
 % source: src/exp27_proto_depth.py -> results/exp27_proto_depth.csv
 \begin{table}[t]
 \centering
 \caption{AUROC for unknown-versus-known by the representation the prototype distance is
-computed in. Maximum softmax is included for reference. Chance is $0.5$.}
+computed in, with the labelled ceiling of Table~\ref{tab:osceiling} for scale. Chance is
+$0.5$.}
 \label{tab:osdepth}
 \small
 \begin{tabular}{@{}lcc@{}}
@@ -24,22 +26,66 @@ Second block, $128$-d        & $0.6198$ & $0.5076$ \\
 First block, $256$-d         & $0.5982$ & $0.5107$ \\
 \midrule
 Maximum softmax              & $0.4952$ & $0.4434$ \\
+Labelled ceiling (diagnostic)& $0.7354$ & $0.6327$ \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-The raw input features match the final embedding: $0.6392$ against $0.6377$ in one
+The raw input features match the final embedding, $0.6392$ against $0.6377$ in one
 direction and $0.5253$ against $0.5373$ in the other, differences well inside the seed
-spread. The intermediate blocks are worse than both. Passing the window through a trained
-network, in other words, neither adds novelty information nor destroys it; the distance
-could as well be computed on the thirteen input features directly.
+spread, and the intermediate blocks are worse than both. Passing the window through a
+trained network neither adds novelty information nor destroys it, so the rejection
+component of Section~\ref{sec:os-deploy} does not require the classifier at all and could
+run beside a model of any architecture.
 
-Two things follow. The first is practical: the rejection component of the deployable
-configuration does not require the classifier at all, and could run beside a model of any
-architecture, or none. The second is about why the detector is weak. If a representation
-trained on the known classes carries no more novelty signal than the untrained input, then
-the limit is not the compression but the features: thirteen layout-invariant window
-statistics describe how much activity is occurring and when, and two activities can differ
-in neither while being different activities. The withheld classes are not separable in
-this description of the data, and no amount of depth recovers what the description never
-encoded.
+It is tempting to read that as a limit of the features: if a representation trained on the
+known classes carries no more novelty signal than the untrained input, perhaps thirteen
+window statistics simply do not encode what separates an unseen activity. We tested that
+reading rather than asserting it, and it is wrong.
+
+% source: src/exp29_feature_limit.py -> results/exp29_feature_limit.csv
+\begin{table}[t]
+\centering
+\caption{Is novelty present in the $13$-d description? Per-feature AUROC separating
+unknown from known windows, and a supervised known-versus-unknown classifier trained on
+the target building under GroupKFold over recording day. The classifier uses target
+labels and is a DIAGNOSTIC upper bound, not a method.}
+\label{tab:osceiling}
+\small
+\begin{tabular}{@{}lcc@{}}
+\toprule
+ & $\text{S}_2$ & $\text{S}_1$ \\
+\midrule
+Features differing after Benjamini-Hochberg at $5\%$ & $13/13$ & $13/13$ \\
+Strongest single feature & $0.6972$ & $0.3700$ \\
+\quad which one & \texttt{t\_time\_cos} & \texttt{g\_max\_active} \\
+Supervised ceiling, logistic & $0.6620$ & $0.5701$ \\
+Supervised ceiling, gradient boosting & $\mathbf{0.7354}$ & $\mathbf{0.6327}$ \\
+\midrule
+Our label-free detector (Table~\ref{tab:osdepth}) & $0.6377$ & $0.5373$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+All thirteen marginals differ between the withheld and retained activities, in both
+buildings, after correcting for the thirteen tests. A supervised classifier given the same
+features reaches AUROC $0.7354$ and $0.6327$. The information is present, and our
+label-free detector reaches about ten AUROC points below what a labelled one extracts from
+the identical description.
+
+The single most informative feature is worth noting. In $\text{S}_2$ it is
+\texttt{t\_time\_cos}, the cosine of time of day, at $0.6972$ on its own, which is higher
+than our entire multivariate detector. The withheld activities are toileting and cleaning,
+and they occur at different hours than meal preparation, television and music. A
+Mahalanobis distance to class prototypes treats all thirteen dimensions as one geometry
+and dilutes that; it does not exploit the one axis that most separates the groups.
+
+So the honest statement has two parts rather than one. The learned representation adds
+nothing over the raw features, which is the clean negative result the depth sweep
+establishes. But the features are not the binding constraint: a labelled detector on the
+same thirteen numbers does roughly ten points better, so there is headroom a better
+label-free score could reach, and the most obvious place to look for it is temporal
+structure rather than a distance in feature space. We note also that the labelled ceiling
+is itself modest, $0.74$ and $0.63$, so the problem is genuinely hard even with
+supervision; the correction is that it is harder than it needs to be for the detector we
+used, not that it is impossible for the features we have.
