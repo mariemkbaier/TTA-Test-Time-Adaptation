@@ -1,0 +1,115 @@
+% ===========================================================================
+%  The Threshold Does Not Transfer — standalone manuscript
+%  Assembled from the section drafts in this directory. Section order follows
+%  README.md; the deploy box sits between the introduction and the results by
+%  decision, not by accident.
+% ===========================================================================
+\documentclass[a4paper,fleqn]{cas-dc}
+
+\usepackage[numbers]{natbib}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{multirow}
+\usepackage{array}
+\graphicspath{{../}{../figures/}}
+
+\newcommand{\macf}{macro-F\textsubscript{1}}
+
+% The CAS class prints an "ORCID(s):" line even when no ORCID is supplied.
+\makeatletter
+\AtBeginDocument{\@ifundefined{printorcid}{}{\renewcommand{\printorcid}{}}}
+\makeatother
+
+\begin{document}
+
+\let\WriteBookmarks\relax
+\def\floatpagepagefraction{1}
+\def\textpagefraction{.001}
+
+\shorttitle{The threshold does not transfer}
+\shortauthors{M. Kbaier et al.}
+
+\input{_title_abstract}
+
+\author[1]{Mariem Kbaier}
+\ead{kbaiermeryem@gmail.com}
+
+\author[1]{Ons Abderrahim}
+
+\author[1]{Manar Amayri}
+
+\author[1]{Nizar Bouguila}
+\cormark[1]
+\ead{nizar.bouguila@concordia.ca}
+
+\affiliation[1]{organization={Concordia Institute for Information Systems
+  Engineering, Concordia University},
+  city={Montreal}, state={QC}, country={Canada}}
+
+\cortext[1]{Corresponding author.}
+
+\begin{keywords}
+Test-time adaptation \sep Open-set domain adaptation \sep Human activity recognition
+\sep Smart buildings \sep Novelty detection
+\end{keywords}
+
+\maketitle
+
+% ============================================================================
+\section{Introduction}
+\label{sec:os-intro}
+\input{01_setup}
+\input{00_deploy}
+
+% ============================================================================
+\section{Results}
+\label{sec:os-res}
+\input{02_penalty}
+\input{04_methods_trap}
+\input{05_detectors}
+\input{06_mahalanobis}
+\input{07_threshold}
+\input{08_depth}
+\input{08b_temporal}
+\input{lead_violations}
+
+% ============================================================================
+\section{Discussion}
+\input{10_discussion}
+
+\input{_conclusion}
+
+% ============================================================================
+\section*{Reproducibility}
+
+Code and every result file are available at
+\url{https://github.com/mariemkbaier/TTA-Test-Time-Adaptation}. Each table above names
+the script and result file that produced it, and
+\texttt{src/verify\_numbers.py} checks every numeric claim in this manuscript against
+those files.
+
+\section*{Acknowledgements}
+
+This research was supported by the Natural Sciences and Engineering Research Council of
+Canada (NSERC).
+
+% ============================================================================
+\begin{thebibliography}{99}
+
+\bibitem{kbaier_closedset} M. Kbaier, O. Abderrahim, M. Amayri, N. Bouguila, Sensor
+identity does not transfer: revisiting test-time adaptation for cross-building human
+activity recognition, under review.
+
+\bibitem{lead} S. Qu, T. Zou, L. He, F. R\"ohrbein, A. Knoll, G. Chen, C. Jiang, LEAD:
+learning decomposition for source-free universal domain adaptation, in: Proceedings of
+the IEEE/CVF Conference on Computer Vision and Pattern Recognition, 2024,
+pp. 23334--23343.
+
+\bibitem{tapia2004} E. M. Tapia, S. S. Intille, K. Larson, Activity recognition in the
+home using simple and ubiquitous sensors, in: Pervasive Computing, Springer, Berlin,
+Heidelberg, 2004, pp. 158--175.
+
+\end{thebibliography}
+
+\end{document}

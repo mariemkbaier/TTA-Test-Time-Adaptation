@@ -1,0 +1,46 @@
+\title[mode=title]{The Threshold Does Not Transfer: Open-Set Test-Time Adaptation
+Across Buildings}
+
+\begin{abstract}
+Deploying an activity recogniser in a new building means facing two shifts at once: the
+sensors are in different places, and the occupant may do things the model was never
+trained on. Open-set and universal domain adaptation address the second, and test-time
+adaptation the first, but the methods for both are evaluated offline, with repeated passes
+over a target set that is also the evaluation set. We study the combined shift under
+constraints a deployment can meet: a source model trained once and frozen, a single online
+pass over the unlabelled target stream in recording order, no source data, and no target
+labels anywhere, including for the threshold that decides what counts as unknown.
+
+Measured against a model trained on the target building at matched sample size, the
+cross-building penalty on known activities is $1.6$ macro-F\textsubscript{1} points
+entering one apartment and $36.0$ entering the other, a wider asymmetry than the
+$0.6$ and $21.3$ of the closed-set case \cite{kbaier_closedset}. Four test-time methods
+follow it: none improves on a frozen source model where there is no shift to recover.
+One appears to, and the appearance is instructive. PETAL records the best open-set
+H-score in one direction while classifying known activities roughly half as well, because
+degrading a model uniformly lowers its confidence everywhere, pushes more windows below a
+fixed threshold, and raises the unknown-detection term that H is bottlenecked by. The
+standard open-set score is therefore maximised in part by damage, and pairing it with
+known-class accuracy does not remove the problem; it only makes it visible.
+
+The rejection rule fails for a different reason. Maximum softmax, entropy, maximum logit
+and free energy are all at or below chance as novelty detectors here, with bootstrap
+intervals excluding $0.5$ for three of the four: the model is as confident on activities it
+never saw as on those it was trained on. A Mahalanobis distance to source class prototypes
+is the only score above chance, and at a matched rejection rate it catches $1.58$ and
+$1.17$ times as many unknowns as rejecting at random --- real, and far smaller than the
+H-score comparison suggests, because two scores held at the same nominal percentile reject
+very different fractions of a target stream.
+
+That last observation is the main result. A threshold set to reject $1\%$ of source
+validation rejects between $7\%$ and $63\%$ of the target stream, depending only on which
+score carries it. Improving detection does not fix it: a source-only weighting rule that
+gains $0.064$ AUROC in the direction with headroom \emph{loses} $0.11$ H at the threshold a
+deployment would use, while the variant with the best H in both directions has
+significantly worse AUROC in one. Detection quality and deployed open-set performance come
+apart, so cross-domain threshold calibration is the binding constraint rather than one
+difficulty among several. We recommend reporting the rejection rate, which is observable
+without labels, beside every open-set score.
+\end{abstract}
+
+% ---------------------------------------------------------------------------

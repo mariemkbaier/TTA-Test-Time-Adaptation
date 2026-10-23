@@ -1,0 +1,42 @@
+\section{Conclusion}
+\label{sec:os-conclusion}
+
+Adding a label-space shift to a geographic one makes cross-building activity recognition
+harder without giving adaptation more to work with. Across a $2\times2$ grid of transfer
+direction and label space, the methods track the measured penalty rather than the task:
+they help only where there is a real shift, and in the direction where the penalty is
+$1.6$ points none of them improves on doing nothing.
+
+What survives is small and does not adapt. A frozen source model with a Mahalanobis
+rejection rule, with prototypes and threshold fixed on source data before the target
+stream is read, reaches H-scores of $0.5176$ and $0.4289$; every component we removed to
+reach it --- the four adaptation methods, the confidence-based rejection scores, and the
+learned embedding, which a distance on the raw thirteen features matches --- was worth
+removing.
+
+Three findings seem to us likely to outlive this dataset, and none of them is about
+our system.
+
+The standard open-set score can be raised by degrading a model uniformly whenever
+unknown detection is the weaker of its two terms, as it was in both directions here, so
+it should never be reported without its known-class component.
+
+Four standard confidence-based novelty scores are at or below chance here, which was
+visible only because a chance baseline was computed, and is a reason to compute one
+before trusting any detector in a new domain.
+
+And a threshold calibrated on source data did not transfer in either direction here: the
+same nominal percentile rejects $7\%$ or $63\%$ of a target stream depending on the
+score it sits on, and improving the detector underneath did not help while that was
+true. We expect the mechanism to be general, since a threshold is a statistic of the
+source distribution, but we have measured it on two buildings.
+
+The limits are those of the study it extends. Two apartments of one dataset, one choice of
+withheld activities, and a temporal axis that turns out to carry much of the novelty
+signal in these particular homes. The specific numbers belong to that pair. What we would
+expect to transfer is the procedure: measure the penalty per cell against a target-trained
+model at matched sample size before running any method, compute a chance baseline for any
+novelty score, report the rejection rate beside the H-score, and treat a method that wins
+on H while losing on known-class accuracy as a null. Calibrating a rejection threshold
+that holds across domains rather than across resamples of one is, on this evidence, the
+problem worth working on next.

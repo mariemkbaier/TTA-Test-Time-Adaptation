@@ -15,8 +15,8 @@ that this is systematic across the whole grid.
 of the \emph{source} validation split. True unknown share is $40\%$ entering
 $\text{S}_2$ and $30\%$ entering $\text{S}_1$.}
 \label{tab:osthresh}
-\small
-\begin{tabular}{lccccc|ccccc}
+\scriptsize
+\begin{tabular}{@{}lccccc|ccccc@{}}
 \toprule
  & \multicolumn{5}{c|}{$\text{S}_1\!\to\!\text{S}_2$} & \multicolumn{5}{c}{$\text{S}_2\!\to\!\text{S}_1$} \\
 Score & $q{=}1$ & $2.5$ & $5$ & $10$ & $20$ & $q{=}1$ & $2.5$ & $5$ & $10$ & $20$ \\
@@ -38,8 +38,8 @@ the system will actually reject once it is installed in another building.
 
 The cause is the one running through this study. A threshold is a statistic of the source
 distribution, and source statistics do not transfer across buildings; this is the same
-property that makes replacing batch-norm statistics harmful in Section~\ref{sec:res-mech}
-and per-sensor features anti-informative in Section~\ref{sec:res-feat}, arriving now at
+property that makes replacing batch-norm statistics harmful
+and per-sensor features anti-informative in the closed-set study \cite{kbaier_closedset}, arriving now at
 the rejection rule. There is nothing specific to our detector in it: any open-set or
 universal method that fixes a threshold on source data inherits the problem, and any that
 fixes one on target data has left the test-time setting.

@@ -2,7 +2,7 @@
 \subsection{Adaptation in the open-set setting, and a metric that rewards damage}
 \label{sec:os-methods}
 
-Table~\ref{tab:osmethods} runs the four adaptation methods of Section~\ref{sec:res-mech}
+Table~\ref{tab:osmethods} runs the four adaptation methods of the closed-set study \cite{kbaier_closedset}
 on the open-set stream, with the rejection rule held fixed at the source-calibrated
 $q=5\%$ threshold so that only the adaptation differs between rows.
 
@@ -34,7 +34,7 @@ Reject all  & $0.0000$ & $1.0000$ & $0.0000$ & $0.0000$ & $0.0000$ & $1.0000$ & 
 \end{table*}
 
 In the direction with no measurable shift to recover, no method improves on the frozen
-source model, and the ordering is the one Section~\ref{sec:res-mech} predicts from how
+source model, and the ordering is the one the closed-set study predicts from how
 much source normalisation each method retains. Closing the label space does not change
 that conclusion; it reproduces it on a harder task.
 
@@ -44,7 +44,7 @@ OS$^{*}$ of $0.3643$ against $0.6717$: it classifies the known activities roughl
 well and still wins. It also records the best UCDR in both directions.
 
 Neither is unknown detection. PETAL's normalisation channel damages the model globally, as
-Table~\ref{tab:bnchannel} shows, which lowers its confidence on every window including the
+the closed-set study shows, which lowers its confidence on every window including the
 known ones. More windows fall below a fixed threshold, UCDR rises mechanically, and
 because H is a harmonic mean it rewards lifting whichever component was the bottleneck.
 Unknown detection was the bottleneck, so a method that degrades uniformly is scored as a

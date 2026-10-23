@@ -4,7 +4,7 @@
 
 Withholding activities from source training changes the source model, so each cell of the
 grid needs its own baseline before any method is run. We reuse the measurement of
-Section~\ref{sec:res-gap}: hold the evaluation set fixed, vary only where the training
+the closed-set study \cite{kbaier_closedset}: hold the evaluation set fixed, vary only where the training
 labels came from, match training-set size by subsampling, and group the split by recording
 day. In the open-set cells the penalty is computed on known-class windows only, since a
 source model that never saw the withheld activities cannot be asked to classify them.
@@ -13,7 +13,7 @@ source model that never saw the withheld activities cannot be asked to classify 
 \begin{table}[t]
 \centering
 \caption{Cross-building penalty, known-class \macf, matched training-set size, identical
-held-out target days. Closed-set rows reproduce Section~\ref{sec:res-gap} on an
+held-out target days. Closed-set rows reproduce \cite{kbaier_closedset} on an
 independently written harness.}
 \label{tab:ospenalty}
 \small

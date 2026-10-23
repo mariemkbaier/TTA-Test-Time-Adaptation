@@ -11,7 +11,7 @@ implementations that assume offline access to the target domain. That assumption
 stated as a limitation, and it is not visible from the papers, but it decides what the
 reported numbers mean. Table~\ref{tab:leadviol} records the four places where the
 reference implementation of LEAD \cite{lead} departs from the Tier-1 definition of
-Section~\ref{sec:method-tiers}, with the line that does it.
+Section~\ref{sec:os-setup}, with the line that does it.
 
 \begin{table*}[t]
 \centering
@@ -21,13 +21,17 @@ Together these make the published protocol source-free domain adaptation rather 
 test-time adaptation: it requires the whole target set in advance, revisits it fifty
 times, and evaluates on the data it adapted on.}
 \label{tab:leadviol}
-\small
-\begin{tabular}{@{}p{0.20\textwidth}p{0.17\textwidth}p{0.26\textwidth}p{0.29\textwidth}@{}}
+\footnotesize
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{0.19\textwidth}%
+                  >{\raggedright\arraybackslash}p{0.19\textwidth}%
+                  >{\raggedright\arraybackslash}p{0.25\textwidth}%
+                  >{\raggedright\arraybackslash}p{0.28\textwidth}@{}}
 \toprule
 Mechanism & Code & Constraint violated & Consequence \\
 \midrule
 Multi-epoch offline training on the target set
- & \texttt{epochs=50} (\texttt{config/model\_config.py}:15); loop at :375
+ & \texttt{epochs=50} (\texttt{config/\allowbreak model\_config.py}:15); loop at :375
  & Adaptation must be a single online pass over the stream
  & The whole target set must exist before adaptation starts, and every sample is revisited
    fifty times. No deployed system has this. \\
@@ -39,7 +43,7 @@ Adaptation and evaluation share one dataset
    performance, and no held-out target split exists anywhere in the file. \\
 \addlinespace[3pt]
 Pseudo-labels built from a full pass over the evaluation set
- & :209 calls \texttt{obtain\_LEAD\_pseudo\_labels} on \texttt{test\_dataloader} at the
+ & :209 calls \texttt{obtain\_LEAD\_\allowbreak pseudo\_labels} on \texttt{test\_dataloader} at the
    start of every epoch
  & Predictions must depend only on samples already seen
  & The model sees the entire evaluation set, including its own future, before adapting.
