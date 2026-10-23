@@ -154,6 +154,13 @@ if __name__ == "__main__":
                              **{k: np.mean([x[k] for x in acc[(name,'m20')]])
                                 for k in acc[(name,'m20')][0]}))
         W = np.mean(wlog, 0)
+        for j, c in enumerate(COLS):
+            rows.append(dict(direction=f"{srcb}->{tgt}", variant="LOCO weight",
+                             q=c, auroc=float(W[j])))
+        rows.append(dict(direction=f"{srcb}->{tgt}", variant="LOCO weight",
+                         q="temporal mean", auroc=float(W[TEMP].mean())))
+        rows.append(dict(direction=f"{srcb}->{tgt}", variant="LOCO weight",
+                         q="global mean", auroc=float(W[~TEMP].mean())))
         top = np.argsort(-W)[:4]
         print(f"  LOCO weights (source only), top 4: "
               + ", ".join(f"{COLS[j]}={W[j]:.2f}" for j in top))
@@ -171,7 +178,9 @@ if __name__ == "__main__":
             mark = "separated" if (lo > 0 or hi < 0) else "within noise"
             print(f"    {name:<26}{auroc(tg, unk):>8.4f}  delta [{lo:+.4f},{hi:+.4f}]  {mark}")
             rows.append(dict(direction=f"{srcb}->{tgt}", variant=name, q="boot_vs_13d",
-                             auroc=auroc(tg, unk), ci_lo=lo, ci_hi=hi, verdict=mark))
+                             auroc=auroc(tg, unk),
+                             delta=auroc(tg, unk) - auroc(base, unk),
+                             ci_lo=lo, ci_hi=hi, verdict=mark))
 
     pd.DataFrame(rows).to_csv(os.path.join(R, "exp30_temporal_detector.csv"), index=False)
     print("\n-> results/exp30_temporal_detector.csv")
