@@ -1199,7 +1199,7 @@ activity task and for all three methods.
 \paragraph{PeTTA: a reduction that is easy to get wrong.} Eq.~\ref{eq:petta-gamma} is
 written as a quadratic form, which reads as a sum over the $64$-dimensional embedding. We
 implemented it that way, and on this data that choice alone decides whether the method
-runs at all. Summed, the cross-building statistic has median $71.8$, $\exp(-d)$ underflows,
+runs at all. Summed, the cross-building statistic averages $71.8$ over the stream, $\exp(-d)$ underflows,
 $\bar\gamma$ pins at unity, and Eq.~\ref{eq:petta-alpha} sets $\alpha_t$ to
 $1.2\times10^{-10}$: the teacher stops. Averaged over the same dimensions, the statistic is
 $1.12$, $\bar\gamma$ is $0.56$, and $\alpha_t$ recovers to $4.4\times10^{-4}$.
@@ -1208,7 +1208,7 @@ PeTTA's released implementation averages. Its divergence is a mean over the embe
 dimension, so the saturation above is a property of our reduction and not of the published
 method, and we report it as such. Table~\ref{tab:petta} gives both.
 
-% source: results/exp7_petta_noop.csv (src/exp7_petta_noop.py)
+% source: src/exp31_petta_diga_tables.py -> results/exp31_petta_diga_tables.csv
 \begin{table*}[t]
 \centering
 \caption{PeTTA divergence sensing on S2, with the normalisation channel of
@@ -1218,7 +1218,7 @@ implementation uses the per-dimension mean.}
 \small
 \begin{tabular}{lcccc}
 \toprule
-Reduction & median $\bar\gamma$ & median $\alpha_t$ & median $d$ & Changed \\
+Reduction & mean $\bar\gamma$ & $\alpha_t$ & mean $d$ & Changed \\
 \midrule
 Sum over embedding dimensions & $1.000000$ & $1.2\times10^{-10}$ & $71.8$ & $0/3412$ \\
 Per-dimension mean (released) & $0.5603$   & $4.4\times10^{-4}$  & $1.12$ & $10/3412$ \\
@@ -1245,7 +1245,7 @@ applying PeTTA to a low-dimensional sensor problem should check both.
 \paragraph{DIGA: published hyperparameters do not transfer.} Table~\ref{tab:diga} crosses
 the two readings of DIGA's prototype similarity with two hyperparameter settings.
 
-% source: /tmp/diga_sim.py over tta_faithful.DIGAFaithful
+% source: src/exp31_petta_diga_tables.py -> results/exp31_petta_diga_tables.csv
 \begin{table*}[t]
 \centering
 \caption{DIGA under two readings of Eq.~8 and two hyperparameter settings. Source-only is
@@ -1429,7 +1429,7 @@ Section~\ref{sec:res-mech} gives the same ordering across both tasks:
 \toprule
 Source & Quality & Helped \\
 \midrule
-occupancy $\text{S}_1$ & MCC $0.6583$ & $0/64$ \\
+occupancy $\text{S}_1$ & MCC $0.6628$ & $0/64$ \\
 activity $\text{S}_1$  & \macf{} $0.4944$ & $11/64$ \\
 activity $\text{S}_2$  & \macf{} $0.3226$ & $64/64$ \\
 \bottomrule
