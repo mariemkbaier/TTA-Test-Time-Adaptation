@@ -1580,9 +1580,10 @@ Code, the raw sensor data and every result file are available at
 full analysis from the raw CSVs in one pass, each table above names the script and result
 file that generated it. The occupancy dataset is private: it
 was collected at the Grenoble Institute of Technology and is not ours to redistribute,
-so that section alone is reported but not independently reproducible. Reference implementations of
-the three adaptation methods on this data are at
-\url{https://github.com/mariemkbaier/Test-Time-Adaptation}.
+so that section alone is reported but not independently reproducible. The three adaptation
+methods are implemented in \texttt{src/tta.py} (as commonly applied) and
+\texttt{src/tta\_faithful.py} (at the hyperparameters and equations each paper publishes);
+the corrected PETAL of Section~\ref{sec:res-mech} is \texttt{src/petal\_fixed.py}.
 
 \section*{Acknowledgements}
 

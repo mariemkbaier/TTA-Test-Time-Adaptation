@@ -71,8 +71,9 @@ python -m venv .venv && .venv/bin/pip install -r requirements.txt
 occupancy data is private (two offices at the Grenoble Institute of Technology, via
 Dridi, Amayri & Bouguila) and is not included, so `exp8`/`exp13` will not run without it.
 
-Implementations of the three adaptation methods as originally applied live in a separate
-repository: <https://github.com/mariemkbaier/Test-Time-Adaptation>.
+The three adaptation methods are implemented here: `src/tta.py` (as commonly applied),
+`src/tta_faithful.py` (at each paper's published hyperparameters and equations), and
+`src/petal_fixed.py` (PETAL with the SWAG degeneracy check).
 
 ## Building the manuscript
 
