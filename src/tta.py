@@ -165,7 +165,8 @@ class PeTTA:
     """Sec 3.4 / 4.6. Mean teacher whose update rate and regularization are driven by a
     Mahalanobis divergence signal between per-class target feature means and source ones."""
     name = "PeTTA"
-    DEFAULTS = dict(alpha0=0.05, lam0=10.0, lr=5e-5, bank=64, noise_std=0.05, ema_feat=0.05)
+    DEFAULTS = dict(alpha0=0.05, lam0=10.0, lr=5e-5, bank=64, noise_std=0.05,
+                    ema_feat=0.05, batch_stat_bn=True)
 
     def __init__(self, model, device="cpu", cfg=None, src_stats=None, **kw):
         self.c = {**self.DEFAULTS, **(cfg or {})}; self.device = device
@@ -173,6 +174,15 @@ class PeTTA:
         for p in self.theta0.parameters(): p.requires_grad_(False)
         self.student = deepcopy(model).to(device).train()
         self.teacher = deepcopy(model).to(device).eval()
+        if self.c.get("batch_stat_bn", True):
+            # PeTTA installs RobustBN1d, which normalises from the test stream rather than
+            # from the frozen source estimates. Leaving the source statistics in place
+            # removes the method's normalisation-adaptation channel.
+            for m in (self.student, self.teacher):
+                m.train()
+                for b in _bn_layers(m):
+                    b.track_running_stats = False
+                    b.running_mean = b.running_var = None
         for p in self.teacher.parameters(): p.requires_grad_(False)
         self.opt = torch.optim.Adam(self.student.parameters(), lr=self.c["lr"])
         for bn in _bn_layers(self.student): bn.momentum = 0.01
@@ -198,7 +208,10 @@ class PeTTA:
                 k = int(k)
                 self.mu_t[k] = (1 - c["ema_feat"]) * self.mu_t[k] + c["ema_feat"] * z_t[cls == k].mean(0)
                 seen.append(k)
-            d = ((self.mu_t[seen] - self.mu0[seen]) ** 2 / (self.var0[seen] + 1e-6)).sum(1)
+            # petta_memory.py GSSLoss averages over the embedding dimension. Summing it
+            # instead makes d scale with the 64 dims, so exp(-d) underflows and the gate
+            # saturates at 1.0 regardless of how far apart the domains actually are.
+            d = ((self.mu_t[seen] - self.mu0[seen]) ** 2 / (self.var0[seen] + 1e-6)).mean(1)
             gamma = (1 - torch.exp(-d)).mean()
             lam_t = float(gamma) * c["lam0"]
             alpha_t = (1 - float(gamma)) * c["alpha0"]

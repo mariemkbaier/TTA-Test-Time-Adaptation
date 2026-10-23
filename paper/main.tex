@@ -88,16 +88,19 @@ same comparison costs $21.3$ points. One of the two directions therefore contain
 essentially no domain shift, which the conventional source-minus-target figure of $8.8$
 points conceals by charging the transfer for a difference between the buildings.
 
-Against that baseline the three methods behave differently, and each result traces to a
-specific published equation, not to our port. PETAL's coefficient weights the likelihood,
-so the value selected by tuning on target labels removes the learning signal entirely.
-PeTTA gates its update rate on a Mahalanobis distance summed over $64$ embedding
-dimensions; across buildings that sum is large enough that the gate saturates and the
-teacher stops updating. DIGA does help where there is headroom, but modestly and conditionally: $1.7$ \macf{}
-points with hyperparameters retuned on target labels, $0.3$ under a label-free criterion,
-and across its full published grid the sign of the effect follows the direction of
-transfer rather than the setting. Our conclusion is not that TTA fails in smart buildings, but that it was being
-asked to repair a problem largely created by evaluation and feature design.
+Against that baseline all four methods act through one channel: replacing source
+batch-normalisation statistics with the test stream's, which each released implementation
+makes its primary mechanism. Disabling that channel and leaving everything else intact,
+PETAL and PeTTA alter fewer than $25$ of $3412$ predictions, so their gradient updates,
+posterior regularisation and divergence gating contribute almost nothing. Enabling it as
+their own code configures it, PETAL lands within $0.3$ \macf{} points of plain AdaBN and
+PeTTA within $1.1$. The cost of the channel rises monotonically with the share of target
+statistics mixed in, and the only component that helps anywhere without target labels is
+DIGA's prototype classifier, worth $4.4$ points in the direction with headroom and $-5.7$
+in the direction without. Across two tasks, two directions and four methods, every method
+gains $28$ to $43$ MCC points against a checkpoint worse than chance and loses against
+every sound one. Our conclusion is not that TTA fails in smart buildings, but that it was
+being asked to repair a problem largely created by evaluation and feature design.
 \end{abstract}
 
 \begin{keywords}
@@ -182,14 +185,16 @@ Our contributions are as follows.
 
 \item \textbf{Adaptation gain measures source-model deficiency, not adaptation quality.} On cross-office
   occupancy estimation the two transfer directions differ only in the quality of the
-  source checkpoint: against a sound one no method improves, against one worse than
-  chance the same methods gain $27$ to $41$ MCC points. PETAL and PeTTA reproduce source
-  predictions in both (Section~\ref{sec:res-oe}).
+  source checkpoint: against a sound one every method loses, against one worse than chance
+  the same methods gain $28$ to $43$ MCC points. Across both tasks and both directions,
+  sixteen measurements order by checkpoint quality alone (Section~\ref{sec:res-oe}).
 
-\item \textbf{Three mechanisms by which image-domain assumptions break on sensor data},
-  each tied to a published equation: PETAL's $\bar\lambda$ scales the likelihood, PeTTA's
-  divergence signal saturates, and DIGA's advertised global hyperparameters do not
-  transfer (Section~\ref{sec:res-mech}).
+\item \textbf{One mechanism, not four.} All four methods adapt batch-norm statistics, and
+  each released implementation makes that its primary mechanism. With it disabled, PETAL
+  and PeTTA change under $25$ of $3412$ predictions; with it enabled they land on AdaBN
+  (Section~\ref{sec:res-mech}). We also record three places where these papers and their
+  own released code disagree, each in the direction of suppressing adaptation
+  (Section~\ref{sec:res-impl}).
 
 \item \textbf{A protocol error that accounts for most of the reported cross-building gap.}
   We isolate it by varying the window definition and the validation split independently.
@@ -847,16 +852,16 @@ $0.200$.}
 \toprule
 Method & Stream & Accuracy & \macf & MCC \\
 \midrule
-Source-only & non-recurring & $0.6042\pm0.013$ & $0.4467\pm0.029$ & $0.4515\pm0.033$ \\
-AdaBN       & non-recurring & $0.3782\pm0.011$ & $0.2977\pm0.005$ & $0.1517\pm0.013$ \\
-TENT        & non-recurring & $0.3784\pm0.011$ & $0.2976\pm0.005$ & $0.1515\pm0.013$ \\
-DIGA        & non-recurring & $0.6045\pm0.013$ & $\mathbf{0.4639}\pm0.001$ & $\mathbf{0.4739}\pm0.009$ \\
-PETAL       & non-recurring & $0.6033\pm0.008$ & $0.4450\pm0.023$ & $0.4522\pm0.026$ \\
+Source-only & non-recurring & $0.6057\pm0.012$ & $0.4481\pm0.027$ & $0.4535\pm0.031$ \\
+AdaBN       & non-recurring & $0.3784\pm0.012$ & $0.2992\pm0.004$ & $0.1526\pm0.014$ \\
+TENT        & non-recurring & $0.3781\pm0.011$ & $0.2986\pm0.005$ & $0.1519\pm0.013$ \\
+DIGA        & non-recurring & $0.6028\pm0.013$ & $\mathbf{0.4618}\pm0.004$ & $\mathbf{0.4720}\pm0.006$ \\
+PETAL       & non-recurring & $0.3622\pm0.005$ & $0.2771\pm0.015$ & $0.1220\pm0.011$ \\
 \midrule
-Source-only & recurring & $0.6042\pm0.011$ & $0.4467\pm0.025$ & $0.4515\pm0.029$ \\
-DIGA        & recurring & $\mathbf{0.6073}\pm0.010$ & $0.4625\pm0.013$ & $0.4700\pm0.022$ \\
-PETAL       & recurring & $0.6038\pm0.010$ & $0.4431\pm0.020$ & $0.4504\pm0.026$ \\
-PeTTA       & recurring & $0.6045\pm0.011$ & $0.4470\pm0.025$ & $0.4517\pm0.029$ \\
+Source-only & recurring & $0.6057\pm0.010$ & $0.4481\pm0.023$ & $0.4535\pm0.026$ \\
+DIGA        & recurring & $\mathbf{0.6060}\pm0.010$ & $0.4603\pm0.016$ & $0.4676\pm0.024$ \\
+PETAL       & recurring & $0.3640\pm0.008$ & $0.2771\pm0.006$ & $0.1215\pm0.010$ \\
+PeTTA       & recurring & $0.3721\pm0.008$ & $0.2848\pm0.007$ & $0.1358\pm0.011$ \\
 \bottomrule
 \end{tabular}
 \end{table*}
@@ -872,13 +877,13 @@ PeTTA       & recurring & $0.6045\pm0.011$ & $0.4470\pm0.025$ & $0.4517\pm0.029$
 \toprule
 Method & Stream & $\Delta$\macf & $\Delta$MCC \\
 \midrule
-DIGA  & non-recurring & $[+0.0032,\,+0.0225]$ & $[+0.0277,\,+0.0559]$ \\
-DIGA  & recurring     & $[+0.0146,\,+0.0311]$ & $[+0.0387,\,+0.0633]$ \\
-PETAL & non-recurring & $[-0.0076,\,+0.0027]$ & $[-0.0013,\,+0.0130]$ \\
-PETAL & recurring     & $[-0.0087,\,+0.0015]$ & $[-0.0067,\,+0.0067]$ \\
-PeTTA & recurring     & $[-0.0007,\,+0.0006]$ & $[-0.0009,\,+0.0011]$ \\
-AdaBN & non-recurring & $[-0.1754,\,-0.1379]$ & $[-0.3046,\,-0.2500]$ \\
-TENT  & non-recurring & $[-0.1756,\,-0.1383]$ & $[-0.3050,\,-0.2503]$ \\
+DIGA  & non-recurring & $[-0.0025,\,+0.0177]$ & $[+0.0215,\,+0.0500]$ \\
+DIGA  & recurring     & $[+0.0124,\,+0.0289]$ & $[+0.0361,\,+0.0610]$ \\
+PETAL & non-recurring & $[-0.1990,\,-0.1619]$ & $[-0.3533,\,-0.2978]$ \\
+PETAL & recurring     & $[-0.1948,\,-0.1574]$ & $[-0.3451,\,-0.2899]$ \\
+PeTTA & recurring     & $[-0.1889,\,-0.1515]$ & $[-0.3278,\,-0.2696]$ \\
+AdaBN & non-recurring & $[-0.1725,\,-0.1350]$ & $[-0.3029,\,-0.2476]$ \\
+TENT  & non-recurring & $[-0.1745,\,-0.1374]$ & $[-0.3050,\,-0.2503]$ \\
 \bottomrule
 \end{tabular}
 \end{table*}
@@ -1020,33 +1025,114 @@ shared.
 
 A natural objection to what follows is that these methods were designed for images, so
 their failure on one-dimensional data is to be expected. The results do not support that
-reading, for three reasons.
+reading. The methods are not uniformly unhelpful: against the weakest source checkpoint in
+this study every one of them gains between $27$ and $43$ MCC points
+(Table~\ref{tab:oe-rev}). What varies is not the modality but the checkpoint they are
+given, and the mechanism that produces both outcomes is the same one.
 
-First, the picture is not uniform. DIGA improves on the deployable checkpoint with a
-bootstrap interval excluding zero, and AdaBN, the simplest normalisation-based
-adaptation there is, gains $41.5$ MCC points in one occupancy direction
-(Table~\ref{tab:oe-rev}). Methods built for images are evidently capable of helping on
-sensor data; whether they do turns out to depend on the source checkpoint and not on
-the modality.
+All four methods adapt batch-normalisation statistics, and in each released implementation
+that is the primary mechanism rather than an incidental detail. AdaBN replaces the source
+estimates with the test batch's outright. DIGA blends them, retaining a fraction
+$\lambda_{BN}$ of the source estimate (Eq.~\ref{eq:dam}). PETAL's \texttt{configure\_model}
+sets \texttt{track\_running\_stats} to false and discards \texttt{running\_mean} and
+\texttt{running\_var} on every normalisation layer, and because its EMA teacher is built by
+copying the configured model, the teacher that produces PETAL's predictions runs on batch
+statistics too. PeTTA installs a normalisation layer that tracks the test stream. In each
+case the gradient machinery the method is named for sits on top of that channel.
 
-Second, PETAL's failure has nothing to do with modality. Setting $\bar\lambda=0$ deletes
-the likelihood term from Eq.~\ref{eq:petal} on any data, images included. What the move to
-sensor data changes is only which value a target-label search selects, and even that
-follows a statable condition, not the modality.
+Separating the two is therefore the first thing to do, and Table~\ref{tab:bnchannel} does
+it by running each method twice: once as its own code configures it, and once identically
+except that the source statistics are left in place.
 
-Third, PeTTA's failure is modality-related but not in the way the objection supposes. The
-method does not degrade gracefully; it stops entirely and silently, with losses that look
-unremarkable throughout. The mechanism is a scalar that reaches exactly $1$ and multiplies
-the update rate by zero. Establishing that is the contribution, not the observation that
-image methods sometimes do worse elsewhere.
+% source: src/exp23_bn_channel.py -> results/exp23_bn_channel.csv, 3 seeds
+\begin{table*}[t]
+\centering
+\caption{Each method with its normalisation channel active, as its released code
+configures it, and with that channel disabled and everything else unchanged.
+$\Delta$ is against source-only in the same direction; \emph{changed} counts altered
+predictions out of $3412$. The cross-building penalty is $0.6$ points entering
+$\text{S}_2$ and $21.3$ entering $\text{S}_1$ (Section~\ref{sec:res-gap}).}
+\label{tab:bnchannel}
+\small
+\begin{tabular}{lcccccc}
+\toprule
+ & \multicolumn{3}{c}{$\text{S}_1\!\to\!\text{S}_2$} & \multicolumn{3}{c}{$\text{S}_2\!\to\!\text{S}_1$} \\
+\cmidrule(lr){2-4}\cmidrule(lr){5-7}
+Method & \macf & $\Delta$ & changed & \macf & $\Delta$ & changed \\
+\midrule
+Source-only & $0.4944$ & --- & $0$ & $0.3226$ & --- & $0$ \\
+\addlinespace[2pt]
+AdaBN & $0.3139$ & $-18.0$ & $1784$ & $0.2137$ & $-10.9$ & $3143$ \\
+TENT  & $0.3141$ & $-18.0$ & $1782$ & $0.2133$ & $-10.9$ & $3142$ \\
+DIGA  & $0.4088$ & $-8.6$  & $1279$ & $\mathbf{0.3438}$ & $\mathbf{+2.1}$ & $1031$ \\
+PETAL & $0.3113$ & $-18.3$ & $1739$ & $0.2028$ & $-12.0$ & $3105$ \\
+PeTTA & $0.2908$ & $-20.4$ & $1845$ & $0.2158$ & $-10.7$ & $3164$ \\
+\addlinespace[3pt]
+\multicolumn{7}{l}{\emph{normalisation channel disabled, everything else identical}} \\
+\addlinespace[2pt]
+PETAL & $0.4947$ & $+0.0$ & $11$ & $0.3224$ & $-0.0$ & $24$ \\
+PeTTA & $0.4947$ & $+0.0$ & $5$  & $0.3225$ & $-0.0$ & $13$ \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+Two readings follow, and the second is the one that matters.
+
+With the channel disabled, PETAL and PeTTA are inert: between $5$ and $24$ altered
+predictions out of $3412$, in either direction. Their gradient updates, their posterior
+regularisation, their divergence gating and their memory banks together move almost
+nothing. With the channel active, PETAL lands within $0.3$ points of AdaBN in the forward
+direction and PeTTA within $1.1$, having each changed roughly the same predictions AdaBN
+changes. Whatever these methods contribute over plain batch-statistic replacement, it is
+not visible at this scale. That is a sharper statement than reporting that they do not
+help, and it does not depend on any choice we made: it is what their own configuration
+does.
+
+The channel itself is a continuum rather than a switch, and DIGA's $\lambda_{BN}$ exposes
+it directly. Table~\ref{tab:bndial} sweeps it from pure source statistics to pure target
+statistics.
+
+% source: src/exp23_bn_channel.py, DIGA with lam_bn swept
+\begin{table}[t]
+\centering
+\caption{DIGA as $\lambda_{BN}$ moves from source statistics ($1.0$) to target statistics
+($0.0$), $\Delta$\macf{} against source-only. $\lambda_{BN}=1.0$ leaves the statistics
+untouched, so that row isolates the prototype classifier from the normalisation.}
+\label{tab:bndial}
+\small
+\begin{tabular}{@{}lcc@{}}
+\toprule
+$\lambda_{BN}$ & $\text{S}_1\!\to\!\text{S}_2$ & $\text{S}_2\!\to\!\text{S}_1$ \\
+\midrule
+$1.0$ (source) & $-5.7$ & $\mathbf{+4.4}$ \\
+$0.9$          & $-6.5$ & $+2.4$ \\
+$0.8$ (published) & $-8.6$ & $+2.1$ \\
+$0.6$          & $-23.3$ & $-12.9$ \\
+$0.4$          & $-30.3$ & $-19.9$ \\
+$0.2$          & $-25.9$ & $-22.8$ \\
+$0.0$ (target) & $-33.0$ & $-20.5$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The cost rises monotonically with the share of target statistics mixed in, in both
+directions, and it is steep: moving from $\lambda_{BN}=0.8$ to $0.6$ costs $15$ points
+forward and $15$ reverse. Note also what the top row says. At $\lambda_{BN}=1.0$ the
+statistics are exactly the source model's, yet $1026$ predictions change, because DIGA's
+prototype classifier is still active. That row is the only configuration anywhere in this
+study where an adaptation component helps by more than a point without target labels, and
+it helps in the direction with headroom and hurts in the direction without.
+
+So DIGA's small positive result is not normalisation adaptation succeeding where the others
+failed. It is a prototype classifier gaining $4.4$ points, partly spent back by a DAM that
+costs $2.3$. The component of these methods that transfers to this data is the one that
+does not touch normalisation statistics at all.
 
 On implementation: each method is implemented from the equations and hyperparameters given
-in its source paper, and we report both the published settings and any retuned ones where
-they differ materially. For PeTTA we additionally confirmed the behaviour against the
-authors' released implementation, in which the divergence statistic is computed as a sum
-over the embedding dimension (\texttt{per\_class\_distance}), which is what produces the
-saturation reported below. The PETAL result requires no implementation at all: it follows
-from Algorithm~2 of the source paper.
+in its source paper, checked against its released code, and run at published settings; we
+report retuned values separately where they differ materially. Section~\ref{sec:res-impl}
+records where the papers and their released implementations disagree, since three of those
+disagreements change results here.
 \label{sec:res-mech}
 
 \paragraph{PETAL: the coefficient scales the likelihood.} As noted in
@@ -1079,45 +1165,24 @@ produces, selecting $\bar\lambda$ by target-domain \macf{}, a criterion in commo
 prefers $\bar\lambda=0$, the setting at which adaptation cannot occur. A reported null for
 PETAL obtained this way is a statement about the search procedure, not about the method.
 
-$\bar\lambda$ is not, however, the whole of why PETAL is inert here, and the table says so:
-the predictions barely move at any value, including $\bar\lambda=10$. The second reason is
-the length of the stream. This target stream is $3412$ samples, which at batch size $64$
-is $54$ gradient steps. PETAL's published learning rate is $10^{-4}$ and its teacher is an
-exponential moving average at $\pi=0.999$, so after the entire stream the teacher that
-produces the predictions has travelled $1-0.999^{54}=5.3\%$ of the way from the source
-weights toward the student. These values are calibrated for the corruption benchmarks the
-method was developed on, where a single corruption supplies hundreds of batches and the
-full protocol supplies tens of thousands. Fifty-four steps is not a regime in which a
-method built on slow teacher-student drift can express itself.
+Two qualifications belong with that result. The first is that $\bar\lambda=0$ is not the
+setting PETAL's authors run. Algorithm~2 as printed places the coefficient on the data term
+with the prior fixed at unity, which is what Eq.~\ref{eq:petal} and
+Table~\ref{tab:lambda} implement; the released code writes the same objective the other way
+up, as \texttt{loss\_H + spw\,$\cdot$\,para\_loss} with \texttt{spw}~$=10^{-9}$, placing the
+coefficient on the prior and fixing the data term at unity. The two are equivalent up to
+scale, and the published \texttt{spw} corresponds to $\bar\lambda\approx10^{9}$: the
+opposite end of the range from the value target-label selection prefers. Our point is about
+what the selection rule does, not about what the authors run, and it should be read that
+way.
 
-Table~\ref{tab:petal-budget} tests that reading by removing the constraint. Freeing the
-teacher and raising the learning rate does make PETAL move, and it moves the wrong way at
-every step size.
-
-% source: src/exp22_petal_budget.py
-\begin{table}[t]
-\centering
-\caption{PETAL with the teacher freed ($\pi=0.9$) and the learning rate varied,
-$\bar\lambda=1$ throughout, S1$\to$S2. Source-only is \macf{} $0.4641$. The stream is $54$
-gradient steps in total.}
-\label{tab:petal-budget}
-\small
-\begin{tabular}{@{}lccc@{}}
-\toprule
-Learning rate & Predictions changed & \macf & MCC \\
-\midrule
-$10^{-4}$ (published) & $52/3412$   & $0.4613$ & $0.4667$ \\
-$10^{-3}$             & $305/3412$  & $0.4149$ & $0.4112$ \\
-$10^{-2}$             & $994/3412$  & $0.3523$ & $0.4006$ \\
-$5\times10^{-2}$      & $1767/3412$ & $0.2400$ & $0.1694$ \\
-\bottomrule
-\end{tabular}
-\end{table}
-
-This matters for how the null should be read. PETAL is not merely frozen by a budget that
-happens to be too small; when given the budget to act it degrades monotonically. The
-method's inactivity is therefore the best outcome available to it on this data, which is a
-stronger statement than reporting that nothing happened.
+The second is that $\bar\lambda$ is not why PETAL is inert in Table~\ref{tab:lambda} at
+all. The predictions barely move at any value, including $\bar\lambda=10$, because that
+table was produced with the normalisation channel of Table~\ref{tab:bnchannel} disabled.
+With the channel active, as PETAL's \texttt{configure\_model} sets it, PETAL moves $1739$
+predictions and loses $18.3$ points. The $\bar\lambda$ sweep therefore measures what the
+gradient term alone contributes, which is almost nothing, and should not be read as a
+statement about the method as published.
 
 The same selection rule distorts DIGA, in the opposite direction. Running its full
 published grid (Section~\ref{sec:background}, $64$ configurations) on the occupancy task,
@@ -1131,46 +1196,51 @@ on the target stream, selects the configuration costing $0.7$ points, which is w
 deployment would actually obtain. Section~\ref{sec:res-hgrid} repeats the exercise on the
 activity task and for all three methods.
 
-\paragraph{PeTTA: the divergence signal saturates.} Fig.~\ref{fig:saturation} shows why.
-Eq.~\ref{eq:petta-gamma} sums over the
-$64$-dimensional embedding. Across buildings that sum is large, $\exp(-d)$ underflows, and
-$\bar\gamma$ pins at unity, which by Eq.~\ref{eq:petta-alpha} sets $\alpha_t$ to zero and
-freezes the teacher. Table~\ref{tab:petta} measures it.
+\paragraph{PeTTA: a reduction that is easy to get wrong.} Eq.~\ref{eq:petta-gamma} is
+written as a quadratic form, which reads as a sum over the $64$-dimensional embedding. We
+implemented it that way, and on this data that choice alone decides whether the method
+runs at all. Summed, the cross-building statistic has median $71.8$, $\exp(-d)$ underflows,
+$\bar\gamma$ pins at unity, and Eq.~\ref{eq:petta-alpha} sets $\alpha_t$ to
+$1.2\times10^{-10}$: the teacher stops. Averaged over the same dimensions, the statistic is
+$1.12$, $\bar\gamma$ is $0.56$, and $\alpha_t$ recovers to $4.4\times10^{-4}$.
+
+PeTTA's released implementation averages. Its divergence is a mean over the embedding
+dimension, so the saturation above is a property of our reduction and not of the published
+method, and we report it as such. Table~\ref{tab:petta} gives both.
 
 % source: results/exp7_petta_noop.csv (src/exp7_petta_noop.py)
 \begin{table*}[t]
 \centering
-\caption{PeTTA divergence sensing on S2. The published reduction is a sum over embedding
-dimensions.}
+\caption{PeTTA divergence sensing on S2, with the normalisation channel of
+Table~\ref{tab:bnchannel} disabled so the gating is visible in isolation. The released
+implementation uses the per-dimension mean.}
 \label{tab:petta}
 \small
 \begin{tabular}{lcccc}
 \toprule
-Variant & median $\bar\gamma$ & median $\alpha_t$ & median $d$ & Changed \\
+Reduction & median $\bar\gamma$ & median $\alpha_t$ & median $d$ & Changed \\
 \midrule
-As published (sum)        & $1.000000$ & $4.5\times10^{-9}$ & $587$  & $0/3412$ \\
-Per-dimension mean        & $0.8263$   & $8.7\times10^{-3}$ & $9.16$ & $10/3412$ \\
-Sum $+$ $\alpha$ floor    & $1.000000$ & $1.0\times10^{-3}$ & $586$  & $1/3412$ \\
+Sum over embedding dimensions & $1.000000$ & $1.2\times10^{-10}$ & $71.8$ & $0/3412$ \\
+Per-dimension mean (released) & $0.5603$   & $4.4\times10^{-4}$  & $1.12$ & $10/3412$ \\
+Sum $+$ $\alpha$ floor        & $1.000000$ & $1.0\times10^{-3}$  & $71.6$ & $1/3412$ \\
 \bottomrule
 \end{tabular}
 \end{table*}
 
+Two things are worth taking from this. The first is a caution for anyone reimplementing the
+method: a quadratic form whose reduction is unstated controls, through a saturating
+exponential, whether the adaptation runs, and the difference between the two readings here
+is nine orders of magnitude in the update rate. The second is that it does not change any
+result. With the reduction corrected the gate opens, and PeTTA still changes $10$
+predictions of $3412$ with the normalisation channel disabled, and still loses $20.4$ points
+with it enabled (Table~\ref{tab:bnchannel}). The method's behaviour on this data is decided
+by the normalisation channel, not by the gate.
 
-\begin{figure}[t]
-\centering
-\includegraphics[width=0.92\columnwidth]{fig_saturation.pdf}
-\caption{PeTTA's gating function. Because the Mahalanobis statistic is summed over $64$
-embedding dimensions, the cross-building median of $587$ sits far inside the saturated
-region, giving $\bar\gamma=1$ and an update rate of zero.}
-\label{fig:saturation}
-\end{figure}
-
-Normalising per dimension unfreezes the mechanism, and it still does not improve on the
-source model. An $\alpha$ floor alone does not help, because $\lambda_t=\bar\gamma\lambda_0$
-is simultaneously pinned at maximum pull-back. We emphasise that saturation is a failure
-mode PeTTA's authors themselves document for ablated variants; what is new here is that it
-occurs for the full method when the domain gap is a change of building instead of an
-image corruption.
+We also note that the source covariance this statistic divides by is poorly conditioned
+here: $6.9\%$ of its per-class entries fall below $10^{-6}$, dead units in a $64$-dimensional
+embedding of $13$ features, and those entries carry $93.8\%$ of the Mahalanobis mass. The
+summed reduction is what turns that conditioning problem into saturation, but a reader
+applying PeTTA to a low-dimensional sensor problem should check both.
 
 \paragraph{DIGA: published hyperparameters do not transfer.} Table~\ref{tab:diga} crosses
 the two readings of DIGA's prototype similarity with two hyperparameter settings.
@@ -1203,6 +1273,42 @@ DIGA's own evaluation makes a point of using a single global parameter set acros
 experiments, in explicit contrast to competitors tuned per source--target pair. That
 property does not survive the move to one-dimensional sensor data, and recovering the loss
 required tuning on target labels, which deployment does not provide.
+
+\subsection{Where the papers and their released code disagree}
+\label{sec:res-impl}
+
+Reproducing these three methods surfaced three places where a paper and its own released
+implementation specify different things. Each one changes a result here, so we record them
+rather than silently picking a side.
+
+\paragraph{PETAL's coefficient.} Algorithm~2 places $\bar\lambda$ on the data term with the
+prior fixed at unity. The released code computes
+\texttt{loss\_H + spw\,$\cdot$\,para\_loss} with \texttt{spw}~$=10^{-9}$, which is the same
+objective scaled, with the coefficient on the prior instead. The published configuration
+therefore corresponds to $\bar\lambda\approx10^{9}$, not to any value in
+Table~\ref{tab:lambda}'s range. The sweep in that table is still informative about what
+target-label selection does, but it is not a sweep through the authors' operating point.
+
+\paragraph{PETAL's pseudo-label rule.} The paper describes a per-sample confidence test. The
+released code applies a \emph{batch-level} one, \texttt{anchor\_prob.mean(0) < ap} with
+$\textit{ap}=0.92$, so the augmentation-averaged label replaces the entire batch or none of
+it. We follow the code. Under a per-sample threshold at $0.5$, which is the natural reading
+of the prose, the augmentation branch fires on under a quarter of samples here and the
+$K=32$ augmentations are close to inert.
+
+\paragraph{PeTTA's reduction.} Eq.~\ref{eq:petta-gamma} is a quadratic form, which reads as
+a sum over the embedding dimension. The released implementation averages. As
+Section~\ref{sec:res-mech} shows, on this data the two differ by nine orders of magnitude
+in the resulting update rate, because the statistic passes through a saturating
+exponential. We report the averaged version as the published method.
+
+One general point is worth drawing out. All three discrepancies are in the direction of
+\emph{suppressing} adaptation if a reimplementer follows the prose: a coefficient that
+reads as a regulariser weight but scales the likelihood, a confidence test that reads as
+per-sample but is per-batch, and a reduction that reads as a sum but is a mean. A negative
+result obtained from a paper alone, without its code, is therefore not safe to report as a
+property of the method. We obtained exactly such a result from each of these three before
+checking, and all three dissolved on contact with the released code.
 
 \subsection{How much of DIGA's gain survives implementation choices?}
 \label{sec:res-digaimpl}
@@ -1364,24 +1470,24 @@ three normalisation protocols. Always predicting ``not occupied'' gives MCC $0.0
 \toprule
 Method & Fitted on source & Fitted on target train & Fitted on target train $+$ test \\
 \midrule
-Source-only & $\mathbf{0.6583}\pm0.013$ & $\mathbf{0.6951}\pm0.013$ & $\mathbf{0.6966}\pm0.017$ \\
-AdaBN       & $0.6412$ & $0.6232$ & $0.6323$ \\
-DIGA        & $0.6401$ & $0.6693$ & $0.6769$ \\
-PETAL       & $0.6583$ & $0.6951$ & $0.6966$ \\
-PeTTA       & $0.6583$ & $0.6951$ & $0.6966$ \\
+Source-only & $\mathbf{0.6628}\pm0.013$ & $\mathbf{0.6892}\pm0.014$ & $\mathbf{0.6951}\pm0.020$ \\
+AdaBN       & $0.6412$ & $0.6461$ & $0.6369$ \\
+DIGA        & $0.6429$ & $0.6616$ & $0.6694$ \\
+PETAL       & $0.6382$ & $0.6233$ & $0.6428$ \\
+PeTTA       & $0.5832$ & $0.5829$ & $0.6182$ \\
 \bottomrule
 \end{tabular}
 \end{table*}
 
 Three results follow from Table~\ref{tab:oe}, all of them about the forward direction;
 the reverse is taken up below. No method improves on the source model under any of the
-three normalisation protocols, and DIGA is below the baseline in all three columns. The choice of normalisation is worth $+3.8$ MCC
-points, but it is worth that to \emph{every} method equally, including the unadapted
-baseline. It is normalisation, not adaptation, and a protocol that fits the scaler on
-target statistics will credit it to whichever method happens to be under test. Finally,
-PETAL and PeTTA reproduce
-source-only predictions to four decimal places on this task as well, which rules out a
-HAR-specific explanation for the two freezes reported in Section~\ref{sec:res-mech}.
+three, and every one of the four is below the baseline in every column. The choice of
+normalisation is worth $+3.2$ MCC points, but it is worth that to \emph{every} method
+equally, including the unadapted baseline. It is normalisation, not adaptation, and a
+protocol that fits the scaler on target statistics will credit it to whichever method
+happens to be under test. The ordering also matches the activity task: PeTTA loses most
+($8.0$ points), PETAL and AdaBN sit together, and DIGA loses least, which is the ordering
+Section~\ref{sec:res-mech} predicts from how much of the source normalisation each keeps.
 
 Running the transfer in the reverse direction, training on the target office and
 evaluating on the source office, changes the picture completely, and in a way that is
@@ -1399,32 +1505,49 @@ model. Always predicting ``not occupied'' gives MCC $0.000$ in both.}
 \toprule
 Method & source $\to$ target & target $\to$ source \\
 \midrule
-Source-only & $\mathbf{0.6583}$ & $-0.0775$ \\
-AdaBN       & $0.6412$ & $\mathbf{0.3374}$ \\
-DIGA        & $0.6401$ & $0.1934$ \\
-PETAL       & $0.6583$ & $-0.0775$ \\
-PeTTA       & $0.6583$ & $-0.0775$ \\
+Source-only & $\mathbf{0.6628}$ & $-0.0763$ \\
+AdaBN       & $0.6412$ & $0.3302$ \\
+DIGA        & $0.6429$ & $0.2019$ \\
+PETAL       & $0.6382$ & $\mathbf{0.3509}$ \\
+PeTTA       & $0.5832$ & $0.2353$ \\
 \bottomrule
 \end{tabular}
 \end{table*}
 
 In the reverse direction the source checkpoint is not merely weak but worse than chance:
-trained on the target office, it reaches MCC $-0.0775$ on the source office, meaning its
-predictions are anti-correlated with the labels. Against that starting point AdaBN
-improves MCC by $41.5$ points and DIGA by $27.1$. In the forward direction, starting from
-a checkpoint at $0.6583$, the same two methods lose $1.7$ and $1.8$ points respectively.
+trained on the target office, it reaches MCC $-0.0763$ on the source office, meaning its
+predictions are anti-correlated with the labels. Against that starting point every method
+gains: PETAL by $42.7$ MCC points, AdaBN by $40.7$, PeTTA by $31.2$ and DIGA by $27.8$. In
+the forward direction, from a checkpoint at $0.6628$, the same four lose $2.0$ to $8.0$.
 
 The contrast is as clean as this dataset allows: identical methods, identical protocol,
 identical features, two offices, and the only variable is whether the source model was any
 good. When it is, adaptation has nothing to contribute and the normalisation-based methods
 actively harm it; when it is broken, the same methods recover a large part of the deficit.
-This mirrors AdaBN's behaviour on HAR, where it costs $17$ \macf{} points against a sound
-checkpoint, and it supports reading adaptation gain as a measure of source-model
-deficiency and not of adaptation quality. A method evaluated only against a weak
-source model will appear to work.
+This mirrors the activity task, where the same methods cost $9$ to $20$ \macf{} points
+against a sound checkpoint, and it supports reading adaptation gain as a measure of
+source-model deficiency and not of adaptation quality. A method evaluated only against a
+weak source model will appear to work.
 
-PETAL and PeTTA reproduce the source predictions exactly in this direction too. Across two
-tasks and two directions each, neither method has changed a prediction.
+Taken together the four conditions in this study order by the quality of the checkpoint
+being adapted, and not by task, direction or method:
+
+\begin{center}\footnotesize
+\begin{tabular}{@{}lcrrrr@{}}
+\toprule
+Condition & Source quality & AdaBN & DIGA & PETAL & PeTTA \\
+\midrule
+Occupancy, forward & MCC $0.663$   & $-2.2$ & $-2.0$ & $-2.5$ & $-8.0$ \\
+Activity, S$_1\!\to$S$_2$ & \macf{} $0.494$ & $-18.0$ & $-8.6$ & $-18.3$ & $-20.4$ \\
+Activity, S$_2\!\to$S$_1$ & \macf{} $0.323$ & $-10.9$ & $+2.1$ & $-12.0$ & $-10.7$ \\
+Occupancy, reverse & MCC $-0.076$  & $+40.7$ & $+27.8$ & $+42.7$ & $+31.2$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Sixteen measurements across two tasks, two directions and four methods. Every method helps
+against the broken checkpoint and every method hurts against the sound ones; the only
+positive entry anywhere else is DIGA in the direction with $21$ points of headroom.
 
 % ============================================================================
 \section{Discussion}
@@ -1549,19 +1672,20 @@ the difference between the two apartments as prediction problems. Most of the ap
 that does exist is attributable to features encoding sensor identity, which score below
 stratified-random guessing on the target in both directions.
 
-The methods follow that asymmetry. Across DIGA's full published grid, $53$ of $64$
-settings lose ground in the direction with no headroom and all $64$ gain in the direction
-with $21$ points of it; its best reported figure, $1.7$ \macf{} points, requires
-hyperparameters retuned on target labels, and a label-free criterion recovers $0.3$.
-PETAL and PeTTA do not move at all, for reasons traceable to their own specifications.
-PETAL's published learning rate and teacher update rate assume streams of thousands of
-batches, and ours is $54$; forcing it to move by raising either makes it monotonically
-worse. PeTTA's divergence signal sums over the embedding dimension and saturates when the
-domains are buildings. Both reproduce on occupancy estimation, in both of its transfer
-directions, where the two directions differ only in the quality of the source checkpoint:
-against a sound one no method improves, while against one worse than chance the same
-methods gain $27$ to $41$ MCC points. A further apparent gain proves attributable to a
-target-fitted normalisation worth $3.8$ MCC points to every method, the unadapted one
+The methods follow that asymmetry, and they do it through one shared mechanism. Each of
+the four adapts batch-normalisation statistics, and each released implementation makes
+that its primary channel rather than an incidental detail. Disabled, with everything else
+unchanged, PETAL and PeTTA alter fewer than $25$ of $3412$ predictions in either
+direction. Enabled as their own code configures it, PETAL falls within $0.3$ \macf{}
+points of plain AdaBN and PeTTA within $1.1$, having changed much the same predictions.
+The cost rises monotonically with the share of target statistics mixed in, from $-5.7$
+points at pure source statistics to $-33.0$ at pure target ones. DIGA is the exception
+only because it keeps most of the source estimate, and its gain comes from its prototype
+classifier rather than its normalisation. Occupancy estimation reproduces all of this on a
+second task, and supplies the clearest version of the pattern: against a checkpoint worse
+than chance every method gains between $28$ and $43$ MCC points, and against every sound
+checkpoint every method loses. A further apparent gain proves attributable to a
+target-fitted normalisation worth $3.2$ MCC points to every method, the unadapted one
 included.
 
 We do not conclude that test-time adaptation is unsuitable for smart buildings. We conclude

@@ -91,7 +91,8 @@ def augment_tabular(x, noise_std=0.1, drop_rate=0.1):
 
 class PETALFixed:
     DEFAULTS = dict(pi=0.95, K=32, lambda_bar=1e-2, delta=0.1, tau=0.5,
-                    lr=1e-4, weight_decay=1e-4, noise_std=0.1, drop_rate=0.1)
+                    lr=1e-4, weight_decay=1e-4, noise_std=0.1, drop_rate=0.1,
+                    batch_stat_bn=True)
 
     def __init__(self, source_model, swag: SWAGDiag, cfg=None, device="cpu", strict=True):
         self.cfg = {**self.DEFAULTS, **(cfg or {})}; self.device = device; self.swag = swag
@@ -101,6 +102,15 @@ class PETALFixed:
         for p in self.theta_0.parameters(): p.requires_grad_(False)
         self.student = deepcopy(source_model).to(device).train()
         self.teacher = deepcopy(source_model).to(device).eval()
+        if self.cfg["batch_stat_bn"]:
+            # petal.py:312-328 configure_model: BN uses batch statistics, source running
+            # estimates discarded, and the EMA teacher is a deepcopy so it inherits this.
+            from tta import _bn_layers
+            for m in (self.student, self.teacher):
+                m.train()
+                for b in _bn_layers(m):
+                    b.track_running_stats = False
+                    b.running_mean = b.running_var = None
         for p in self.teacher.parameters(): p.requires_grad_(False)
         self.opt = torch.optim.Adam(self.student.parameters(), lr=self.cfg["lr"],
                                     weight_decay=self.cfg["weight_decay"])

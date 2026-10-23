@@ -100,11 +100,24 @@ class DIGAFaithful:
         return p.argmax(1).cpu().numpy(), p.cpu().numpy()
 
 
+def _force_batch_stats(m):
+    """PETAL/PeTTA's configure_model (petal.py:312-328): every BN uses BATCH statistics
+    at test time, with the source running estimates discarded. The released code applies
+    this to the model and then builds the EMA teacher with deepcopy, so the teacher
+    inherits it. Omitting it removes the normalisation-adaptation channel entirely, which
+    is where most of these methods' reported gain on corruptions comes from."""
+    m.train()
+    for b in _bn_layers(m):
+        b.track_running_stats = False
+        b.running_mean = b.running_var = None
+    return m
+
+
 class PETALFaithful:
     """PETAL exactly as Algorithm 2: the coefficient weights the DATA term."""
     name = "PETAL"
-    DEFAULTS = dict(pi=0.999, K=32, lambda_bar=1.0, delta=0.03, tau=0.5,
-                    lr=1e-4, weight_decay=0.0, noise_std=0.05)
+    DEFAULTS = dict(pi=0.999, K=32, lambda_bar=1.0, delta=0.03, ap=0.92,
+                    lr=1e-3, weight_decay=0.0, noise_std=0.05, batch_stat_bn=True)
 
     def __init__(self, model, swag, device="cpu", cfg=None, **kw):
         self.c = {**self.DEFAULTS, **(cfg or {})}; self.device = device
@@ -113,6 +126,8 @@ class PETALFaithful:
         for p in self.theta0.parameters(): p.requires_grad_(False)
         self.student = deepcopy(model).to(device).train()
         self.teacher = deepcopy(model).to(device).eval()
+        if self.c["batch_stat_bn"]:
+            _force_batch_stats(self.student); _force_batch_stats(self.teacher)
         for p in self.teacher.parameters(): p.requires_grad_(False)
         self.opt = torch.optim.Adam(self.student.parameters(), lr=self.c["lr"],
                                     weight_decay=self.c["weight_decay"])
@@ -128,8 +143,9 @@ class PETALFaithful:
             for _ in range(c["K"]):
                 acc += F.softmax(self.teacher(x + torch.randn_like(x) * c["noise_std"]), 1)
             y_tilde = acc / c["K"]
-            keep = (src_conf >= c["tau"]).unsqueeze(1).float()
-            y_prime = keep * y_hat + (1 - keep) * y_tilde
+            # petal.py:127  `if anchor_prob.mean(0) < self.ap` -- a BATCH-level test, so
+            # the augmentation-averaged label replaces the whole batch or none of it.
+            y_prime = y_tilde if float(src_conf.mean()) < c["ap"] else y_hat
         pred, prob = y_prime.argmax(1).cpu().numpy(), y_prime.cpu().numpy()
 
         self.opt.zero_grad(); self.student.train()
