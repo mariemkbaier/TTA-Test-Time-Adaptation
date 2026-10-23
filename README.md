@@ -72,7 +72,7 @@ occupancy data is private (two offices at the Grenoble Institute of Technology, 
 Dridi, Amayri & Bouguila) and is not included, so `exp8`/`exp13` will not run without it.
 
 Implementations of the three adaptation methods as originally applied live in a separate
-repository: <https://github.com/TCVHN5Vn/Test-Time-Adaptation>.
+repository: <https://github.com/mariemkbaier/Test-Time-Adaptation>.
 
 ## Building the manuscript
 
