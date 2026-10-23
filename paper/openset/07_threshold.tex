@@ -1,0 +1,52 @@
+% ---------------------------------------------------------------- threshold transfer
+\subsection{A source-calibrated threshold does not transfer}
+\label{sec:os-threshold}
+
+The Tier-1 constraints require the rejection threshold to be fixed from source data, since
+calibrating it on the target stream would use the labels the setting assumes are absent.
+Section~\ref{sec:os-maha} showed that two scores held at the same nominal percentile
+rejected very different fractions of the target stream. Table~\ref{tab:osthresh} shows
+that this is systematic across the whole grid.
+
+% source: src/exp27_proto_depth.py -> results/exp27_proto_depth.csv
+\begin{table*}[t]
+\centering
+\caption{Fraction of the \emph{target} stream rejected by a threshold set to reject $q\%$
+of the \emph{source} validation split. True unknown share is $40\%$ entering
+$\text{S}_2$ and $30\%$ entering $\text{S}_1$.}
+\label{tab:osthresh}
+\small
+\begin{tabular}{lccccc|ccccc}
+\toprule
+ & \multicolumn{5}{c|}{$\text{S}_1\!\to\!\text{S}_2$} & \multicolumn{5}{c}{$\text{S}_2\!\to\!\text{S}_1$} \\
+Score & $q{=}1$ & $2.5$ & $5$ & $10$ & $20$ & $q{=}1$ & $2.5$ & $5$ & $10$ & $20$ \\
+\midrule
+Maximum softmax & $22.9$ & $26.5$ & $31.9$ & $37.7$ & $50.5$ & $7.3$ & $10.5$ & $14.8$ & $21.7$ & $36.5$ \\
+Mahalanobis $64$-d  & $43.6$ & $49.0$ & $54.0$ & $60.0$ & $68.6$ & $22.1$ & $25.8$ & $31.0$ & $34.9$ & $48.9$ \\
+Mahalanobis $128$-d & $62.8$ & $66.5$ & $71.2$ & $75.6$ & $80.5$ & $39.6$ & $47.3$ & $54.1$ & $60.5$ & $68.8$ \\
+Mahalanobis $256$-d & $41.4$ & $54.2$ & $61.8$ & $72.2$ & $86.9$ & $49.6$ & $52.7$ & $55.9$ & $62.4$ & $67.4$ \\
+Mahalanobis raw $13$-d & $54.2$ & $58.4$ & $69.5$ & $76.1$ & $87.8$ & $34.1$ & $37.7$ & $42.6$ & $56.2$ & $64.7$ \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+A threshold placed to reject one per cent of source validation rejects between $7.3\%$ and
+$62.8\%$ of the target stream, the range depending only on which score it is placed on. At
+$q=5\%$ the spread is $14.8\%$ to $71.2\%$. The nominal percentile, which is the quantity
+an open-set method reports and tunes, carries almost no information about how aggressively
+the system will actually reject once it is installed in another building.
+
+The cause is the one running through this study. A threshold is a statistic of the source
+distribution, and source statistics do not transfer across buildings; this is the same
+property that makes replacing batch-norm statistics harmful in Section~\ref{sec:res-mech}
+and per-sensor features anti-informative in Section~\ref{sec:res-feat}, arriving now at
+the rejection rule. There is nothing specific to our detector in it: any open-set or
+universal method that fixes a threshold on source data inherits the problem, and any that
+fixes one on target data has left the test-time setting.
+
+We note the practical consequence without being able to solve it. A deployment cannot
+observe its own rejection rate against ground truth, but it \emph{can} observe the rate
+itself, which is label-free. A rejection rate far from the designer's intent is detectable
+in the field even when correctness is not, and we suggest reporting it alongside H as a
+matter of course. Calibrating a threshold that holds across domains, rather than merely
+across resamples of one domain, we leave open.

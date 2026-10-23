@@ -119,6 +119,9 @@ if __name__ == "__main__":
                 vq = acc[(name, q)]
                 mq = {k: np.mean([x[k] for x in vq]) for k in vq[0]}
                 rows.append(dict(direction=f"{srcb}->{tgt}", score=name, q=q, **mq))
+            mq = {k: np.mean([x[k] for x in mm]) for k in mm[0]}
+            rows.append(dict(direction=f"{srcb}->{tgt}", score=name,
+                             q="matched20 (diagnostic)", **mq))
         print(f"  chance UCDR at 20% rejection = 0.2000")
     pd.DataFrame(rows).to_csv(os.path.join(R, "exp27_proto_depth.csv"), index=False)
     print("\n-> results/exp27_proto_depth.csv")

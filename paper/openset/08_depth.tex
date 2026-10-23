@@ -1,0 +1,45 @@
+% ---------------------------------------------------------------- representation depth
+\subsection{The learned representation contributes nothing to novelty detection}
+\label{sec:os-depth}
+
+The prototypes of Section~\ref{sec:os-maha} are built in the model's final $64$-dimensional
+embedding, which is trained to separate three known activities and therefore to discard
+whatever does not serve that. Whether novelty survives that compression is testable at no
+cost, by building the same prototypes at three other depths, including none at all.
+
+% source: src/exp27_proto_depth.py -> results/exp27_proto_depth.csv
+\begin{table}[t]
+\centering
+\caption{AUROC for unknown-versus-known by the representation the prototype distance is
+computed in. Maximum softmax is included for reference. Chance is $0.5$.}
+\label{tab:osdepth}
+\small
+\begin{tabular}{@{}lcc@{}}
+\toprule
+Representation & $\text{S}_1\!\to\!\text{S}_2$ & $\text{S}_2\!\to\!\text{S}_1$ \\
+\midrule
+Raw $13$-d input, no network & $\mathbf{0.6392}$ & $0.5253$ \\
+Final embedding, $64$-d      & $0.6377$ & $\mathbf{0.5373}$ \\
+Second block, $128$-d        & $0.6198$ & $0.5076$ \\
+First block, $256$-d         & $0.5982$ & $0.5107$ \\
+\midrule
+Maximum softmax              & $0.4952$ & $0.4434$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The raw input features match the final embedding: $0.6392$ against $0.6377$ in one
+direction and $0.5253$ against $0.5373$ in the other, differences well inside the seed
+spread. The intermediate blocks are worse than both. Passing the window through a trained
+network, in other words, neither adds novelty information nor destroys it; the distance
+could as well be computed on the thirteen input features directly.
+
+Two things follow. The first is practical: the rejection component of the deployable
+configuration does not require the classifier at all, and could run beside a model of any
+architecture, or none. The second is about why the detector is weak. If a representation
+trained on the known classes carries no more novelty signal than the untrained input, then
+the limit is not the compression but the features: thirteen layout-invariant window
+statistics describe how much activity is occurring and when, and two activities can differ
+in neither while being different activities. The withheld classes are not separable in
+this description of the data, and no amount of depth recovers what the description never
+encoded.

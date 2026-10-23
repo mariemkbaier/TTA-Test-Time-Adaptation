@@ -1,0 +1,28 @@
+% ---------------------------------------------------------------- what survives
+\subsection*{What to deploy}
+\label{sec:os-deploy}
+
+This section records, before the analysis that justifies it, the one configuration in this
+study that we would put in a building.
+
+\begin{center}\small
+\fbox{\begin{minipage}{0.92\columnwidth}
+\textbf{Frozen source model, no adaptation, Mahalanobis rejection.}\\[2pt]
+Train once on the source building's known activities. Do not adapt at test time. Reject a
+window as unknown when its squared Mahalanobis distance to the nearest source class
+prototype exceeds the $95$th percentile of that distance on the source validation split,
+with the prototypes and the threshold both fixed before the target stream is read.\\[4pt]
+H-score $0.5176$ entering $\text{S}_2$, $0.4289$ entering $\text{S}_1$.
+\end{minipage}}
+\end{center}
+
+Every component of this is Tier-1: no target labels, no target statistics, one pass, and no
+quantity estimated from the stream it is scored on. It is also, deliberately, a system
+with no adaptation in it. Sections~\ref{sec:os-methods} to~\ref{sec:os-depth} report what
+each of the parts we removed was worth, and none of them was worth keeping: the four
+adaptation methods cost between $12$ and $27$ H-score points, the confidence-based
+rejection scores are at or below chance, and the learned embedding contributes nothing the
+raw features do not.
+
+We state the recommendation first because the rest of this section is a sequence of
+negative results, and a reader is entitled to know what we think survives them.

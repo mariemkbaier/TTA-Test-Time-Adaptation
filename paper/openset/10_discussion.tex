@@ -1,0 +1,49 @@
+% ---------------------------------------------------------------- discussion
+\subsection{Discussion}
+\label{sec:os-discussion}
+
+Adding a label-space shift to a geographic one does not give adaptation more to work with.
+The cross-building penalty is $1.6$ points entering $\text{S}_2$ and $36.0$ entering
+$\text{S}_1$ once classes are withheld, a wider asymmetry than the closed-set
+$0.6$ and $21.3$, and in neither direction does any of the four methods improve on a frozen
+source model once H is read beside its components. The combined shift is harder, not
+richer.
+
+What does help is replacing the rejection score, and only modestly: between $1.17$ and
+$1.58$ times chance at a matched rejection rate, against a maximum softmax baseline that
+sits exactly at chance. This is a consistent reading alongside
+Section~\ref{sec:res-mech}, where DIGA's prototype classifier was the one component that
+helped without touching normalisation statistics, but we did not isolate that component in
+the open-set setting and the two results are not a replication of one another. What they
+have in common is the direction of the leverage: in both, the useful part was a distance
+in representation space, and the parts that manipulate source statistics were harmful or
+inert.
+
+Three things we would want a reader to take from this section are not about our system.
+
+Metrics first. UCDR has a trivial maximiser and is conventionally paired with OS$^{*}$ to
+remove it. That pairing is insufficient, because H is itself partly maximised by uniform
+degradation whenever unknown detection is the weaker component, which it usually is.
+PETAL records the best H in one direction while classifying the known activities half as
+well as doing nothing. Open-set results should be reported with both components visible.
+
+Thresholds second. A threshold set to reject $1\%$ of source validation rejects between
+$7\%$ and $63\%$ of a target stream, depending only on which score carries it. Any
+open-set method that calibrates on source inherits this, and any that calibrates on target
+has left the test-time setting. We think the rejection rate, which is observable without
+labels, belongs in open-set reporting next to H. How to calibrate a threshold that holds
+across domains rather than across resamples of one is open, and is the direction we would
+pursue next.
+
+Chance baselines third. The two results in this section that are most likely to generalise
+are both negative, and neither is visible without a chance baseline: four standard
+confidence scores are at or below chance as novelty detectors, and a learned representation
+carries no more novelty signal than the untrained input. Neither would appear as a problem
+in a table of H-scores alone.
+
+The limits are the same as the closed-set study's. Two buildings, one dataset, one choice
+of withheld activities. The asymmetry we report is a property of this pair, and the
+specific values of $1.6$ and $36.0$ belong to it. What we would expect to transfer is the
+procedure: measure the penalty per cell against a target-trained model at matched sample
+size before running any method, report rejection rates beside H, and compute a chance
+baseline for any novelty score before believing it.

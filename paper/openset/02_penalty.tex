@@ -1,0 +1,48 @@
+% ---------------------------------------------------------------- penalty grid
+\subsection{The cross-building penalty in four cells}
+\label{sec:os-penalty}
+
+Withholding activities from source training changes the source model, so each cell of the
+grid needs its own baseline before any method is run. We reuse the measurement of
+Section~\ref{sec:res-gap}: hold the evaluation set fixed, vary only where the training
+labels came from, match training-set size by subsampling, and group the split by recording
+day. In the open-set cells the penalty is computed on known-class windows only, since a
+source model that never saw the withheld activities cannot be asked to classify them.
+
+% source: src/exp24_openset_gap.py -> results/exp24_openset_gap.csv, 3 seeds x 5 folds
+\begin{table}[t]
+\centering
+\caption{Cross-building penalty, known-class \macf, matched training-set size, identical
+held-out target days. Closed-set rows reproduce Section~\ref{sec:res-gap} on an
+independently written harness.}
+\label{tab:ospenalty}
+\small
+\begin{tabular}{@{}llccc@{}}
+\toprule
+Setting & Direction & Own days & Other building & Penalty \\
+\midrule
+Closed & $\text{S}_1\!\to\!\text{S}_2$ & $0.3497\pm0.148$ & $0.3434\pm0.177$ & $0.6$ \\
+Closed & $\text{S}_2\!\to\!\text{S}_1$ & $0.4897\pm0.058$ & $0.2767\pm0.091$ & $21.3$ \\
+Open   & $\text{S}_1\!\to\!\text{S}_2$ & $0.8082\pm0.133$ & $0.7926\pm0.137$ & $1.6$ \\
+Open   & $\text{S}_2\!\to\!\text{S}_1$ & $0.9153\pm0.091$ & $0.5557\pm0.181$ & $\mathbf{36.0}$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Two points about how these numbers should be read.
+
+The closed-set rows reproduce $0.6$ and $21.3$ points exactly, on a harness written
+separately for this section. That is the only validation available to us that the
+measurement is implemented correctly rather than merely reported consistently.
+
+The small penalties are not small effects; they are absent ones. At $0.6$ and $1.6$ points
+against between-fold standard deviations of $0.13$ to $0.18$, neither is distinguishable
+from zero, and we read both as no measurable cross-building shift rather than as a shift
+that happens to be slight. The large ones are the opposite: $21.3$ and $36.0$ points
+against the same spread.
+
+Absolute \macf{} is not comparable between the closed and open rows, since the open-set
+task has three classes and the closed-set task five, and the three retained activities are
+the better-populated ones. Only the penalties are comparable, and the comparison is that
+restricting the label space \emph{widens} the asymmetry rather than evening it out:
+$0.6$ against $21.3$ becomes $1.6$ against $36.0$.

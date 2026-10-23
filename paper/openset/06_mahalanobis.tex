@@ -1,0 +1,66 @@
+% ------------------------------------------- Mahalanobis, matched rate first
+\subsection{Prototype distance helps, by about half what it first appears to}
+\label{sec:os-maha}
+
+Swapping maximum softmax for the Mahalanobis distance of Table~\ref{tab:osauroc} improves
+unknown detection by a factor of $1.58$ over chance entering $\text{S}_2$ and $1.25$
+entering $\text{S}_1$, measured at a rejection rate held equal between the two scores.
+That is the number we would ask a reader to carry, and it is substantially smaller than
+the one the natural comparison produces. We give both, because the gap between them is a
+general hazard in open-set reporting rather than an accident of this experiment.
+
+Compared at the same source-calibrated threshold $q=5\%$, the swap looks much larger: H
+rises from $0.4084$ to $0.5176$ entering $\text{S}_2$ and from $0.2276$ to $0.4289$
+entering $\text{S}_1$, gains of $10.9$ and $20.1$ points. Taken at face value this is the
+largest effect anywhere in this study.
+
+It is mostly an artefact of how much each score rejects. The two scores have different
+distributions, so a threshold placed at the same percentile of \emph{source} validation
+cuts the \emph{target} stream in very different places. Entering $\text{S}_2$, maximum
+softmax rejects $31.9\%$ of the stream and the Mahalanobis distance rejects $54.0\%$,
+against a true unknown share of $40\%$. The higher UCDR is bought by discarding half the
+data, and OS$^{*}$ falls from $0.6639$ to $0.4447$ to pay for it. This is the same
+mechanism as PETAL's apparent win in Section~\ref{sec:os-methods}, reached by a different
+route, and it is why that section argues for reading H beside its components.
+
+The fair comparison fixes the rejection rate and asks which score catches more true
+unknowns. Table~\ref{tab:osmatched} sets every threshold so that exactly $20\%$ of the
+target stream is rejected. Doing so requires a target quantile, so these are diagnostic
+figures and not Tier-1 results; they are reported to size the detector, not to be deployed.
+
+% source: src/exp27_proto_depth.py -> results/exp27_proto_depth.csv (matched20 rows)
+\begin{table}[t]
+\centering
+\caption{UCDR with every threshold set to reject exactly $20\%$ of the target stream.
+Chance is $0.2000$. DIAGNOSTIC: the matched rate uses a target quantile and is not
+available without target data.}
+\label{tab:osmatched}
+\small
+\begin{tabular}{@{}lcccc@{}}
+\toprule
+ & \multicolumn{2}{c}{$\text{S}_1\!\to\!\text{S}_2$} & \multicolumn{2}{c}{$\text{S}_2\!\to\!\text{S}_1$} \\
+Score & UCDR & $\times$ chance & UCDR & $\times$ chance \\
+\midrule
+Mahalanobis, $64$-d embedding & $\mathbf{0.3162}$ & $1.58$ & $0.2342$ & $1.17$ \\
+Mahalanobis, raw $13$-d input & $0.3125$ & $1.56$ & $0.2435$ & $1.22$ \\
+Mahalanobis, $128$-d          & $0.2988$ & $1.49$ & $0.2031$ & $1.02$ \\
+Mahalanobis, $256$-d          & $0.2451$ & $1.23$ & $\mathbf{0.2508}$ & $1.25$ \\
+Maximum softmax               & $0.1980$ & $0.99$ & $0.1975$ & $0.99$ \\
+\midrule
+Chance                        & $0.2000$ & $1.00$ & $0.2000$ & $1.00$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The gain is real and it is modest. Prototype distance catches between $1.17$ and $1.58$
+times as many unknowns as rejecting at random, and maximum softmax catches exactly as many
+as random, to two decimal places, in both directions. The deployable configuration of
+Section~\ref{sec:os-deploy} uses the $64$-d prototype distance at $q=5\%$ and obtains H
+$0.5176$ and $0.4289$; those are the numbers a system would see, and the $1.58$ and $1.25$
+figures are what the detector is actually contributing inside them.
+
+We report this sequence in full rather than only its conclusion because the first
+comparison we ran was the $q=5\%$ one, and it is the comparison an open-set paper would
+normally present. Nothing in the protocol flags it as wrong. It took measuring the
+rejection rate, which neither H nor UCDR exposes, to see that two scores held at the same
+nominal threshold were operating $22$ percentage points apart.

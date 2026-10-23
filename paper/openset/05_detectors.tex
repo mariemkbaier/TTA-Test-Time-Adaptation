@@ -1,0 +1,52 @@
+% ---------------------------------------------------------------- detector AUROC
+\subsection{Confidence-based rejection is at or below chance}
+\label{sec:os-detect}
+
+Every method in Table~\ref{tab:osmethods} rejects on maximum softmax, which is the standard
+choice. Whether that score carries any information about novelty on this data can be
+asked directly, and independently of any threshold, by measuring how well it separates
+known from unknown windows in the target stream.
+
+% source: src/exp26_unknown_scores.py, src/exp28_auroc_ci.py -> results/exp28_auroc_ci.csv
+\begin{table}[t]
+\centering
+\caption{AUROC for separating unknown from known target windows, averaged over 3 source
+seeds, with $95\%$ bootstrap intervals over $2000$ resamples of the target stream.
+$0.5$ is chance. All scores are computed from the frozen source model; none uses target
+labels.}
+\label{tab:osauroc}
+\small
+\begin{tabular}{@{}lcc@{}}
+\toprule
+Score & $\text{S}_1\!\to\!\text{S}_2$ & $\text{S}_2\!\to\!\text{S}_1$ \\
+\midrule
+Mahalanobis to prototype & $\mathbf{0.6377}$ $[0.620,0.655]$ & $\mathbf{0.5373}$ $[0.522,0.553]$ \\
+Cosine to prototype      & $0.5668$ $[0.550,0.584]$ & $0.5070$ $[0.492,0.523]$ \\
+\midrule
+Maximum softmax          & $0.4952$ $[0.478,0.513]$ & $0.4434$ $[0.427,0.460]$ \\
+Entropy                  & $0.4655$ $[0.447,0.483]$ & $0.4386$ $[0.422,0.455]$ \\
+Maximum logit            & $0.4580$ $[0.441,0.475]$ & $0.4343$ $[0.418,0.451]$ \\
+Free energy              & $0.4261$ $[0.409,0.443]$ & $0.4272$ $[0.411,0.443]$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The four confidence-derived scores are at or below chance. Entropy, maximum logit and free
+energy have intervals lying entirely below $0.5$ in both directions. Maximum softmax, the
+score the adaptation methods use, spans chance entering $\text{S}_2$
+($[0.478,0.513]$) and lies below it entering $\text{S}_1$. None of the four is
+usefully informative, and three are reliably anti-informative, meaning the model is on
+average \emph{more} confident on the activities it was never trained on than on the ones it
+was.
+
+The direction of the effect is what makes it more than a null. A below-chance detector is
+not a weak detector; it is a detector pointing the wrong way, and a system that rejects
+low-confidence windows will preferentially discard the known activities it should be
+keeping. The two prototype-distance scores, computed in the model's representation rather
+than from its output, are the only ones above chance.
+
+This parallels the per-sensor feature result of Section~\ref{sec:res-feat}, where features
+the standard pipeline treats as its primary signal scored below stratified-random guessing
+across buildings. In both cases a quantity the field treats as informative is not merely
+uninformative on this data but carries signal of the wrong sign, and in both cases that is
+only visible because a chance baseline was computed.

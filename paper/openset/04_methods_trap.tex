@@ -1,0 +1,60 @@
+% ------------------------------------- merged: methods in open-set + metric gameability
+\subsection{Adaptation in the open-set setting, and a metric that rewards damage}
+\label{sec:os-methods}
+
+Table~\ref{tab:osmethods} runs the four adaptation methods of Section~\ref{sec:res-mech}
+on the open-set stream, with the rejection rule held fixed at the source-calibrated
+$q=5\%$ threshold so that only the adaptation differs between rows.
+
+% source: src/exp25_openset_tta.py -> results/exp25_openset_tta.csv, 3 seeds
+\begin{table*}[t]
+\centering
+\caption{Open-set TTA under the Tier-1 constraints, source-calibrated rejection at
+$q=5\%$. OS$^{*}$ is mean per-class accuracy over known activities, UCDR the fraction of
+truly-unknown windows rejected, H their harmonic mean. The two degenerate rules bound the
+trade-off.}
+\label{tab:osmethods}
+\small
+\begin{tabular}{lcccc|cccc}
+\toprule
+ & \multicolumn{4}{c|}{$\text{S}_1\!\to\!\text{S}_2$} & \multicolumn{4}{c}{$\text{S}_2\!\to\!\text{S}_1$} \\
+Method & OS$^{*}$ & UCDR & H & \macf & OS$^{*}$ & UCDR & H & \macf \\
+\midrule
+Source-only & $0.6639$ & $0.3065$ & $\mathbf{0.4084}$ & $0.5216$ & $0.6717$ & $0.1427$ & $0.2276$ & $0.5769$ \\
+AdaBN       & $0.3818$ & $0.2405$ & $0.2865$ & $0.3218$ & $0.4058$ & $0.1175$ & $0.1694$ & $0.3589$ \\
+TENT        & $0.3826$ & $0.2381$ & $0.2849$ & $0.3220$ & $0.4065$ & $0.1170$ & $0.1690$ & $0.3592$ \\
+DIGA        & $0.5322$ & $0.2178$ & $0.1419$ & $0.3856$ & $0.6572$ & $0.0480$ & $0.0891$ & $0.5450$ \\
+PETAL       & $0.2812$ & $\mathbf{0.4375}$ & $0.3339$ & $0.2794$ & $0.3643$ & $\mathbf{0.2223}$ & $\mathbf{0.2551}$ & $0.3387$ \\
+PeTTA       & $0.3312$ & $0.3299$ & $0.3208$ & $0.2962$ & $0.3820$ & $0.1617$ & $0.2148$ & $0.3429$ \\
+\midrule
+Reject none & $0.8494$ & $0.0000$ & $0.0000$ & $0.5552$ & $0.7529$ & $0.0000$ & $0.0000$ & $0.6072$ \\
+Reject all  & $0.0000$ & $1.0000$ & $0.0000$ & $0.0000$ & $0.0000$ & $1.0000$ & $0.0000$ & $0.0000$ \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+In the direction with no measurable shift to recover, no method improves on the frozen
+source model, and the ordering is the one Section~\ref{sec:res-mech} predicts from how
+much source normalisation each method retains. Closing the label space does not change
+that conclusion; it reproduces it on a harder task.
+
+The reverse direction is where the metric becomes the finding. PETAL records the best
+H-score of any method, $0.2551$ against source-only's $0.2276$, and it does so with
+OS$^{*}$ of $0.3643$ against $0.6717$: it classifies the known activities roughly half as
+well and still wins. It also records the best UCDR in both directions.
+
+Neither is unknown detection. PETAL's normalisation channel damages the model globally, as
+Table~\ref{tab:bnchannel} shows, which lowers its confidence on every window including the
+known ones. More windows fall below a fixed threshold, UCDR rises mechanically, and
+because H is a harmonic mean it rewards lifting whichever component was the bottleneck.
+Unknown detection was the bottleneck, so a method that degrades uniformly is scored as a
+method that detects novelty.
+
+This is worth stating as a methodological result rather than an aside. UCDR has an obvious
+trivial maximiser, which is why it is conventionally paired with OS$^{*}$; the pairing is
+assumed to remove the problem. It does not. H, the standard open-set score and the one
+LEAD and its comparators report, is itself maximised in part by uniform degradation
+whenever the unknown component is the weaker of the two. An open-set result should
+therefore be read with the known-class number beside it, and a method that wins on H while
+losing substantially on OS$^{*}$ should be treated as a null rather than a positive. Every
+H-score we report below is accompanied by its two components for this reason.
