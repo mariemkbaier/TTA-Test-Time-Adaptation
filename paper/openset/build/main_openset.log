@@ -694,76 +694,76 @@ tim
 
 )
 LaTeX Font Info:    Trying to load font information for LS1+stixscr on input li
-ne 57.
+ne 60.
  (ls1stixscr.fd
 File: ls1stixscr.fd 2015/04/17 v1.1.2-latex STIX script LS1 font definitions
 )
 LaTeX Font Info:    Trying to load font information for LS2+stixex on input lin
-e 57.
+e 60.
  (ls2stixex.fd
 File: ls2stixex.fd 2015/04/17 v1.1.2-latex STIX extentions LS2 font definitions
 
 )
-LaTeX Font Info:    Trying to load font information for U+msa on input line 57.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 60.
 
  (umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 57.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 60.
 
  (umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 LaTeX Font Info:    Trying to load font information for LS1+stixfrak on input l
-ine 57.
+ine 60.
 
 (ls1stixfrak.fd
 File: ls1stixfrak.fd 2015/04/17 v1.1.2-latex STIX fraktur LS1 font definitions
 )
 LaTeX Font Info:    Trying to load font information for LS1+stixbb on input lin
-e 57.
+e 60.
  (ls1stixbb.fd
 File: ls1stixbb.fd 2015/04/17 v1.1.2-latex STIX blackboard LS1 font definitions
 
 )
 LaTeX Font Info:    Trying to load font information for LS2+stixcal on input li
-ne 57.
+ne 60.
  (ls2stixcal.fd
 File: ls2stixcal.fd 2015/04/17 v1.1.2-latex STIX calligraphic LS2 font definiti
 ons
 )
 LaTeX Font Info:    Trying to load font information for LS1+stixsf on input lin
-e 57.
+e 60.
  (ls1stixsf.fd
 File: ls1stixsf.fd 2015/04/17 v1.1.2-latex STIX sans-serif LS1 font definitions
 
 )
 LaTeX Font Info:    Trying to load font information for LS2+stixtt on input lin
-e 57.
+e 60.
  (ls2stixtt.fd
 File: ls2stixtt.fd 2015/04/17 v1.1.2-latex STIX typewriter LS2 font definitions
 
 )
-Overfull \hbox (123.62721pt too wide) detected at line 57
+Overfull \hbox (123.62721pt too wide) detected at line 60
 []
  []
 
 (main_openset.abs)
 
-Package hyperref Warning: Ignoring empty anchor on input line 57.
+Package hyperref Warning: Ignoring empty anchor on input line 60.
 
 
-Package hyperref Warning: Ignoring empty anchor on input line 57.
+Package hyperref Warning: Ignoring empty anchor on input line 60.
 
-File: ..//thumbnails/cas-email.jpeg Graphic file (type bmp)
-<..//thumbnails/cas-email.jpeg>
-LaTeX Font Info:    Trying to load font information for T1+zi4 on input line 57
+File: thumbnails/cas-email.jpeg Graphic file (type bmp)
+<thumbnails/cas-email.jpeg>
+LaTeX Font Info:    Trying to load font information for T1+zi4 on input line 60
 .
 (t1zi4.fd
 File: t1zi4.fd 2018/01/14 T1/zi4 (Inconsolata)
 )
 LaTeX Font Info:    Font shape `T1/zi4/m/n' will be
-(Font)              scaled to size 6.80005pt on input line 57.
+(Font)              scaled to size 6.80005pt on input line 60.
  (01_setup
 LaTeX Font Info:    Font shape `T1/zi4/m/n' will be
 (Font)              scaled to size 8.50006pt on input line 14.
@@ -822,13 +822,13 @@ b/LEAD\T1/lmss/m/n/9 ) against the Tier-1 test-time con-straints. Line num-bers
  []
 
 ) (10_discussion [6]) (_conclusion [7])
-Underfull \hbox (badness 1024) in paragraph at lines 86--91
+Underfull \hbox (badness 1024) in paragraph at lines 89--94
 []\T1/stix/m/n/10 Code and ev-ery re-sult file are avail-able at [][]$\T1/zi4/m
 /n/10 https : / /
  []
 
 
-Overfull \hbox (3.57198pt too wide) in paragraph at lines 86--91
+Overfull \hbox (3.57198pt too wide) in paragraph at lines 89--94
 \T1/zi4/m/n/10 github . com / mariemkbaier / TTA-[]Test-[]Time-[]Adaptation$[][
 ]\T1/stix/m/n/10 . Each ta-
  []
@@ -839,4 +839,4 @@ Overfull \hbox (3.57198pt too wide) in paragraph at lines 86--91
 Package rerunfilecheck Info: File `main_openset.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  )
-Output written on main_openset.xdv (8 pages, 86356 bytes).
+Output written on main_openset.xdv (8 pages, 86352 bytes).
