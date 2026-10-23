@@ -7,6 +7,7 @@ closed-set paper's macros (`\macf`) and labels (`sec:res-gap`, `sec:res-mech`,
 | file | outline § | source script | result file |
 |---|---|---|---|
 | `00_deploy.tex` | deploy box | exp26/exp27 | `exp26_unknown_scores.csv` |
+| `99_frontmatter.tex` | title, abstract, conclusion | — | — |
 | `01_setup.tex` | §1 | — | — |
 | `02_penalty.tex` | §2 | `exp24_openset_gap.py` | `exp24_openset_gap.csv` |
 | `04_methods_trap.tex` | §3+§4 merged | `exp25_openset_tta.py` | `exp25_openset_tta.csv` |
@@ -26,11 +27,26 @@ Every number in these files was read from the result CSVs, not transcribed from 
 Diagnostic figures that use target labels (the matched-rejection-rate table, the oracle-tau
 bound) are labelled as such in the captions.
 
+## Standing as its own paper
+
+`99_frontmatter.tex` carries a standalone title, abstract and conclusion. The closed-set
+study is cited as prior work (`\cite{kbaier_closedset}`), not assumed, and §1 was written
+to stand without it. Section order for the standalone build:
+
+```
+99_frontmatter (title + abstract)  →  01_setup  →  00_deploy  →  02_penalty
+→ 04_methods_trap → 05_detectors → 06_mahalanobis → 07_threshold
+→ 08_depth → 08b_temporal → lead_violations → 10_discussion
+→ 99_frontmatter (conclusion)
+```
+
+`00_deploy` stays between §1 and §2 by decision: the recommendation is stated before the
+negative results that justify it.
+
 ## Compile check
 
-All eleven files were compiled together against `cas-dc` with the main paper's preamble
-(`natbib`, `amsmath`, `booktabs`, `multirow`, and the `\macf` macro). Seven pages, zero
-undefined references. The driver used for the check is not kept; recreate it by
+All twelve files were compiled together against `cas-dc` with the main paper's preamble
+(`natbib`, `amsmath`, `booktabs`, `multirow`, and the `\macf` macro). Eight pages as a standalone paper, zero undefined references. The driver used for the check is not kept; recreate it by
 `\input`-ing the files in the order of the table above and defining `\macf` plus
 `\phantomsection\label{}` stubs for the five labels owned by `../main.tex`:
 `sec:res-gap`, `sec:res-mech`, `sec:res-feat`, `sec:method-tiers`, `tab:bnchannel`.

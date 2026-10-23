@@ -15,8 +15,21 @@ averaging over the three known classes gives per-dimension weights that use no t
 at all. The rule selects the temporal axis in both directions. \texttt{t\_time\_sin} and
 \texttt{t\_time\_cos} take the largest weights, and the four temporal dimensions average
 $1.58$ and $1.96$ against $0.74$ and $0.57$ for the nine activity statistics. The axis is
-therefore selectable without target labels, which turns the observation into a usable
-design rule rather than a hypothesis about this pair of apartments.
+therefore selectable without target labels on this data, which is what distinguishes a
+usable rule from an observation we happened to make with the target labels in front of us.
+
+The scope of that claim needs stating plainly, because it is the strongest interpretive
+step in this paper. What we have shown is that one source-only rule selects the same axis
+that target labels identify, in two transfer directions between two apartments of one
+dataset, for one choice of withheld activities. Whether leave-one-class-out weighting
+recovers the discriminative axis in general --- in other buildings, other sensor layouts,
+other label splits, or where novelty is not separated by time of day --- is untested here
+and does not follow from these two agreements. The rule could equally be selecting
+temporal features because cyclical time is the one part of this feature vector not derived
+from sensor activations, in which case it would transfer, or because toileting and
+cleaning happen at distinctive hours in these two particular homes, in which case it would
+not. We cannot distinguish those with two buildings, and a reader should treat the design
+rule as a hypothesis with source-only support rather than as an established method.
 
 % source: src/exp30_temporal_detector.py -> results/exp30_temporal_detector.csv
 \begin{table*}[t]
