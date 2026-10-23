@@ -69,18 +69,45 @@ mask=np.array([c.startswith(("g_","t_")) for c in cols])
 days=np.unique(d1); va=np.isin(d1,np.array_split(days,5)[-1]); tr=~va
 tf=TRANSFORMS["zscore"](X1[tr][:,mask])
 Z1,Z1v,Z2=tf(X1[tr][:,mask]),tf(X1[va][:,mask]),tf(X2[:,mask])
-f1s={}
+VARIANTS=[("paper Eq.3 + Eq.10 (ours)",dict(dam="stats",fuse="probs")),
+          ("repo: output-blend + Eq.10",dict(dam="outs", fuse="probs")),
+          ("paper Eq.3 + logit-fuse",  dict(dam="stats",fuse="logits")),
+          ("repo: output-blend + logit-fuse", dict(dam="outs",fuse="logits"))]
+f1s={}; preds={}
 for sd in range(3):
     src,_=train_mlp(Z1,y1[tr],Z1v,y1[va],int(mask.sum()),seed=sd,epochs=60)
     p0,_=stream(lambda:SourceOnly(src),Z2,y2)
     f1s.setdefault("source-only",[]).append(metrics(y2,p0)["macroF1"])
-    for tag,kw in [("paper Eq.3 + Eq.10 (ours)",dict(dam="stats",fuse="probs")),
-                   ("repo: output-blend + Eq.10",dict(dam="outs", fuse="probs")),
-                   ("paper Eq.3 + logit-fuse",  dict(dam="stats",fuse="logits")),
-                   ("repo: output-blend + logit-fuse", dict(dam="outs",fuse="logits"))]:
+    preds.setdefault("source-only",[]).append(p0)
+    for tag,kw in VARIANTS:
         pr,_=stream(lambda: DIGAv(src,**kw), Z2,y2)
         f1s.setdefault(tag,[]).append(metrics(y2,pr)["macroF1"])
-print(f"  {'DIGA variant':<36}{'TGT macroF1':>13}{'vs source':>12}")
+        preds.setdefault(tag,[]).append(pr)
+
+def paired_ci(tag, B=2000, seed=0):
+    """Paired bootstrap over target samples: resample indices once per draw and score
+    both the variant and source-only on the same resample, so the interval is on the
+    difference and the shared source checkpoint cancels."""
+    rng=np.random.default_rng(seed); n=len(y2); d=[]
+    for _ in range(B):
+        idx=rng.integers(0,n,n)
+        yr=y2[idx]
+        if len(np.unique(yr))<2: continue
+        d.append(np.mean([metrics(yr,preds[tag][k][idx])["macroF1"]
+                          -metrics(yr,preds["source-only"][k][idx])["macroF1"]
+                          for k in range(len(preds[tag]))]))
+    return float(np.percentile(d,2.5)), float(np.percentile(d,97.5))
+print(f"  {'DIGA variant':<36}{'TGT macroF1':>13}{'sd':>8}{'vs source':>12}  95% CI on delta")
 base=np.mean(f1s["source-only"])
+rows=[]
 for k,v in f1s.items():
-    print(f"  {k:<36}{np.mean(v):>13.4f}{(np.mean(v)-base)*100:>+11.1f}pp")
+    lo,hi=(np.nan,np.nan) if k=="source-only" else paired_ci(k)
+    ci="" if k=="source-only" else f"  [{lo:+.4f}, {hi:+.4f}]"
+    print(f"  {k:<36}{np.mean(v):>13.4f}{np.std(v):>8.3f}{(np.mean(v)-base)*100:>+11.1f}pp{ci}")
+    rows.append(dict(variant=k, macroF1=np.mean(v), sd=np.std(v),
+                     d_macroF1=np.mean(v)-base, ci_lo=lo, ci_hi=hi, n_seeds=len(v)))
+
+import pandas as pd, os
+out=os.path.join(os.path.dirname(__file__),"..","results","exp19_diga_impl.csv")
+pd.DataFrame(rows).to_csv(out, index=False)
+print("\n-> results/exp19_diga_impl.csv")

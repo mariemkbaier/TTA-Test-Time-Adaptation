@@ -1224,34 +1224,37 @@ than on $\lambda_F$ alone.
 Table~\ref{tab:digaimpl} evaluates all four combinations under the protocol of
 Table~\ref{tab:tta}.
 
-% source: variants of src/tta.py DIGA under the exp6 protocol, 3 seeds, 2000 resamples
+% source: src/exp19_diga_impl.py -> results/exp19_diga_impl.csv, 3 seeds, 2000 resamples
 \begin{table*}[t]
 \centering
-\caption{DIGA under four readings of its two under-specified steps, non-recurring stream,
-3 seeds. Source-only is $0.4473$. The four readings are evaluated on identical source
-checkpoints, so the interval is on the paired difference and is much narrower than the
-across-seed spread of any single column ($\sigma\approx0.023$). Only the reading that
-follows both published equations yields an interval excluding zero.}
+\caption{DIGA under four readings of its two under-specified steps, streaming protocol
+(13-d layout-invariant features, last GroupKFold fold, no smoothing), 3 seeds.
+Source-only is $0.4944$. The four readings share identical source checkpoints, so each
+interval is on the paired difference and is narrower than the across-seed spread of any
+single column ($\sigma\approx0.022$). No reading yields an interval excluding zero.}
 \label{tab:digaimpl}
 \small
 \begin{tabular}{llcc}
 \toprule
 DAM & Fusion & \macf & $95\%$ CI on $\Delta$ \\
 \midrule
-blend statistics (Eq.~\ref{eq:dam}) & probabilities (Eq.~\ref{eq:diga-fuse}) & $\mathbf{0.4605}$ & $[+0.0012,\,+0.0181]$ \\
-blend outputs & probabilities & $0.4562$ & $[-0.0043,\,+0.0139]$ \\
-blend statistics & similarity $+$ logits & $0.4537$ & $[-0.0044,\,+0.0106]$ \\
-blend outputs & similarity $+$ logits & $0.4540$ & $[-0.0084,\,+0.0084]$ \\
+blend statistics (Eq.~\ref{eq:dam}) & probabilities (Eq.~\ref{eq:diga-fuse}) & $\mathbf{0.4996}$ & $[-0.0008,\,+0.0110]$ \\
+blend outputs & probabilities & $0.4969$ & $[-0.0043,\,+0.0093]$ \\
+blend statistics & similarity $+$ logits & $0.4961$ & $[-0.0035,\,+0.0073]$ \\
+blend outputs & similarity $+$ logits & $0.4946$ & $[-0.0058,\,+0.0065]$ \\
 \bottomrule
 \end{tabular}
 \end{table*}
 
-The gain is positive under all four readings and statistically distinguishable from zero
-under only one. We report DIGA throughout using the published equations, which is the
-reading most favourable to the method, and note here that a reader reimplementing it from
-the paper's prose may obtain no measurable benefit. The point is not that one reading is
-correct. It is that the single measurable adaptation gain in this study is of a size
-comparable to the ambiguity in the method's own description.
+The ordering is the one the equations predict: the reading that follows both published
+steps is best and the reading that follows neither is indistinguishable from doing
+nothing. But the spread across the four, $0.5$ points, is the same size as the effect
+being measured, and no reading separates from zero on this protocol. We report DIGA
+throughout using the published equations, which is the reading most favourable to the
+method. The point is not that one reading is correct. It is that the adaptation gains at
+issue in this study are of a size comparable to the ambiguity in the method's own
+description, so a reader reimplementing DIGA from its prose may reasonably obtain no
+measurable benefit at all.
 
 \subsection{Does any hyperparameter setting change the conclusion?}
 \label{sec:res-hgrid}
@@ -1573,7 +1576,7 @@ best in-domain configuration are exactly the information currently being thrown 
 \section*{Reproducibility}
 
 Code, the raw sensor data and every result file are available at
-\url{https://github.com/TCVHN5Vn/TTA-Test-Time-Adaptation}. The repository reproduces the
+\url{https://github.com/mariemkbaier/TTA-Test-Time-Adaptation}. The repository reproduces the
 full analysis from the raw CSVs in one pass, each table above names the script and result
 file that generated it. The occupancy dataset is private: it
 was collected at the Grenoble Institute of Technology and is not ours to redistribute,

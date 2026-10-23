@@ -1085,15 +1085,15 @@ LS1/stix/m/it/10 ; \LS1/stixscr/m/n/10 ^^L\LS2/stixex/m/n/10 ë$ \T1/stix/m/n/10
  []
 
 [13] [14] [15]
-Underfull \hbox (badness 1072) in paragraph at lines 1488--1490
+Underfull \hbox (badness 1072) in paragraph at lines 1491--1493
  []\T1/stix/m/it/11 What gen-er-alises, and what does not.[] \T1/stix/m/n/10 Th
 e find-ings
  []
 
 [16]
-Overfull \hbox (13.96715pt too wide) in paragraph at lines 1575--1583
-\T1/stix/m/n/10 able at [][]$\T1/zi4/m/n/10 https : / / github . com / TCVHN5Vn
- / TTA-[]Test-[]Time-[]Adaptation$[][]\T1/stix/m/n/10 .
+Overfull \hbox (30.96727pt too wide) in paragraph at lines 1578--1586
+\T1/stix/m/n/10 able at [][]$\T1/zi4/m/n/10 https : / / github . com / mariemkb
+aier / TTA-[]Test-[]Time-[]Adaptation$[][]\T1/stix/m/n/10 .
  []
 
 [17] [18
@@ -1102,4 +1102,4 @@ Overfull \hbox (13.96715pt too wide) in paragraph at lines 1575--1583
 Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  )
-Output written on main.xdv (18 pages, 225420 bytes).
+Output written on main.xdv (18 pages, 225828 bytes).

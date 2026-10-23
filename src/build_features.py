@@ -1,5 +1,5 @@
 """
-Rebuild the WSU engineered features from the RAW csvs, with the windowing policy
+Rebuild the published engineered features from the RAW csvs, with the windowing policy
 as an explicit switch, so each defect can be turned off one at a time.
 
 Two independent policy axes:

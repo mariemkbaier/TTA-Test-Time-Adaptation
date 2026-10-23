@@ -1,25 +1,34 @@
 # TTA: Test Time Adaptation
 
 Test-time adaptation for cross-building human activity recognition and occupancy
-estimation on WSU smart-home sensor data. Evaluates DIGA, PETAL and PeTTA under a
-deployable online protocol, in both transfer directions, with chance baselines and
-paired bootstrap intervals throughout.
+estimation on binary household sensor data (Tapia, Intille & Larson, *Pervasive Computing*
+2004, MIT House_n). Evaluates DIGA, PETAL and PeTTA under a deployable online protocol, in
+both transfer directions, with chance baselines and paired bootstrap intervals throughout.
+
+See `data/raw/README.md` for a note on why this data is sometimes mislabelled as the WSU
+dataset; the WSU collection (CASAS) is a different corpus by different authors.
 
 ## Headline
 
 | | |
 |---|---|
-| source-domain fit, grouped by day | 0.51–0.53 |
-| cross-building gap, both directions | 9–15 pts |
+| source-domain fit, grouped by day | 0.51-0.53 |
+| cross-building penalty, matched n, fixed test set | 0.6 pts into S2 / 21.3 into S1 |
 | best target macro-F1 | 0.447 |
-| only method with a significant gain | DIGA, +1.7 |
-| PETAL / PeTTA | neither adapts; see `src/exp7`, `src/exp12` |
-| occupancy | no method beats source-only |
+| DIGA | +1.7 tuned on target labels, +0.3 label-free |
+| PETAL / PeTTA | neither adapts; see `src/exp7`, `src/exp12`, `src/exp22` |
+| occupancy | no method beats a sound source model; +27 to +41 MCC against a weak one |
 
 Stride-1 windowing under a random validation split inflates source macro-F1 to 0.998
 regardless of how the window is defined; grouping the split by recording day removes the
 effect. Per-sensor features score below stratified-random on the target in both transfer
-directions. The feature set that validates best in-domain transfers worst.
+directions.
+
+The cross-building penalty is measured against a model trained on the target building at
+matched sample size and scored on the same held-out days, not against source validation,
+which conflates domain shift with how hard each building is. Measured that way it is
+asymmetric: essentially zero entering one apartment, 21 points entering the other. Every
+adaptation result in the paper tracks that asymmetry (`src/exp21_domain_gap.py`).
 
 ## Layout
 
@@ -46,6 +55,14 @@ python -m venv .venv && .venv/bin/pip install -r requirements.txt
 .venv/bin/python src/exp11_reverse.py         # both transfer directions
 .venv/bin/python src/exp12_lambda_bar.py      # PETAL lambda_bar + faithful hyperparams
 .venv/bin/python src/exp13_occ_scaler.py      # occupancy, three normalisation protocols
+.venv/bin/python src/exp14_correspondence.py  # unsupervised sensor matching
+.venv/bin/python src/exp15_classifier.py      # classifier family and window length
+.venv/bin/python src/exp16_temporal.py        # temporal modelling vs smoothing
+.venv/bin/python src/exp17_occ_reverse.py     # occupancy, reverse direction
+.venv/bin/python src/exp19_diga_impl.py       # DIGA under four readings of its equations
+.venv/bin/python src/exp20_hparam_grid.py     # full published grids, all three methods
+.venv/bin/python src/exp21_domain_gap.py      # cross-building penalty, matched n
+.venv/bin/python src/exp22_petal_budget.py    # PETAL's step budget
 .venv/bin/python src/summary.py               # consolidated table
 .venv/bin/python src/make_figures.py          # manuscript figures
 ```
