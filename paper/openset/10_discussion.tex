@@ -11,7 +11,8 @@ richer.
 
 What does help is replacing the rejection score, and only modestly: between $1.17$ and
 $1.58$ times chance at a matched rejection rate, against a maximum softmax baseline that
-sits exactly at chance. This is a consistent reading alongside
+sits exactly at chance, with a further $0.064$ AUROC available from a source-only temporal
+weighting in the direction that has headroom (Section~\ref{sec:os-temporal}). This is a consistent reading alongside
 Section~\ref{sec:res-mech}, where DIGA's prototype classifier was the one component that
 helped without touching normalisation statistics, but we did not isolate that component in
 the open-set setting and the two results are not a replication of one another. What they
@@ -27,13 +28,29 @@ degradation whenever unknown detection is the weaker component, which it usually
 PETAL records the best H in one direction while classifying the known activities half as
 well as doing nothing. Open-set results should be reported with both components visible.
 
-Thresholds second. A threshold set to reject $1\%$ of source validation rejects between
-$7\%$ and $63\%$ of a target stream, depending only on which score carries it. Any
-open-set method that calibrates on source inherits this, and any that calibrates on target
-has left the test-time setting. We think the rejection rate, which is observable without
-labels, belongs in open-set reporting next to H. How to calibrate a threshold that holds
-across domains rather than across resamples of one is open, and is the direction we would
-pursue next.
+Thresholds second, and this is where we would put the field's effort. A threshold set to
+reject $1\%$ of source validation rejects between $7\%$ and $63\%$ of a target stream,
+depending only on which score carries it. Any open-set method that calibrates on source
+inherits this, and any that calibrates on target has left the test-time setting.
+
+We can now say more than that it is a nuisance: it is the binding constraint, and we have
+measured it as one rather than argued it. Section~\ref{sec:os-temporal} improves unknown
+detection by a source-only rule that gains $0.064$ AUROC entering $\text{S}_1$, closing
+most of the gap identified in Section~\ref{sec:os-depth}. At the threshold a deployment
+would actually use, the same detector \emph{loses} $0.11$ H in the other direction,
+because separating better and calibrating better are different properties and only the
+first improved. The converse appears in the same table: the variant with the best H in
+both directions has significantly worse AUROC in one, its advantage being a rejection-rate
+effect rather than detection at all.
+
+Detection quality and deployed open-set performance therefore come apart on this data, and
+until the threshold transfers, work on the detector does not reach the system. That makes
+cross-domain threshold calibration the first problem to solve rather than one of several,
+and it is not where the current literature, ours included until now, has been looking. A
+modest and concrete step is available immediately: the rejection rate is computable without
+labels, so a deployment can observe that it is rejecting $63\%$ of its input when the
+designer intended $1\%$, even though it cannot observe that it is wrong. We suggest
+reporting it beside H as a matter of course.
 
 Chance baselines third. The two results in this section that are most likely to generalise
 are both negative, and neither is visible without a chance baseline: four standard

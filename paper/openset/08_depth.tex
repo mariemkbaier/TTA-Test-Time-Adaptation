@@ -12,7 +12,7 @@ depths, including none at all.
 \begin{table}[t]
 \centering
 \caption{AUROC for unknown-versus-known by the representation the prototype distance is
-computed in, with the labelled ceiling of Table~\ref{tab:osceiling} for scale. Chance is
+computed in, with the supervised reference of Table~\ref{tab:osceiling} for scale. Chance is
 $0.5$.}
 \label{tab:osdepth}
 \small
@@ -26,7 +26,7 @@ Second block, $128$-d        & $0.6198$ & $0.5076$ \\
 First block, $256$-d         & $0.5982$ & $0.5107$ \\
 \midrule
 Maximum softmax              & $0.4952$ & $0.4434$ \\
-Labelled ceiling (diagnostic)& $0.7354$ & $0.6327$ \\
+Supervised reference (diagnostic)& $0.7354$ & $0.6327$ \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -59,8 +59,8 @@ labels and is a DIAGNOSTIC upper bound, not a method.}
 Features differing after Benjamini-Hochberg at $5\%$ & $13/13$ & $13/13$ \\
 Strongest single feature & $0.6972$ & $0.3700$ \\
 \quad which one & \texttt{t\_time\_cos} & \texttt{g\_max\_active} \\
-Supervised ceiling, logistic & $0.6620$ & $0.5701$ \\
-Supervised ceiling, gradient boosting & $\mathbf{0.7354}$ & $\mathbf{0.6327}$ \\
+Supervised reference, logistic & $0.6620$ & $0.5701$ \\
+Supervised reference, gradient boosting & $\mathbf{0.7354}$ & $\mathbf{0.6327}$ \\
 \midrule
 Our label-free detector (Table~\ref{tab:osdepth}) & $0.6377$ & $0.5373$ \\
 \bottomrule
@@ -85,7 +85,14 @@ nothing over the raw features, which is the clean negative result the depth swee
 establishes. But the features are not the binding constraint: a labelled detector on the
 same thirteen numbers does roughly ten points better, so there is headroom a better
 label-free score could reach, and the most obvious place to look for it is temporal
-structure rather than a distance in feature space. We note also that the labelled ceiling
-is itself modest, $0.74$ and $0.63$, so the problem is genuinely hard even with
-supervision; the correction is that it is harder than it needs to be for the detector we
-used, not that it is impossible for the features we have.
+structure rather than a distance in feature space. Section~\ref{sec:os-temporal} follows
+that up. The labelled figures should be read as a reference point rather than as a ceiling. They
+are what one particular supervised learner extracts, and
+Section~\ref{sec:os-temporal} reaches $0.6616$ entering $\text{S}_1$ with an unsupervised
+distance on four features, against the $0.6327$ obtained there with gradient boosting on
+all thirteen and target labels. A bound that an unsupervised method beats was not a bound;
+it bounds that learner on that feature set, and the true limit of this description of the
+data is higher than either number. We keep the comparison because the direction of the gap
+is informative --- a labelled detector does better than ours on the identical features, so
+signal is being left unused --- while noting that its size is not a reliable estimate of
+how much.

@@ -1,0 +1,66 @@
+% ---------------------------------------------------------------- temporal detector
+\subsection{A better detector does not produce a better system}
+\label{sec:os-temporal}
+
+Section~\ref{sec:os-depth} located roughly ten AUROC points of unused signal and pointed
+at time of day. Acting on that raises a question of method before one of performance: we
+identified the temporal axis by looking at target labels, so a detector built on it is
+selected with target information through the analyst rather than through the code. Scoring
+it as Tier-1 would be the error we document in others, arrived at by a different route.
+
+The test is whether a rule that sees only source data would have chosen the same axis.
+Hold out each known activity from the source prototypes in turn, score that activity's own
+\emph{source} windows as though they were novel, and record which dimensions detect them;
+averaging over the three known classes gives per-dimension weights that use no target data
+at all. The rule selects the temporal axis in both directions. \texttt{t\_time\_sin} and
+\texttt{t\_time\_cos} take the largest weights, and the four temporal dimensions average
+$1.58$ and $1.96$ against $0.74$ and $0.57$ for the nine activity statistics. The axis is
+therefore selectable without target labels, which turns the observation into a usable
+design rule rather than a hypothesis about this pair of apartments.
+
+% source: src/exp30_temporal_detector.py -> results/exp30_temporal_detector.csv
+\begin{table*}[t]
+\centering
+\caption{Detectors that isolate or upweight the temporal axis. $\Delta$ is a paired
+bootstrap over the target stream against the $13$-d mean baseline, $2000$ resamples.
+Variants marked [ph] select the axis using target
+knowledge: they are DIAGNOSTIC upper bounds in the sense of
+Section~\ref{sec:os-setup}, not deployable results. [t1] variants use source data only. H and the rejection rate are at the fixed $q=5\%$
+source-calibrated threshold.}
+\label{tab:ostemporal}
+\small
+\begin{tabular}{lccc|ccc}
+\toprule
+ & \multicolumn{3}{c|}{$\text{S}_1\!\to\!\text{S}_2$} & \multicolumn{3}{c}{$\text{S}_2\!\to\!\text{S}_1$} \\
+Detector & AUROC & $\Delta$ & H / rej & AUROC & $\Delta$ & H / rej \\
+\midrule
+$13$-d mean [t1]        & $0.6392$ & --- & $0.4957$ / $70\%$ & $0.5253$ & --- & $0.4279$ / $43\%$ \\
+$13$-d max-dim [t1]     & $0.6308$ & $-0.009$ & $\mathbf{0.5235}$ / $57\%$ & $0.5745$ & $+0.049$ & $0.4410$ / $54\%$ \\
+LOCO-weighted [t1]      & $0.6373$ & ns & $0.4069$ / $74\%$ & $0.5888$ & $+0.064$ & $\mathbf{0.4825}$ / $55\%$ \\
+Temporal $4$-d [ph]     & $0.6389$ & ns & $0.4685$ / $23\%$ & $\mathbf{0.6616}$ & $+0.136$ & $0.4986$ / $25\%$ \\
+Time-of-day $2$-d [ph]  & $0.5915$ & $-0.047$ & $0.5053$ / $26\%$ & $0.6266$ & $+0.101$ & $0.4207$ / $16\%$ \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+As a detector the temporal axis works, and it works only where there is a shift to detect.
+Entering $\text{S}_1$, every variant separates from the baseline: the source-only
+weighting gains $0.064$ AUROC and the post-hoc temporal distance $0.136$. Entering
+$\text{S}_2$, where the cross-building penalty is $1.6$ points, nothing improves and two
+variants are significantly worse. This is the same asymmetry the adaptation methods
+followed in Section~\ref{sec:os-methods}, now in a component that does not adapt anything.
+
+As a system it changes nothing, and that is the more useful result. At the fixed
+source-calibrated threshold the source-only weighting rejects $74\%$ of the forward stream
+and its H falls to $0.4069$, below the $0.5176$ of the configuration in
+Section~\ref{sec:os-deploy}. The better-separating score is the worse-calibrated one. The
+$13$-d max-dim variant shows the converse: it records the best H in both directions while
+its AUROC is \emph{significantly worse} in one of them, so its apparent advantage is a
+rejection-rate effect of the kind Section~\ref{sec:os-maha} dissects rather than better
+detection. We decline to recommend it for that reason.
+
+What this establishes is a constraint rather than a method. Detection quality and
+deployed open-set performance come apart here: a score can gain $0.064$ AUROC and lose
+$0.11$ H at the threshold a deployment would actually use. Until a threshold can be
+calibrated so that it transfers, improving the detector does not improve the system, and
+the limiting factor in Table~\ref{tab:osthresh} is not the one anybody is working on.

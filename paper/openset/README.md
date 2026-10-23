@@ -14,6 +14,7 @@ closed-set paper's macros (`\macf`) and labels (`sec:res-gap`, `sec:res-mech`,
 | `06_mahalanobis.tex` | §6 | `exp27_proto_depth.py` | `exp27_proto_depth.csv` |
 | `07_threshold.tex` | §7 | `exp27_proto_depth.py` | `exp27_proto_depth.csv` |
 | `08_depth.tex` | §8 | `exp27_proto_depth.py`, `exp29_feature_limit.py` | `exp27_proto_depth.csv`, `exp29_feature_limit.csv` |
+| `08b_temporal.tex` | §8b | `exp30_temporal_detector.py` | `exp30_temporal_detector.csv` |
 | `lead_violations.tex` | §9 | — | `ispc-lab/LEAD` at HEAD |
 | `10_discussion.tex` | §10 | — | — |
 
@@ -24,3 +25,19 @@ own or split into a separate paper.
 Every number in these files was read from the result CSVs, not transcribed from a run log.
 Diagnostic figures that use target labels (the matched-rejection-rate table, the oracle-tau
 bound) are labelled as such in the captions.
+
+## Compile check
+
+All eleven files were compiled together against `cas-dc` with the main paper's preamble
+(`natbib`, `amsmath`, `booktabs`, `multirow`, and the `\macf` macro). Seven pages, zero
+undefined references. The driver used for the check is not kept; recreate it by
+`\input`-ing the files in the order of the table above and defining `\macf` plus
+`\phantomsection\label{}` stubs for the five labels owned by `../main.tex`:
+`sec:res-gap`, `sec:res-mech`, `sec:res-feat`, `sec:method-tiers`, `tab:bnchannel`.
+
+## Conventions
+
+Any figure computed with target labels is marked DIAGNOSTIC in its caption and in the
+generating script: the matched-rejection-rate table (§6), the supervised reference (§8),
+the oracle-threshold bound (§5 source), and the [ph] variants in §8b. The convention is
+stated in §1 so a reader meets it before the first instance.
