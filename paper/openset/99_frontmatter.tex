@@ -67,13 +67,16 @@ learned embedding, which a distance on the raw thirteen features matches --- was
 removing.
 
 Three findings seem to us likely to outlive this dataset, and none of them is about our
-system. The standard open-set score can be raised by degrading a model uniformly, so it
-should never be reported without its known-class component. Four standard confidence-based
+system. The standard open-set score can be raised by degrading a model
+uniformly whenever unknown detection is the weaker of its two terms, as it was in both
+directions here, so it should never be reported without its known-class component. Four standard confidence-based
 novelty scores are at or below chance here, which was visible only because a chance
 baseline was computed, and is a reason to compute one before trusting any detector in a
-new domain. And a threshold calibrated on source data does not transfer: the same nominal
-percentile rejects $7\%$ or $63\%$ of a target stream depending on the score it sits on,
-and improving the detector underneath does not help while that is true.
+new domain. And a threshold calibrated on source data did not transfer in either
+direction here: the same nominal percentile rejects $7\%$ or $63\%$ of a target stream
+depending on the score it sits on, and improving the detector underneath did not help
+while that was true. We expect the mechanism to be general, since a threshold is a
+statistic of the source distribution, but we have measured it on two buildings.
 
 The limits are those of the study it extends. Two apartments of one dataset, one choice of
 withheld activities, and a temporal axis that turns out to carry much of the novelty
