@@ -65,7 +65,7 @@ adjacent samples share nineteen of twenty timesteps, so a random train/validatio
 places a near-duplicate of almost every validation sample into training. Under that split
 a source model reaches $0.998$ \macf; grouped by recording day it reaches $0.529$. The
 window definition accounts for under two points of the difference and the split for
-forty-six. Every result we report uses day-grouped splits.
+forty-seven. Every result we report uses day-grouped splits.
 
 On that footing the cross-building penalty is asymmetric. Measured against a model trained
 on the target building at matched sample size, it is $0.6$ \macf{} points entering one
@@ -147,7 +147,7 @@ Our contributions are as follows.
 \item \textbf{A trustworthy evaluation protocol for this data type.} We isolate the
   measurement problem by varying the window definition and the validation split
   independently. Causality and segmentation move source \macf{} by under two points; the
-  split moves it by forty-six (Section~\ref{sec:protocol}). Everything thereafter uses
+  split moves it by forty-seven (Section~\ref{sec:protocol}). Everything thereafter uses
   day-grouped splits, and the cross-building penalty is measured against a model trained on
   the target building at matched sample size rather than against source validation.
 
@@ -333,19 +333,19 @@ Grouped by recording day & $\mathbf{0.5287}\pm0.007$ & $0.1626$ \\
 \includegraphics[width=0.96\textwidth]{fig_leakage.pdf}
 \caption{Overlapping-window leakage. Left: adjacent stride-$1$ windows share $19$ of
 $20$ timesteps. Right: source \macf{} under three validation splits; the window
-definition accounts for under two points of the difference, the split for forty-six.}
+definition accounts for under two points of the difference, the split for forty-seven.}
 \label{fig:leakage}
 \end{figure*}
 
 Table~\ref{tab:protocol} and Figure~\ref{fig:leakage} separate the two. Changing the window definition --- causal
 against centred, and how segments are delimited --- moves the source figure by under two
-points. Changing the split moves it by forty-six, from $0.9984$ to $0.5287$. The inflation
+points. Changing the split moves it by forty-seven, from $0.9984$ to $0.5287$. The inflation
 is a property of the split, not of the window, and a pipeline that fixes the window while
 leaving the split random retains essentially all of it.
 
 The practical consequence is that a cross-building drop computed as source validation minus
 target performance is not a measurement of two buildings. Under the random split that
-difference is $83$ points on this data, almost all of which is the source figure being
+difference is $84$ points on this data, almost all of which is the source figure being
 wrong. We therefore adopt grouped-by-day splits for every result that follows, and we make
 windows causal, which is required anyway if the features are to be computable online. The
 second change is not a trade: causal windows improve target \macf{} from $0.1626$ to
@@ -835,7 +835,7 @@ that checkpoint. A method evaluated only against a weak source model will appear
 and the appearance will not survive a better one.
 
 The second is the reliability of the measurement. A cross-building drop computed as source
-validation minus target performance was $83$ points on this pipeline; measured against a
+validation minus target performance was $84$ points on this pipeline; measured against a
 model trained on the target building at matched sample size it is $0.6$ points in one
 direction and $21.3$ in the other. The quantity these methods are asked to reduce is
 therefore not well defined until the evaluation protocol is settled, and the two are easily
@@ -860,7 +860,7 @@ does not touch normalisation statistics at all.
 \paragraph{Recommendations.} Four follow directly.
 
 Group validation splits by recording session, not at random, whenever features are computed
-over overlapping windows. The cost of not doing so was forty-six points here and is
+over overlapping windows. The cost of not doing so was forty-seven points here and is
 invisible in the reported figure.
 
 Measure the cross-domain penalty against a model trained on the target domain at matched
@@ -886,7 +886,7 @@ paper reports three results.
 The first is a protocol. Sliding windows with unit stride make a random validation split
 place near-duplicates across it, inflating source \macf{} from $0.529$ to $0.998$ on this
 pipeline; the window definition accounts for under two points of that and the split for
-forty-six. Grouping the split by recording day removes the effect, and measuring the
+forty-seven. Grouping the split by recording day removes the effect, and measuring the
 cross-building penalty against a target-trained model at matched sample size gives a
 quantity that means what it appears to mean. On that footing the penalty is $0.6$ \macf{}
 points entering one apartment and $21.3$ entering the other.

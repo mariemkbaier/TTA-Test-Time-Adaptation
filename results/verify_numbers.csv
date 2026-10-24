@@ -32,7 +32,7 @@ main.tex,324,0.1626,AMBIGUOUS,declared,3,exp4_windowing.csv[centered label rando
 main.tex,325,0.1626,AMBIGUOUS,declared,3,exp4_windowing.csv[centered label random].tf_mean; exp4_windowing.csv[centered label blocked].tf_mean; exp4_windowing.csv[centered label grouped].tf_mean
 main.tex,342,0.9984,AMBIGUOUS,declared,2,exp4_windowing.csv[centered label random].sa_mean; exp4_windowing.csv[centered label random].sf_mean
 main.tex,342,0.5287,UNIQUE,declared,1,exp4_windowing.csv[centered label grouped].sf_mean
-main.tex,348,83,AMBIGUOUS,declared,2,exp32_occ_feature_identity.csv[channel_dist door nan].src_frac_zero; exp35_occ_tta_raw.csv[7 transferable source->target DIGA].fp
+main.tex,348,84,UNSOURCED,declared,0,
 main.tex,351,0.1626,AMBIGUOUS,declared,3,exp4_windowing.csv[centered label random].tf_mean; exp4_windowing.csv[centered label blocked].tf_mean; exp4_windowing.csv[centered label grouped].tf_mean
 main.tex,352,0.2356,AMBIGUOUS,declared,3,exp4_windowing.csv[causal recording random].tf_mean; exp4_windowing.csv[causal recording blocked].tf_mean; exp4_windowing.csv[causal recording grouped].tf_mean
 main.tex,378,0.200,AMBIGUOUS,declared,8,exp11_reverse.csv[S1->S2 13-d g+t (transferable)].chance; exp11_reverse.csv[S1->S2 all 135-d (paper)].chance; exp11_reverse.csv[S1->S2 per-sensor ids only].chance
@@ -285,7 +285,7 @@ main.tex,811,0.640,UNIQUE,declared,1,exp35_occ_tta_raw.csv[7 transferable source
 main.tex,812,0.720,UNSOURCED,declared,0,
 main.tex,813,0.431,UNIQUE,declared,1,exp35_occ_tta_raw.csv[7 transferable source->target Source-only].mcc
 main.tex,831,16,AMBIGUOUS,declared,17,exp11_reverse.csv[S2->S1 all 135-d (paper)].src_val_sd; exp11_reverse.csv[S2->S1 all 135-d (paper)].tgt_f1; exp11_reverse.csv[S2->S1 per-sensor ids only].f1_meal_prep
-main.tex,838,83,AMBIGUOUS,declared,2,exp32_occ_feature_identity.csv[channel_dist door nan].src_frac_zero; exp35_occ_tta_raw.csv[7 transferable source->target DIGA].fp
+main.tex,838,84,UNSOURCED,declared,0,
 main.tex,839,0.6,AMBIGUOUS,declared,57,exp21_matched.csv[S2 matched_penalty].f1; exp23_bn_channel.csv[S1->S2 PeTTA (published)].sd; exp32_occ_feature_identity.csv[correlation rms nan].r_source
 main.tex,840,21.3,AMBIGUOUS,declared,2,exp21_matched.csv[S1 matched_penalty].f1; exp23_bn_channel.csv[S2->S1 TENT].macroF1
 main.tex,848,25,AMBIGUOUS,declared,4,exp23_bn_channel.csv[S2->S1 DIGA (published)].mcc; exp23_bn_channel.csv[S2->S1 DIGA lam_BN=0.8].mcc; exp32_occ_feature_identity.csv[correlation door nan].tgt_lo_record
