@@ -80,19 +80,38 @@ if __name__ == "__main__":
 
     print(f"\n{'feature':<16}{'source r':>12}{'95% CI':>20}{'target r':>12}{'95% CI':>20}  verdict")
     print("-" * 96)
+    # Resample by RECORDING DAY, not by row. Consecutive occupancy records are strongly
+    # autocorrelated -- an empty office produces near-identical readings for hours -- so
+    # resampling rows treats dependent observations as independent evidence and narrows
+    # the interval. The day is the unit the validation splits use elsewhere.
     rng = np.random.default_rng(0)
-    iS = [rng.integers(0, len(S), len(S)) for _ in range(B)]
-    iT = [rng.integers(0, len(T), len(T)) for _ in range(B)]
+
+    def day_draws(df, n):
+        days = np.unique(df["day"].values)
+        by = {d: np.where(df["day"].values == d)[0] for d in days}
+        out = []
+        for _ in range(n):
+            pick = rng.choice(days, size=len(days), replace=True)
+            out.append(np.concatenate([by[d] for d in pick]))
+        return out
+
+    iS = day_draws(S, B)
+    iT = day_draws(T, B)
     for c in shared:
         rs = np.corrcoef(S[c], S.occ)[0, 1]; rt = np.corrcoef(T[c], T.occ)[0, 1]
+        # a resampled day set can be constant in a sparse channel (power2 is zero in 89%
+        # of rows), making the correlation undefined; those draws are dropped and counted
         bs = [np.corrcoef(S[c].values[i], S.occ.values[i])[0, 1] for i in iS]
         bt = [np.corrcoef(T[c].values[i], T.occ.values[i])[0, 1] for i in iT]
+        ns, nt = int(np.isnan(bs).sum()), int(np.isnan(bt).sum())
+        bs = [v for v in bs if np.isfinite(v)]; bt = [v for v in bt if np.isfinite(v)]
         sl, sh = np.percentile(bs, [2.5, 97.5]); tl, th = np.percentile(bt, [2.5, 97.5])
         flip = (sl > 0 and th < 0) or (sh < 0 and tl > 0)
         v = "SIGN REVERSES" if flip else ("same sign" if rs * rt > 0 else "sign differs (CIs overlap 0)")
         print(f"{c:<16}{rs:>+12.3f}  [{sl:+.3f},{sh:+.3f}]{rt:>+12.3f}  [{tl:+.3f},{th:+.3f}]  {v}")
         rows.append(dict(kind="correlation", feature=c, r_source=rs, src_lo=sl, src_hi=sh,
-                         r_target=rt, tgt_lo=tl, tgt_hi=th, reverses=bool(flip)))
+                         r_target=rt, tgt_lo=tl, tgt_hi=th, reverses=bool(flip),
+                         undefined_draws_src=ns, undefined_draws_tgt=nt))
 
     # ---- what does keeping a reversing feature cost in transfer?
     rev = [r["feature"] for r in rows if r.get("reverses")]

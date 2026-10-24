@@ -86,8 +86,9 @@ guessing on the target in both directions, because a given sensor index is a dif
 physical device in each building.
 
 Occupancy estimation reproduces the pattern on a different task, dataset and sensing
-modality, and identifies the same cause independently. Two of the nine features shared
-between the offices correlate with occupancy in one and anti-correlate in the other.
+modality, and identifies the same cause independently. Of the nine features shared between the
+offices, two correlate with occupancy in one and anti-correlate in the other, one of them
+with day-level bootstrap intervals that exclude zero.
 Removing them is a diagnostic rather than a deployable configuration, since identifying
 which features reverse requires target labels, but it isolates the cause: it moves
 cross-office transfer from MCC $-0.38$ to $+0.43$ and cuts the measured penalty in one
@@ -272,7 +273,12 @@ Classes are unbalanced in both tasks, so we report macro-F\textsubscript{1} and 
 correlation coefficient rather than accuracy alone, with accuracy and balanced accuracy
 beside them for the binary task. Two chance baselines accompany every activity result:
 stratified-random sampling from the target class distribution, and the majority class.
-Intervals on differences are paired bootstraps over the target stream.
+Intervals on differences are paired bootstraps over the target stream, resampled at the
+level of the recording day rather than the individual window or record. Windows computed
+over overlapping spans are not independent draws (Section~\ref{sec:protocol}), and
+consecutive occupancy records are strongly autocorrelated, so resampling them individually
+treats dependent observations as independent evidence and narrows every interval it
+produces.
 
 % ============================================================================
 \section{Establishing a trustworthy protocol}
@@ -516,9 +522,20 @@ methods are given.
 
 Table~\ref{tab:harmethods} gives the main activity result. In the direction where the
 penalty is $0.6$ points, all three methods lose ground, by $8.6$ to $20.4$ \macf{} points.
-In the direction where it is $21.3$, DIGA gains $2.1$ points and the other two still lose.
-The methods track the measured penalty rather than the task: the only positive entry in the
-table is in the direction that has headroom.
+In the direction where it is $21.3$, DIGA is the only method that does not clearly lose
+ground, at $+2.1$ points, though a paired bootstrap resampled by recording day puts that
+difference at $[-0.8,+4.8]$ and so does not separate it from zero. The losses are of a
+different character: DIGA's $-8.6$ in the first column has an interval of $[-13.7,-2.8]$
+under the same procedure, excluding zero. The methods track the measured penalty rather
+than the task, and the asymmetry is between losing clearly and not moving detectably
+rather than between losing and gaining.
+
+The resampling unit matters for that statement and is worth making explicit. Resampling
+individual windows rather than days would put DIGA's difference at $[+1.4,+2.7]$ and make
+it appear significant. That is the effect of Section~\ref{sec:protocol} reappearing in a
+different guise: windows sharing nineteen of twenty timesteps are not independent draws,
+and treating them as such narrows an interval for the same reason it inflated a
+source-validation score. Every interval in this paper resamples the recording day.
 
 The lower block identifies why. All three methods adapt batch-normalisation statistics, and
 in each released implementation that is the primary mechanism rather than an incidental
@@ -613,10 +630,11 @@ cross-building transfer rather than about one dataset, it should reappear.
 % source: src/exp32_occ_feature_identity.py -> results/exp32_occ_feature_identity.csv
 \begin{table}[t]
 \centering
-\caption{Correlation with occupancy per office. Two of the nine shared features have
-$95\%$ bootstrap intervals of opposite sign that do not overlap, over $2000$ resamples:
-\texttt{rms} is $[+0.595,+0.666]$ against $[-0.316,-0.111]$, and \texttt{derivative\_co2}
-is $[+0.057,+0.172]$ against $[-0.295,-0.123]$.}
+\caption{Correlation with occupancy per office, with $95\%$ bootstrap intervals over
+$2000$ resamples drawn at the level of the \emph{recording day}, since consecutive
+occupancy records are strongly autocorrelated. \texttt{rms} is $[+0.561,+0.857]$ against
+$[-0.509,+0.029]$ and \texttt{derivative\_co2} is $[+0.038,+0.188]$ against
+$[-0.375,-0.066]$; only the latter has intervals of opposite sign that exclude zero.}
 \label{tab:occfeat}
 \footnotesize
 \setlength{\tabcolsep}{3pt}
@@ -641,8 +659,22 @@ Feature & Source office & Target office \\
 Table~\ref{tab:occfeat} reports how each shared feature relates to occupancy in each
 office. Seven behave consistently. Two do not. The acoustic level \texttt{rms} is the
 strongest single predictor the source office has, at $+0.626$, and in the target office it
-points the other way at $-0.202$, with non-overlapping intervals. The rate of change of
-carbon dioxide does the same more weakly.
+points the other way at $-0.202$. The rate of change of carbon dioxide does the same more
+weakly, at $+0.116$ against $-0.207$.
+
+The evidence for the two is not equally strong, and the resampling unit is what separates
+them. Intervals here are drawn at the level of the recording day rather than the
+individual record, for the reason Section~\ref{sec:protocol} gives: consecutive readings
+from an office are strongly autocorrelated --- an unoccupied room produces near-identical
+measurements for hours --- so resampling records treats dependent observations as
+independent evidence. At that unit \texttt{derivative\_co2} separates, with
+$[+0.038,+0.188]$ against $[-0.375,-0.066]$, while \texttt{rms} does not: its target
+interval is $[-0.509,+0.029]$ and includes zero. With eight and ten recording days
+respectively, these offices supply few independent units, and the point estimates are far
+apart while the intervals around them are wide. We therefore report the reversal as
+established for \texttt{derivative\_co2} and as indicated but not established for
+\texttt{rms}, and note that resampling individual records would have placed
+\texttt{rms}'s target interval at $[-0.316,-0.111]$ and made it appear decisive.
 
 The seven-feature set that appears below is defined by removing these two columns, and
 how that set is identified matters for how its rows may be read. Deciding that
