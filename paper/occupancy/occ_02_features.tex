@@ -1,0 +1,88 @@
+% ---------------------------------------------------- feature identity and the penalty
+\subsection{A feature that predicts occupancy here and the opposite there}
+\label{sec:occ-features}
+
+Two of the nine shared columns correlate with occupancy in one office and anti-correlate
+in the other, and one of them is the strongest single predictor the source office has.
+While the columns were named $0$ to $8$ this was not a question anyone could ask.
+
+% source: src/exp32_occ_feature_identity.py -> results/exp32_occ_feature_identity.csv
+\begin{table}[t]
+\centering
+\caption{Correlation with occupancy per office, with $95\%$ bootstrap intervals over
+$2000$ resamples. Two features have intervals of opposite sign that do not overlap.}
+\label{tab:occfeat}
+\small
+\begin{tabular}{@{}lcc@{}}
+\toprule
+Feature & Source office & Target office \\
+\midrule
+\texttt{sum\_power} & $+0.502$ $[+0.449,+0.554]$ & $+0.780$ $[+0.750,+0.811]$ \\
+\texttt{co2}        & $+0.378$ $[+0.306,+0.444]$ & $+0.671$ $[+0.627,+0.716]$ \\
+\texttt{power1}     & $+0.352$ $[+0.296,+0.415]$ & $+0.462$ $[+0.399,+0.520]$ \\
+\texttt{motion}     & $+0.348$ $[+0.292,+0.404]$ & $+0.544$ $[+0.486,+0.597]$ \\
+\texttt{power2}     & $+0.263$ $[+0.205,+0.320]$ & $+0.423$ $[+0.368,+0.481]$ \\
+\texttt{door}       & $+0.255$ $[+0.198,+0.316]$ & $+0.307$ $[+0.243,+0.364]$ \\
+\texttt{power3}     & $+0.130$ $[+0.070,+0.187]$ & $+0.721$ $[+0.687,+0.758]$ \\
+\midrule
+\texttt{rms}            & $\mathbf{+0.626}$ $[+0.595,+0.666]$ & $\mathbf{-0.202}$ $[-0.316,-0.111]$ \\
+\texttt{derivative\_co2}& $+0.116$ $[+0.057,+0.172]$ & $-0.207$ $[-0.295,-0.123]$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\texttt{rms} is an acoustic measure. In the source office it is the best single predictor
+of occupancy in the table at $+0.626$; in the target office it points the other way at
+$-0.202$, with non-overlapping intervals. \texttt{derivative\_co2}, the rate of change of
+carbon dioxide, does the same more weakly.
+
+It is worth being precise about what kind of defect this is, because the obvious
+description is wrong. These are not noisy or uninformative features to be pruned.
+\texttt{rms} carries real signal where it was recorded: removing it and
+\texttt{derivative\_co2} drops the source office's own-days MCC from $0.7643$ to $0.3624$
+(Table~\ref{tab:occpenalty}), so almost half of what the source office knows about its own
+occupancy is carried by a feature that means the opposite thing next door. The feature is
+genuinely predictive at home and genuinely misleading away. That combination is what makes
+it invisible to any evaluation conducted in one building, and it is the reason the defect
+survives into a cross-building result rather than being caught upstream.
+
+The two offices also do not instrument the same things. The source office has
+\texttt{window}, \texttt{power5} and \texttt{power6}; the target has \texttt{power4}. Of
+the three power channels nominally shared, \texttt{power3} is zero in $96\%$ of source
+rows and $5\%$ of target rows, median $0$ against $11$: the column name is shared and the
+appliance behind it is not. This is the per-sensor result of
+Section~\ref{sec:res-feat} with placement rather than index as the thing that fails to
+transfer.
+
+\paragraph{The penalty, measured against the right ceiling.} The raw files carry
+\texttt{time}, which gives a recording-day index --- ten days in the source office, eight
+in the target --- so the measurement of Section~\ref{sec:res-gap} becomes available for
+the first time on this task: hold the evaluation days fixed, vary only which office
+supplied the training labels, match training-set size.
+
+% source: src/exp33_occ_penalty_raw.py -> results/exp33_occ_penalty_raw.csv
+\begin{table}[t]
+\centering
+\caption{Cross-office penalty, MCC, day-grouped folds and matched training-set size,
+$5$ seeds. \emph{Own days} trains on the office being evaluated.}
+\label{tab:occpenalty}
+\small
+\begin{tabular}{@{}llccc@{}}
+\toprule
+Features & Evaluated on & Own days & Other office & Penalty \\
+\midrule
+all $9$ shared & target office & $0.7867$ & $0.2138$ & $57.3$ \\
+all $9$ shared & source office & $0.7643$ & $0.2924$ & $47.2$ \\
+\addlinespace[2pt]
+$7$ transferable & target office & $0.8225$ & $0.3777$ & $44.5$ \\
+$7$ transferable & source office & $0.3624$ & $0.2866$ & $\mathbf{7.6}$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Dropping the two reversing columns cuts the penalty into the source office from $47.2$
+points to $7.6$. Most of what presented as a cross-office domain gap in that direction was
+two features meaning opposite things in the two rooms. Into the target office a penalty of
+$44.5$ points survives the same surgery, so unlike the activity task this pair of
+environments does contain a real shift --- in one direction, and smaller than the
+uncorrected figure suggests.

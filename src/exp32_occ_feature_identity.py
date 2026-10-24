@@ -65,6 +65,18 @@ if __name__ == "__main__":
     print(f"  only in source : {sorted(set(S.columns) - set(T.columns) - {'occ','day'})}")
     print(f"  only in target : {sorted(set(T.columns) - set(S.columns) - {'occ','day'})}")
     print(f"  nominally shared: {shared}")
+    for c in sorted(set(S.columns) - set(T.columns) - {"occ", "day"}):
+        rows.append(dict(kind="sensor_set", feature=c, present_in="source only"))
+    for c in sorted(set(T.columns) - set(S.columns) - {"occ", "day"}):
+        rows.append(dict(kind="sensor_set", feature=c, present_in="target only"))
+    # per-channel distribution, so "same name, different appliance" is checkable
+    print(f"\n  {'channel':<16}{'src median':>12}{'src %zero':>11}{'tgt median':>12}{'tgt %zero':>11}")
+    for c in shared:
+        sm, sz = float(S[c].median()), float((S[c] == 0).mean())
+        tm, tz = float(T[c].median()), float((T[c] == 0).mean())
+        print(f"  {c:<16}{sm:>12.3f}{sz:>10.0%}{tm:>12.3f}{tz:>10.0%}")
+        rows.append(dict(kind="channel_dist", feature=c, src_median=sm, src_frac_zero=sz,
+                         tgt_median=tm, tgt_frac_zero=tz))
 
     print(f"\n{'feature':<16}{'source r':>12}{'95% CI':>20}{'target r':>12}{'95% CI':>20}  verdict")
     print("-" * 96)
@@ -83,7 +95,7 @@ if __name__ == "__main__":
                          r_target=rt, tgt_lo=tl, tgt_hi=th, reverses=bool(flip)))
 
     # ---- what does keeping a reversing feature cost in transfer?
-    rev = [r["feature"] for r in rows if r["reverses"]]
+    rev = [r["feature"] for r in rows if r.get("reverses")]
     print(f"\nFeatures whose sign reverses with non-overlapping intervals: {rev or 'none'}")
     if rev:
         print(f"\nTransfer cost of keeping them (MCC, day-grouped source selection, 5 seeds):")

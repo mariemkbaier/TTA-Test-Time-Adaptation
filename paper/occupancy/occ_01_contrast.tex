@@ -1,0 +1,62 @@
+% ---------------------------------------------------- two extracts, opposite answers
+\subsection{One dataset, two preprocessings, opposite conclusions}
+\label{sec:occ-contrast}
+
+The occupancy data reaches us in two forms: an anonymised extract whose nine feature
+columns are named $0$ to $8$, and the raw sensor files with named columns and timestamps.
+They describe the same two offices and the same instrumentation. They do not agree about
+which direction of transfer is broken.
+
+% source: src/exp34_occ_version_asymmetry.py -> results/exp34_occ_version_asymmetry.csv
+\begin{table}[t]
+\centering
+\caption{Cross-office transfer MCC under an identical protocol --- same architecture, same
+ungrouped split procedure, $10$ seeds --- with only the data version changed. The
+anonymised rows reproduce the earlier occupancy tables; see Section~\ref{sec:occ-methods}.}
+\label{tab:occversion}
+\small
+\begin{tabular}{@{}llccc@{}}
+\toprule
+Extract & Direction & MCC & seeds $<0$ & range \\
+\midrule
+anonymised, $9$-d & source $\to$ target & $\mathbf{+0.6731}$ & $0/10$ & $[+0.63,+0.73]$ \\
+anonymised, $9$-d & target $\to$ source & $\mathbf{-0.0590}$ & $8/10$ & $[-0.20,+0.17]$ \\
+\addlinespace[2pt]
+raw, $9$ shared   & source $\to$ target & $-0.0711$ & $6/10$ & $[-0.42,+0.21]$ \\
+raw, $9$ shared   & target $\to$ source & $+0.3162$ & $0/10$ & $[+0.17,+0.46]$ \\
+\addlinespace[2pt]
+raw, $7$ transferable & source $\to$ target & $+0.3388$ & $1/10$ & $[-0.02,+0.58]$ \\
+raw, $7$ transferable & target $\to$ source & $+0.3597$ & $0/10$ & $[+0.22,+0.44]$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+On the anonymised extract, transfer one way is strong and the other way is worse than
+chance. On the raw files, with the protocol held fixed so that the data version is the
+only thing that differs, the broken direction is the other one, and it is not reliably
+broken but straddling chance: mean $-0.0711$ with six of ten seeds negative and a range
+from $-0.42$ to $+0.21$. Restricted to the seven features of
+Section~\ref{sec:occ-features}, the two directions become
+indistinguishable, $+0.3388$ against $+0.3597$.
+
+We could not reconcile the two. No data-preparation script exists in either published
+repository; the loader in the more recent one keeps every non-label column, which yields
+twelve and ten features rather than nine, and applies no binarisation; and the source
+publications describe a three-level occupancy protocol rather than a binary one. Row
+counts differ in both directions ($1210$ against $1345$, $1041$ against $972$) and no
+binarisation threshold reproduces both label balances.
+
+The disagreement is the point, and it is why we report it here rather than as a
+limitation. Section~\ref{sec:res-leak} showed that a cross-building penalty can be
+manufactured by a validation split; this shows the same quantity inverted by a
+preprocessing step, on a different task, a different dataset and a different sensing
+modality. In both cases the artefact is invisible in the reported numbers and recoverable
+only by re-deriving them from a more primitive form of the data. A cross-domain penalty is
+not a measurement of two environments until the pipeline between the sensors and the
+table has been audited, and the two instances together suggest that is not a rare
+requirement.
+
+Everything that follows uses the raw extracts, which carry the timestamps and column names
+that make the audit possible. The anonymised results are retained in
+Table~\ref{tab:occmethods} as the prior extract, labelled as such, so the contrast above
+can be read against them.

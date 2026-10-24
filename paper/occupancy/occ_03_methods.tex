@@ -1,0 +1,83 @@
+% ---------------------------------------------------- methods, rebuilt from raw
+\subsection{Adaptation against a checkpoint that is broken for a stated reason}
+\label{sec:occ-methods}
+
+The broken checkpoint in this task is broken for a named, traceable reason: it is the one
+trained on the office where \texttt{rms} predicts occupancy, deployed where
+\texttt{rms} predicts the opposite. That is the upgrade this section offers over reporting
+a large adaptation gain against a weak model. The gain can be produced on demand, and
+removed on demand, by two columns.
+
+Table~\ref{tab:occmethods} runs the four methods under the Tier-1 constraints. The raw
+files carry timestamps, so the target office is presented as a single pass in recording
+order --- a requirement that could not even be stated on the anonymised extract, which has
+no ordering to preserve --- with each batch predicted before the model updates on it, the
+scaler fitted on the source split alone, and no target labels anywhere.
+
+% source: src/exp35_occ_tta_raw.py -> results/exp35_occ_tta_raw.csv, 5 seeds
+\begin{table*}[t]
+\centering
+\caption{Occupancy adaptation, MCC, Tier-1 single pass in recording order, $5$ seeds.
+$\Delta$ is against source-only in the same cell. The final block is the prior extract of
+Section~\ref{sec:occ-contrast}, retained for that contrast and not as a current result.}
+\label{tab:occmethods}
+\small
+\begin{tabular}{llccccc}
+\toprule
+Features & Direction & Source-only & AdaBN & DIGA & PETAL & PeTTA \\
+\midrule
+\multicolumn{7}{l}{\emph{raw extracts}} \\
+\addlinespace[2pt]
+$9$ shared & source $\to$ target & $-0.3818$ & $\mathbf{+0.521}$ & $+0.075$ & $+0.519$ & $+0.509$ \\
+$9$ shared & target $\to$ source & $+0.3579$ & $-0.119$ & $+0.011$ & $-0.159$ & $-0.168$ \\
+$7$ transferable & source $\to$ target & $+0.4314$ & $+0.083$ & $+0.110$ & $+0.122$ & $+0.028$ \\
+$7$ transferable & target $\to$ source & $+0.3465$ & $+0.046$ & $+0.019$ & $-0.009$ & $+0.005$ \\
+\midrule
+\multicolumn{7}{l}{\emph{prior extract, anonymised $9$-d --- see Section~\ref{sec:occ-contrast}}} \\
+\addlinespace[2pt]
+$9$-d & source $\to$ target & $+0.6628$ & $-0.022$ & $-0.020$ & $-0.025$ & $-0.080$ \\
+$9$-d & target $\to$ source & $-0.0763$ & $+0.407$ & $+0.278$ & $+0.427$ & $+0.312$ \\
+\bottomrule
+\end{tabular}
+\end{table*}
+
+The pattern of Section~\ref{sec:res-mech} reproduces. Against the one checkpoint that is
+actively anti-correlated with the labels, three methods gain roughly $52$ MCC points;
+against every sound checkpoint they lose ground or barely move. What is new is the third
+and fourth rows: restricted to the seven transferable features, no checkpoint is broken
+and no method gains more than $12$ points. The adaptation gain and the feature defect
+appear and disappear together, which is a stronger statement than the correlation between
+gain and checkpoint quality that the activity task supports, because here the cause is
+named.
+
+\paragraph{A metric that rewards the wrong thing, for the third time.}
+Section~\ref{sec:os-methods} showed PETAL recording the best open-set H-score while
+classifying known activities half as well, because degrading a model uniformly raises the
+component H was bottlenecked by. The same shape appears here in a different metric. Five
+rows improve recall on the occupied class while losing MCC: AdaBN takes occupancy recall
+from $0.355$ to $0.428$ in the target~$\to$~source cell while MCC falls from $+0.358$ to
+$+0.239$, and TENT, PETAL and PeTTA do the same. Occupancy detection rate is a natural
+headline for this task, and a paper reporting it alone would score all four as
+improvements.
+
+Three instances now, on three tasks, in three metrics: UCDR, H-score and occupancy recall.
+In each the quantity of interest is a recall-like term that a method can raise by becoming
+less decisive overall. The general form is worth stating: whenever a reported score is
+dominated by one class's recall, it can be increased by a uniform degradation, and it
+should not be published without the complementary term beside it.
+
+\paragraph{Two ways to fail at $30\%$ positive, only one of which is usually checked.}
+A binary task with roughly $30\%$ positives rewards predicting the majority class, and the
+standard check is whether a method has collapsed to it. None here has: predicted-positive
+rates stay between $17\%$ and $62\%$ across all twenty-four cells.
+
+The failure that does occur is the opposite one. In the seven-feature
+source~$\to$~target cell, the source-only model attains occupancy recall $0.967$ and
+predicts occupied in $62\%$ of windows against a true rate of $28\%$ --- it has
+over-committed to the \emph{minority} class. Its MCC of $0.431$ looks reasonable and its
+accuracy of $0.640$ sits below the $0.720$ that predicting ``empty'' everywhere would
+earn. Normalisation adaptation partly corrects it, which is why that row shows gains for
+every method, and those gains are a calibration repair rather than a transfer improvement.
+A collapse check that only looks for majority-class degeneracy passes this model without
+comment, and an accuracy-only report would rank it below a constant predictor while its
+MCC says otherwise. Both classes' recalls are needed to see what it is doing.

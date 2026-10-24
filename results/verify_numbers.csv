@@ -1,435 +1,70 @@
 file,line,value,status,scope,n_matches,where
-main.tex,72,27,AMBIGUOUS,declared,133,exp11_reverse.csv[S1->S2 no per-sensor (29-d)].tgt_mcc; exp11_reverse.csv[S2->S1 13-d g+t (transferable)].tgt_mcc; exp11_reverse.csv[S2->S1 no per-sensor (29-d)].tgt_acc
-main.tex,72,41,AMBIGUOUS,declared,148,exp10_improve.csv[g+t (9-d equivalent)].smooth; exp10_improve.csv[g+t (9-d equivalent)].smooth; exp10_improve.csv[g+t (9-d equivalent)].smooth
-main.tex,78,0.998,AMBIGUOUS,declared,7,exp4_windowing.csv[centered label random].sa_mean; exp4_windowing.csv[centered recording random].sa_mean; exp4_windowing.csv[causal label random].sa_mean
-main.tex,79,0.53,AMBIGUOUS,declared,41,exp10_improve.csv[g+t (9-d equivalent)].acc; exp10_improve.csv[g+t (9-d equivalent)].acc; exp10_improve.csv[g+t (9-d equivalent)].acc
-main.tex,80,106,AMBIGUOUS,declared,5,exp11_reverse.csv[S1->S2 per-sensor ids only].d; exp11_reverse.csv[S2->S1 per-sensor ids only].d; exp5_features_causal_recording.csv[causal_recording per-sensor ids only zscore].d
-main.tex,85,0.6,AMBIGUOUS,declared,400,exp10_improve.csv[g+t (9-d equivalent)].f1_toileting; exp10_improve.csv[g+t (9-d equivalent)].f1_toileting; exp10_improve.csv[g+t (9-d equivalent)].f1_watching_tv
-main.tex,87,21.3,AMBIGUOUS,declared,4,exp21_matched.csv[S1 matched_penalty].f1; exp23_bn_channel.csv[S2->S1 TENT].macroF1; exp5_features_causal_recording.csv[causal_recording global only (5-d) zscore].tgt_macroF1
-main.tex,88,8.8,AMBIGUOUS,declared,4,exp11_reverse.csv[S1->S2 13-d g+t (transferable)].gap; exp17_occ_reverse.csv[target office -> source office C fit on adapta].mcc; exp20_hparam_grid.csv[S2->S1 DIGA].entropy
-main.tex,94,25,AMBIGUOUS,declared,26,exp14_correspondence.csv[random permutation (null)].tgt_acc; exp17_occ_reverse.csv[target office -> source office C fit on adapta].mcc; exp20_hparam_grid.csv[S2->S1 DIGA].entropy
-main.tex,96,0.3,AMBIGUOUS,declared,1017,exp10_improve.csv[g+t (9-d equivalent)].mcc; exp10_improve.csv[g+s+t].mcc; exp10_improve.csv[g+s+r+t].mcc
-main.tex,97,1.1,AMBIGUOUS,declared,26,exp19_diga_impl.csv[paper Eq.3 + Eq.10 (ours)].sd; exp19_diga_impl.csv[paper Eq.3 + Eq.10 (ours)].ci_hi; exp20_hparam_grid.csv[S1->S2 DIGA].d_macroF1
-main.tex,99,4.4,AMBIGUOUS,declared,8,exp17_occ_reverse.csv[target office -> source office A fit on source].mcc_sd; exp20_hparam_grid.csv[S2->S1 DIGA].d_macroF1; exp23_bn_channel.csv[S2->S1 DIGA lam_BN=1.0].d_macroF1
-main.tex,99,-5.7,AMBIGUOUS,declared,5,exp20_hparam_grid.csv[S1->S2 DIGA].d_macroF1; exp20_hparam_grid.csv[S1->S2 DIGA].d_macroF1; exp20_hparam_grid.csv[S1->S2 DIGA].d_mcc
-main.tex,101,28,AMBIGUOUS,declared,55,exp10_improve.csv[g+s+t].d; exp10_improve.csv[g+s+t].d; exp11_reverse.csv[S2->S1 per-sensor ids only].f1_watching_tv
-main.tex,101,43,AMBIGUOUS,declared,82,exp10_improve.csv[g+t (9-d equivalent)].macroF1; exp10_improve.csv[g+t (9-d equivalent)].macroF1; exp10_improve.csv[g+t (9-d equivalent)].macroF1
-main.tex,138,0.99,AMBIGUOUS,declared,5,exp20_hparam_grid.csv[S1->S2 DIGA].d_macroF1; exp20_hparam_grid.csv[S2->S1 DIGA].d_macroF1; exp4_windowing.csv[centered label random].ta_sd
-main.tex,139,0.16,AMBIGUOUS,declared,29,exp11_reverse.csv[S2->S1 all 135-d (paper)].src_val_sd; exp11_reverse.csv[S2->S1 all 135-d (paper)].tgt_f1; exp11_reverse.csv[S2->S1 per-sensor ids only].f1_meal_prep
-main.tex,141,19,AMBIGUOUS,declared,14,exp11_reverse.csv[S2->S1 all 135-d (paper)].tgt_acc; exp11_reverse.csv[S1->S2 per-sensor ids only].gap; exp17_occ_reverse.csv[target office -> source office B fit on adapta].mcc
-main.tex,145,0.53,AMBIGUOUS,declared,41,exp10_improve.csv[g+t (9-d equivalent)].acc; exp10_improve.csv[g+t (9-d equivalent)].acc; exp10_improve.csv[g+t (9-d equivalent)].acc
-main.tex,153,106,AMBIGUOUS,declared,5,exp11_reverse.csv[S1->S2 per-sensor ids only].d; exp11_reverse.csv[S2->S1 per-sensor ids only].d; exp5_features_causal_recording.csv[causal_recording per-sensor ids only zscore].d
-main.tex,153,135,AMBIGUOUS,declared,5,exp11_reverse.csv[S1->S2 all 135-d (paper)].d; exp11_reverse.csv[S2->S1 all 135-d (paper)].d; exp5_features_causal_recording.csv[causal_recording all135 (paper) zscore].d
-main.tex,164,0.6,AMBIGUOUS,declared,400,exp10_improve.csv[g+t (9-d equivalent)].f1_toileting; exp10_improve.csv[g+t (9-d equivalent)].f1_toileting; exp10_improve.csv[g+t (9-d equivalent)].f1_watching_tv
-main.tex,167,21.3,AMBIGUOUS,declared,4,exp21_matched.csv[S1 matched_penalty].f1; exp23_bn_channel.csv[S2->S1 TENT].macroF1; exp5_features_causal_recording.csv[causal_recording global only (5-d) zscore].tgt_macroF1
-main.tex,182,0.6,AMBIGUOUS,declared,400,exp10_improve.csv[g+t (9-d equivalent)].f1_toileting; exp10_improve.csv[g+t (9-d equivalent)].f1_toileting; exp10_improve.csv[g+t (9-d equivalent)].f1_watching_tv
-main.tex,182,21.3,AMBIGUOUS,declared,4,exp21_matched.csv[S1 matched_penalty].f1; exp23_bn_channel.csv[S2->S1 TENT].macroF1; exp5_features_causal_recording.csv[causal_recording global only (5-d) zscore].tgt_macroF1
-main.tex,189,28,AMBIGUOUS,declared,55,exp10_improve.csv[g+s+t].d; exp10_improve.csv[g+s+t].d; exp11_reverse.csv[S2->S1 per-sensor ids only].f1_watching_tv
-main.tex,189,43,AMBIGUOUS,declared,82,exp10_improve.csv[g+t (9-d equivalent)].macroF1; exp10_improve.csv[g+t (9-d equivalent)].macroF1; exp10_improve.csv[g+t (9-d equivalent)].macroF1
-main.tex,194,25,AMBIGUOUS,declared,26,exp14_correspondence.csv[random permutation (null)].tgt_acc; exp17_occ_reverse.csv[target office -> source office C fit on adapta].mcc; exp20_hparam_grid.csv[S2->S1 DIGA].entropy
-main.tex,206,7.3,AMBIGUOUS,declared,8,exp10_improve.csv[g+t (9-d equivalent)].f1_cleaning; exp11_reverse.csv[S1->S2 13-d g+t (transferable)].src_val_sd; exp20_hparam_grid.csv[S2->S1 DIGA].d_macroF1
-main.tex,400,10,AMBIGUOUS,declared,41,exp11_reverse.csv[S1->S2 all 135-d (paper)].tgt_mcc; exp11_reverse.csv[S2->S1 no per-sensor (29-d)].tgt_mcc; exp11_reverse.csv[S2->S1 no per-sensor (29-d)].f1_music
-main.tex,432,135,AMBIGUOUS,declared,5,exp11_reverse.csv[S1->S2 all 135-d (paper)].d; exp11_reverse.csv[S2->S1 all 135-d (paper)].d; exp5_features_causal_recording.csv[causal_recording all135 (paper) zscore].d
-main.tex,432,106,AMBIGUOUS,declared,5,exp11_reverse.csv[S1->S2 per-sensor ids only].d; exp11_reverse.csv[S2->S1 per-sensor ids only].d; exp5_features_causal_recording.csv[causal_recording per-sensor ids only zscore].d
-main.tex,433,53,AMBIGUOUS,declared,39,exp10_improve.csv[g+t (9-d equivalent)].acc; exp10_improve.csv[g+t (9-d equivalent)].acc; exp10_improve.csv[g+t (9-d equivalent)].acc
-main.tex,435,126,UNSOURCED,declared,0,
-main.tex,517,0.4466,AMBIGUOUS,declared,3,exp10_improve.csv[g+t (9-d equivalent)].macroF1; exp11_reverse.csv[S1->S2 13-d g+t (transferable)].tgt_f1; exp20_hparam_grid.csv[S1->S2 DIGA].macroF1
-main.tex,520,0.4944,AMBIGUOUS,declared,3,exp19_diga_impl.csv[source-only].macroF1; exp20_hparam_grid.csv[S1->S2 DIGA].mcc; exp23_bn_channel.csv[S1->S2 source-only].macroF1
-main.tex,522,0.027,AMBIGUOUS,declared,17,exp10_improve.csv[g+s+r+t].macroF1_sd; exp13_occ_scaler.csv[A source   (Source_train) PeTTA].mcc_sd; exp17_occ_reverse.csv[source office -> target office A fit on source].mcc_sd
-main.tex,524,0.4641,AMBIGUOUS,declared,113,exp12_lambda_bar.csv[source-only].macroF1; exp20_hparam_grid.csv[S1->S2 PETAL].macroF1; exp20_hparam_grid.csv[S1->S2 PeTTA].macroF1
-main.tex,546,16,AMBIGUOUS,declared,22,exp11_reverse.csv[S2->S1 all 135-d (paper)].src_val_sd; exp11_reverse.csv[S2->S1 all 135-d (paper)].tgt_f1; exp11_reverse.csv[S2->S1 per-sensor ids only].f1_meal_prep
-main.tex,546,70,AMBIGUOUS,declared,5,exp13_occ_scaler.csv[C target+  (Train+TEST) Source-only].mcc; exp17_occ_reverse.csv[source office -> target office C fit on adapta].mcc; exp20_hparam_grid.csv[S1->S2 DIGA].entropy
-main.tex,546,75,AMBIGUOUS,declared,2,exp17_occ_reverse.csv[target office -> source office C fit on adapta].acc; exp31_petta_diga_tables.csv[tab:petta per-dimension mean (released)].median_d
-main.tex,547,53,AMBIGUOUS,declared,39,exp10_improve.csv[g+t (9-d equivalent)].acc; exp10_improve.csv[g+t (9-d equivalent)].acc; exp10_improve.csv[g+t (9-d equivalent)].acc
-main.tex,552,65,AMBIGUOUS,declared,5,exp10_improve.csv[g+t (9-d equivalent)].f1_watching_tv; exp13_occ_scaler.csv[B target   (Target_train) AdaBN].mcc; exp17_occ_reverse.csv[target office -> source office A fit on source].macroF1
-main.tex,562,1145,UNSOURCED,declared,0,
-main.tex,562,200,AMBIGUOUS,declared,228,exp10_improve.csv[g+t (9-d equivalent)].stage; exp10_improve.csv[g+t (9-d equivalent)].stage; exp10_improve.csv[g+t (9-d equivalent)].stage
-main.tex,563,822,UNIQUE,declared,1,exp20_hparam_grid.csv[S1->S2 DIGA].changed
-main.tex,563,150,UNSOURCED,declared,0,
-main.tex,563,78,UNIQUE,declared,1,exp17_occ_reverse.csv[target office -> source office A fit on source].acc
-main.tex,563,22,AMBIGUOUS,declared,18,exp11_reverse.csv[S2->S1 no per-sensor (29-d)].gap; exp11_reverse.csv[S2->S1 all 135-d (paper)].f1_meal_prep; exp12_lambda_bar.csv[PETAL].changed
-main.tex,595,0.378,AMBIGUOUS,declared,5,exp10_improve.csv[g+t (9-d equivalent)].mcc; exp20_hparam_grid.csv[S2->S1 DIGA].macroF1; exp20_hparam_grid.csv[S1->S2 DIGA].mcc
-main.tex,595,0.110,AMBIGUOUS,declared,3,exp20_hparam_grid.csv[S2->S1 DIGA].entropy; exp20_hparam_grid.csv[S2->S1 DIGA].entropy; exp20_hparam_grid.csv[S2->S1 DIGA].entropy
-main.tex,596,0.306,AMBIGUOUS,declared,3,exp20_hparam_grid.csv[S2->S1 PeTTA].macroF1; exp20_hparam_grid.csv[S2->S1 DIGA].mcc; exp20_hparam_grid.csv[S2->S1 DIGA].mcc
-main.tex,597,0.200,AMBIGUOUS,declared,8,exp11_reverse.csv[S1->S2 13-d g+t (transferable)].chance; exp11_reverse.csv[S1->S2 all 135-d (paper)].chance; exp11_reverse.csv[S1->S2 per-sensor ids only].chance
-main.tex,597,0.773,UNSOURCED,declared,0,
-main.tex,598,0.436,AMBIGUOUS,declared,7,exp10_improve.csv[g+t (9-d equivalent)].macroF1; exp10_improve.csv[all invariant (60-d)].acc; exp10_improve.csv[g+t (9-d equivalent)].f1_music
-main.tex,620,135,AMBIGUOUS,declared,5,exp11_reverse.csv[S1->S2 all 135-d (paper)].d; exp11_reverse.csv[S2->S1 all 135-d (paper)].d; exp5_features_causal_recording.csv[causal_recording all135 (paper) zscore].d
-main.tex,648,0.9968,UNIQUE,declared,1,exp4_windowing.csv[causal recording random].sf_mean
-main.tex,651,0.51,AMBIGUOUS,declared,127,exp10_improve.csv[g+s+t].acc; exp10_improve.csv[g+t (9-d equivalent)].acc; exp10_improve.csv[g+s+r+t].f1_toileting
-main.tex,651,0.53,AMBIGUOUS,declared,41,exp10_improve.csv[g+t (9-d equivalent)].acc; exp10_improve.csv[g+t (9-d equivalent)].acc; exp10_improve.csv[g+t (9-d equivalent)].acc
-main.tex,655,0.1626,AMBIGUOUS,declared,3,exp4_windowing.csv[centered label random].tf_mean; exp4_windowing.csv[centered label blocked].tf_mean; exp4_windowing.csv[centered label grouped].tf_mean
-main.tex,655,0.2356,AMBIGUOUS,declared,3,exp4_windowing.csv[causal recording random].tf_mean; exp4_windowing.csv[causal recording blocked].tf_mean; exp4_windowing.csv[causal recording grouped].tf_mean
-main.tex,656,0.375,AMBIGUOUS,declared,11,exp10_improve.csv[g+s+r+t].f1_music; exp20_hparam_grid.csv[S1->S2 DIGA].entropy; exp20_hparam_grid.csv[S1->S2 DIGA].entropy
-main.tex,656,0.444,AMBIGUOUS,declared,15,exp10_improve.csv[g+s+t].acc; exp10_improve.csv[g+t (9-d equivalent)].f1_music; exp11_reverse.csv[S1->S2 no per-sensor (29-d)].tgt_acc
-main.tex,662,135,AMBIGUOUS,declared,5,exp11_reverse.csv[S1->S2 all 135-d (paper)].d; exp11_reverse.csv[S2->S1 all 135-d (paper)].d; exp5_features_causal_recording.csv[causal_recording all135 (paper) zscore].d
-main.tex,663,0.200,AMBIGUOUS,declared,8,exp11_reverse.csv[S1->S2 13-d g+t (transferable)].chance; exp11_reverse.csv[S1->S2 all 135-d (paper)].chance; exp11_reverse.csv[S1->S2 per-sensor ids only].chance
-main.tex,670,0.0945,AMBIGUOUS,declared,3,exp4_windowing.csv[centered label random].tm_mean; exp4_windowing.csv[centered label blocked].tm_mean; exp4_windowing.csv[centered label grouped].tm_mean
-main.tex,670,0.3753,AMBIGUOUS,declared,6,exp20_hparam_grid.csv[S2->S1 DIGA].entropy; exp20_hparam_grid.csv[S2->S1 DIGA].acc; exp4_windowing.csv[centered label random].ta_mean
-main.tex,671,0.1327,AMBIGUOUS,declared,3,exp4_windowing.csv[centered recording random].tm_mean; exp4_windowing.csv[centered recording blocked].tm_mean; exp4_windowing.csv[centered recording grouped].tm_mean
-main.tex,671,0.3924,AMBIGUOUS,declared,5,exp20_hparam_grid.csv[S2->S1 DIGA].acc; exp20_hparam_grid.csv[S2->S1 DIGA].acc; exp4_windowing.csv[centered recording random].ta_mean
-main.tex,672,0.2036,AMBIGUOUS,declared,3,exp4_windowing.csv[causal label random].tm_mean; exp4_windowing.csv[causal label blocked].tm_mean; exp4_windowing.csv[causal label grouped].tm_mean
-main.tex,672,0.4533,AMBIGUOUS,declared,3,exp4_windowing.csv[causal label random].ta_mean; exp4_windowing.csv[causal label blocked].ta_mean; exp4_windowing.csv[causal label grouped].ta_mean
-main.tex,673,0.1805,AMBIGUOUS,declared,9,exp20_hparam_grid.csv[S2->S1 PETAL].entropy; exp20_hparam_grid.csv[S2->S1 PETAL].entropy; exp20_hparam_grid.csv[S2->S1 PETAL].entropy
-main.tex,673,0.4440,AMBIGUOUS,declared,5,exp10_improve.csv[g+t (9-d equivalent)].f1_music; exp11_reverse.csv[S1->S2 13-d g+t (transferable)].f1_music; exp4_windowing.csv[causal recording random].ta_mean
-main.tex,688,0.200,AMBIGUOUS,declared,8,exp11_reverse.csv[S1->S2 13-d g+t (transferable)].chance; exp11_reverse.csv[S1->S2 all 135-d (paper)].chance; exp11_reverse.csv[S1->S2 per-sensor ids only].chance
-main.tex,695,0.5083,AMBIGUOUS,declared,2,exp10_improve.csv[g+s+r+t].f1_meal_prep; exp5_features_causal_recording.csv[causal_recording all135 (paper) zscore].src_val_macroF1
-main.tex,695,0.2436,UNIQUE,declared,1,exp5_features_causal_recording.csv[causal_recording all135 (paper) zscore].tgt_macroF1
-main.tex,695,0.1682,UNIQUE,declared,1,exp5_features_causal_recording.csv[causal_recording all135 (paper) zscore].tgt_mcc
-main.tex,696,0.5890,UNIQUE,declared,1,exp5_features_causal_recording.csv[causal_recording all135 (paper) rank_gauss].src_val_macroF1
-main.tex,696,0.3775,UNIQUE,declared,1,exp5_features_causal_recording.csv[causal_recording all135 (paper) rank_gauss].tgt_macroF1
-main.tex,696,0.3144,UNIQUE,declared,1,exp5_features_causal_recording.csv[causal_recording all135 (paper) rank_gauss].tgt_mcc
-main.tex,697,0.5164,AMBIGUOUS,declared,3,exp20_hparam_grid.csv[S1->S2 PETAL].macroF1; exp20_hparam_grid.csv[S1->S2 DIGA].acc; exp5_features_causal_recording.csv[causal_recording KS-prune 20% (paper's fix) zs].src_val_macroF1
-main.tex,697,0.3130,UNIQUE,declared,1,exp5_features_causal_recording.csv[causal_recording KS-prune 20% (paper's fix) zs].tgt_macroF1
-main.tex,697,0.2090,UNIQUE,declared,1,exp5_features_causal_recording.csv[causal_recording KS-prune 20% (paper's fix) zs].tgt_mcc
-main.tex,698,0.3004,UNIQUE,declared,1,exp5_features_causal_recording.csv[causal_recording KS-prune 20% (paper's fix) ra].tgt_macroF1
-main.tex,698,0.2138,UNIQUE,declared,1,exp5_features_causal_recording.csv[causal_recording KS-prune 20% (paper's fix) ra].tgt_mcc
-main.tex,699,0.5121,AMBIGUOUS,declared,2,exp20_hparam_grid.csv[S1->S2 PETAL].mcc; exp5_features_causal_recording.csv[causal_recording no per-sensor ids (29-d) zsco].src_val_macroF1
-main.tex,699,0.3561,UNIQUE,declared,1,exp5_features_causal_recording.csv[causal_recording no per-sensor ids (29-d) zsco].tgt_macroF1
-main.tex,699,0.2633,UNIQUE,declared,1,exp5_features_causal_recording.csv[causal_recording no per-sensor ids (29-d) zsco].tgt_mcc
-main.tex,700,0.5341,AMBIGUOUS,declared,2,exp11_reverse.csv[S1->S2 13-d g+t (transferable)].src_val; exp5_features_causal_recording.csv[causal_recording global+temporal only (9-d) zs].src_val_macroF1
-main.tex,701,0.2914,AMBIGUOUS,declared,2,exp20_hparam_grid.csv[S2->S1 PETAL].mcc; exp5_features_causal_recording.csv[causal_recording global only (5-d) zscore].src_val_macroF1
-main.tex,701,0.2129,UNIQUE,declared,1,exp5_features_causal_recording.csv[causal_recording global only (5-d) zscore].tgt_macroF1
-main.tex,701,0.0970,UNIQUE,declared,1,exp5_features_causal_recording.csv[causal_recording global only (5-d) zscore].tgt_mcc
-main.tex,702,0.3292,AMBIGUOUS,declared,3,exp20_hparam_grid.csv[S2->S1 PETAL].macroF1; exp20_hparam_grid.csv[S2->S1 PeTTA].macroF1; exp5_features_causal_recording.csv[causal_recording per-sensor ids only zscore].src_val_macroF1
-main.tex,702,0.1484,UNIQUE,declared,1,exp5_features_causal_recording.csv[causal_recording per-sensor ids only zscore].tgt_macroF1
-main.tex,702,0.0436,AMBIGUOUS,declared,2,exp5_features_causal_recording.csv[causal_recording   + drop pair_* rank_gauss].tgt_acc_sd; exp5_features_causal_recording.csv[causal_recording per-sensor ids only zscore].tgt_mcc
-main.tex,707,0.1484,UNIQUE,declared,1,exp5_features_causal_recording.csv[causal_recording per-sensor ids only zscore].tgt_macroF1
-main.tex,707,5.1,AMBIGUOUS,declared,3,exp11_reverse.csv[S1->S2 all 135-d (paper)].f1_cleaning; exp20_hparam_grid.csv[S2->S1 DIGA].d_macroF1; exp20_hparam_grid.csv[S2->S1 DIGA].d_macroF1
-main.tex,710,0.6232,UNIQUE,declared,1,exp5_features_causal_recording.csv[causal_recording KS-prune 20% (paper's fix) ra].src_val_macroF1
-main.tex,711,0.3004,UNIQUE,declared,1,exp5_features_causal_recording.csv[causal_recording KS-prune 20% (paper's fix) ra].tgt_macroF1
-main.tex,711,0.4133,UNIQUE,declared,1,exp5_features_causal_recording.csv[causal_recording global+temporal only (9-d) zs].tgt_macroF1
-main.tex,711,8.9,AMBIGUOUS,declared,2,exp20_hparam_grid.csv[S2->S1 DIGA].entropy; exp5_features_causal_recording.csv[causal_recording global only (5-d) rank_gauss].tgt_mcc
-main.tex,731,0.5341,AMBIGUOUS,declared,2,exp11_reverse.csv[S1->S2 13-d g+t (transferable)].src_val; exp5_features_causal_recording.csv[causal_recording global+temporal only (9-d) zs].src_val_macroF1
-main.tex,731,0.3973,AMBIGUOUS,declared,3,exp10_improve.csv[g+t (9-d equivalent)].mcc; exp11_reverse.csv[S1->S2 13-d g+t (transferable)].tgt_mcc; exp20_hparam_grid.csv[S2->S1 PETAL].acc
-main.tex,731,8.8,AMBIGUOUS,declared,4,exp11_reverse.csv[S1->S2 13-d g+t (transferable)].gap; exp17_occ_reverse.csv[target office -> source office C fit on adapta].mcc; exp20_hparam_grid.csv[S2->S1 DIGA].entropy
-main.tex,732,0.5133,AMBIGUOUS,declared,3,exp11_reverse.csv[S1->S2 all 135-d (paper)].src_val; exp20_hparam_grid.csv[S1->S2 DIGA].macroF1; exp20_hparam_grid.csv[S1->S2 PETAL].mcc
-main.tex,732,0.2118,UNIQUE,declared,1,exp11_reverse.csv[S1->S2 all 135-d (paper)].tgt_f1
-main.tex,732,0.0976,UNIQUE,declared,1,exp11_reverse.csv[S1->S2 all 135-d (paper)].tgt_mcc
-main.tex,732,30.2,AMBIGUOUS,declared,2,exp11_reverse.csv[S1->S2 all 135-d (paper)].gap; exp20_hparam_grid.csv[S2->S1 DIGA].mcc
-main.tex,733,0.3248,UNIQUE,declared,1,exp11_reverse.csv[S1->S2 per-sensor ids only].src_val
-main.tex,733,0.1350,UNIQUE,declared,1,exp11_reverse.csv[S1->S2 per-sensor ids only].tgt_f1
-main.tex,733,0.0123,AMBIGUOUS,declared,3,exp11_reverse.csv[S1->S2 per-sensor ids only].tgt_mcc; exp20_hparam_grid.csv[S1->S2 DIGA].d_macroF1; exp23_bn_channel.csv[S2->S1 DIGA lam_BN=0.2].sd
-main.tex,733,19.0,AMBIGUOUS,declared,7,exp11_reverse.csv[S1->S2 per-sensor ids only].gap; exp20_hparam_grid.csv[S1->S2 PETAL].changed; exp20_hparam_grid.csv[S1->S2 PETAL].changed
-main.tex,734,0.5119,AMBIGUOUS,declared,4,exp11_reverse.csv[S1->S2 no per-sensor (29-d)].src_val; exp20_hparam_grid.csv[S1->S2 DIGA].entropy; exp20_hparam_grid.csv[S1->S2 PETAL].mcc
-main.tex,734,0.3630,UNIQUE,declared,1,exp11_reverse.csv[S1->S2 no per-sensor (29-d)].tgt_f1
-main.tex,734,0.2734,AMBIGUOUS,declared,5,exp11_reverse.csv[S1->S2 no per-sensor (29-d)].tgt_mcc; exp20_hparam_grid.csv[S2->S1 DIGA].mcc; exp20_hparam_grid.csv[S2->S1 PETAL].mcc
-main.tex,734,14.9,AMBIGUOUS,declared,2,exp11_reverse.csv[S1->S2 no per-sensor (29-d)].gap; exp20_hparam_grid.csv[S2->S1 DIGA].entropy
-main.tex,736,0.4538,UNIQUE,declared,1,exp11_reverse.csv[S2->S1 13-d g+t (transferable)].src_val
-main.tex,736,0.2667,AMBIGUOUS,declared,3,exp11_reverse.csv[S2->S1 13-d g+t (transferable)].tgt_mcc; exp20_hparam_grid.csv[S2->S1 PETAL].mcc; exp20_hparam_grid.csv[S2->S1 PeTTA].mcc
-main.tex,736,14.7,UNIQUE,declared,1,exp11_reverse.csv[S2->S1 13-d g+t (transferable)].gap
-main.tex,737,0.1583,UNIQUE,declared,1,exp11_reverse.csv[S2->S1 all 135-d (paper)].tgt_f1
-main.tex,737,0.0332,AMBIGUOUS,declared,2,exp10_improve.csv[g+s+r+t].macroF1_sd; exp11_reverse.csv[S2->S1 all 135-d (paper)].tgt_mcc
-main.tex,737,38.0,AMBIGUOUS,declared,4,exp11_reverse.csv[S2->S1 all 135-d (paper)].gap; exp20_hparam_grid.csv[S2->S1 PETAL].changed; exp20_hparam_grid.csv[S2->S1 DIGA].macroF1
-main.tex,738,0.3668,UNIQUE,declared,1,exp11_reverse.csv[S2->S1 per-sensor ids only].src_val
-main.tex,738,0.1702,UNIQUE,declared,1,exp11_reverse.csv[S2->S1 per-sensor ids only].tgt_f1
-main.tex,738,0.0553,UNIQUE,declared,1,exp11_reverse.csv[S2->S1 per-sensor ids only].tgt_mcc
-main.tex,738,19.7,UNIQUE,declared,1,exp11_reverse.csv[S2->S1 per-sensor ids only].gap
-main.tex,739,0.4483,AMBIGUOUS,declared,2,exp11_reverse.csv[S2->S1 no per-sensor (29-d)].src_val; exp20_hparam_grid.csv[S1->S2 DIGA].macroF1
-main.tex,739,0.2271,UNIQUE,declared,1,exp11_reverse.csv[S2->S1 no per-sensor (29-d)].tgt_f1
-main.tex,739,0.1043,UNIQUE,declared,1,exp11_reverse.csv[S2->S1 no per-sensor (29-d)].tgt_mcc
-main.tex,739,22.1,AMBIGUOUS,declared,3,exp11_reverse.csv[S2->S1 no per-sensor (29-d)].gap; exp20_hparam_grid.csv[S2->S1 DIGA].mcc; exp5_features_causal_recording.csv[causal_recording per-sensor ids only rank_gaus].tgt_bal
-main.tex,757,135,AMBIGUOUS,declared,5,exp11_reverse.csv[S1->S2 all 135-d (paper)].d; exp11_reverse.csv[S2->S1 all 135-d (paper)].d; exp5_features_causal_recording.csv[causal_recording all135 (paper) zscore].d
-main.tex,757,0.5381,UNIQUE,declared,1,exp11_reverse.csv[S2->S1 all 135-d (paper)].src_val
-main.tex,758,0.1583,UNIQUE,declared,1,exp11_reverse.csv[S2->S1 all 135-d (paper)].tgt_f1
-main.tex,758,4.2,AMBIGUOUS,declared,3,exp11_reverse.csv[S1->S2 no per-sensor (29-d)].f1_cleaning; exp17_occ_reverse.csv[target office -> source office B fit on adapta].mcc_sd; exp20_hparam_grid.csv[S1->S2 DIGA].d_macroF1
-main.tex,761,8.8,AMBIGUOUS,declared,4,exp11_reverse.csv[S1->S2 13-d g+t (transferable)].gap; exp17_occ_reverse.csv[target office -> source office C fit on adapta].mcc; exp20_hparam_grid.csv[S2->S1 DIGA].entropy
-main.tex,761,14.7,UNIQUE,declared,1,exp11_reverse.csv[S2->S1 13-d g+t (transferable)].gap
-main.tex,763,113,UNSOURCED,declared,0,
-main.tex,763,442,UNSOURCED,declared,0,
-main.tex,765,9,AMBIGUOUS,declared,48,exp10_improve.csv[g+s+t].f1_cleaning; exp11_reverse.csv[S1->S2 13-d g+t (transferable)].gap; exp11_reverse.csv[S1->S2 all 135-d (paper)].f1_music
-main.tex,765,15,AMBIGUOUS,declared,22,exp11_reverse.csv[S1->S2 no per-sensor (29-d)].gap; exp11_reverse.csv[S2->S1 13-d g+t (transferable)].gap; exp20_hparam_grid.csv[S2->S1 DIGA].entropy
-main.tex,774,442,UNSOURCED,declared,0,
-main.tex,775,113,UNSOURCED,declared,0,
-main.tex,775,8.8,AMBIGUOUS,declared,4,exp11_reverse.csv[S1->S2 13-d g+t (transferable)].gap; exp17_occ_reverse.csv[target office -> source office C fit on adapta].mcc; exp20_hparam_grid.csv[S2->S1 DIGA].entropy
-main.tex,775,14.7,UNIQUE,declared,1,exp11_reverse.csv[S2->S1 13-d g+t (transferable)].gap
-main.tex,798,0.3497,UNIQUE,declared,1,exp21_matched.csv[S2 matched_oracle (target's own days)].f1
-main.tex,798,0.3434,AMBIGUOUS,declared,2,exp20_hparam_grid.csv[S2->S1 DIGA].macroF1; exp21_matched.csv[S2 matched_transfer (source building)].f1
-main.tex,799,0.4897,UNIQUE,declared,1,exp21_matched.csv[S1 matched_oracle (target's own days)].f1
-main.tex,799,0.2767,UNIQUE,declared,1,exp21_matched.csv[S1 matched_transfer (source building)].f1
-main.tex,799,21.3,AMBIGUOUS,declared,4,exp21_matched.csv[S1 matched_penalty].f1; exp23_bn_channel.csv[S2->S1 TENT].macroF1; exp5_features_causal_recording.csv[causal_recording global only (5-d) zscore].tgt_macroF1
-main.tex,804,0.6,AMBIGUOUS,declared,400,exp10_improve.csv[g+t (9-d equivalent)].f1_toileting; exp10_improve.csv[g+t (9-d equivalent)].f1_toileting; exp10_improve.csv[g+t (9-d equivalent)].f1_watching_tv
-main.tex,807,21.3,AMBIGUOUS,declared,4,exp21_matched.csv[S1 matched_penalty].f1; exp23_bn_channel.csv[S2->S1 TENT].macroF1; exp5_features_causal_recording.csv[causal_recording global only (5-d) zscore].tgt_macroF1
-main.tex,812,8.8,AMBIGUOUS,declared,4,exp11_reverse.csv[S1->S2 13-d g+t (transferable)].gap; exp17_occ_reverse.csv[target office -> source office C fit on adapta].mcc; exp20_hparam_grid.csv[S2->S1 DIGA].entropy
-main.tex,820,21,AMBIGUOUS,declared,17,exp10_improve.csv[g+t (9-d equivalent)].smooth; exp10_improve.csv[g+t (9-d equivalent)].smooth; exp10_improve.csv[g+t (9-d equivalent)].smooth
-main.tex,827,70,AMBIGUOUS,declared,5,exp13_occ_scaler.csv[C target+  (Train+TEST) Source-only].mcc; exp17_occ_reverse.csv[source office -> target office C fit on adapta].mcc; exp20_hparam_grid.csv[S1->S2 DIGA].entropy
-main.tex,831,0.48,AMBIGUOUS,declared,81,exp10_improve.csv[g+t (9-d equivalent)].bal; exp10_improve.csv[g+s+t].bal; exp10_improve.csv[g+s+r+t].bal
-main.tex,848,0.200,AMBIGUOUS,declared,8,exp11_reverse.csv[S1->S2 13-d g+t (transferable)].chance; exp11_reverse.csv[S1->S2 all 135-d (paper)].chance; exp11_reverse.csv[S1->S2 per-sensor ids only].chance
-main.tex,897,17,AMBIGUOUS,declared,13,exp11_reverse.csv[S2->S1 per-sensor ids only].tgt_f1; exp12_lambda_bar.csv[PETAL].drift; exp12_lambda_bar.csv[PETAL].changed
-main.tex,903,113,UNSOURCED,declared,0,
-main.tex,916,0.551,AMBIGUOUS,declared,3,exp20_hparam_grid.csv[S1->S2 DIGA].entropy; exp20_hparam_grid.csv[S1->S2 DIGA].entropy; exp5_features_causal_recording.csv[causal_recording global+temporal only (9-d) ra].src_val_macroF1
-main.tex,916,0.493,AMBIGUOUS,declared,6,exp10_improve.csv[g+t (9-d equivalent)].bal; exp20_hparam_grid.csv[S1->S2 DIGA].entropy; exp20_hparam_grid.csv[S1->S2 DIGA].macroF1
-main.tex,916,0.746,UNSOURCED,declared,0,
-main.tex,916,0.435,AMBIGUOUS,declared,8,exp10_improve.csv[g+t (9-d equivalent)].macroF1; exp10_improve.csv[g+t (9-d equivalent)].macroF1; exp10_improve.csv[g+t (9-d equivalent)].f1_music
-main.tex,916,0.009,AMBIGUOUS,declared,18,exp13_occ_scaler.csv[B target   (Target_train) AdaBN].mcc_sd; exp17_occ_reverse.csv[source office -> target office B fit on adapta].mcc_sd; exp19_diga_impl.csv[repo: output-blend + Eq.10].ci_hi
-main.tex,917,0.478,AMBIGUOUS,declared,12,exp20_hparam_grid.csv[S1->S2 DIGA].entropy; exp20_hparam_grid.csv[S1->S2 DIGA].entropy; exp20_hparam_grid.csv[S1->S2 DIGA].macroF1
-main.tex,917,0.035,AMBIGUOUS,declared,6,exp17_occ_reverse.csv[target office -> source office A fit on source].mcc_sd; exp20_hparam_grid.csv[S1->S2 DIGA].d_macroF1; exp20_hparam_grid.csv[S2->S1 DIGA].d_mcc
-main.tex,918,0.550,UNIQUE,declared,1,exp20_hparam_grid.csv[S1->S2 DIGA].entropy
-main.tex,918,0.474,AMBIGUOUS,declared,6,exp10_improve.csv[all invariant (60-d)].bal; exp20_hparam_grid.csv[S1->S2 DIGA].macroF1; exp20_hparam_grid.csv[S1->S2 DIGA].mcc
-main.tex,918,0.746,UNSOURCED,declared,0,
-main.tex,918,0.440,AMBIGUOUS,declared,10,exp10_improve.csv[g+t (9-d equivalent)].macroF1; exp10_improve.csv[g+t (9-d equivalent)].macroF1; exp10_improve.csv[g+t (9-d equivalent)].f1_music
-main.tex,918,0.014,AMBIGUOUS,declared,15,exp14_correspondence.csv[random permutation (null)].tgt_f1_sd; exp20_hparam_grid.csv[S2->S1 DIGA].d_macroF1; exp20_hparam_grid.csv[S2->S1 DIGA].d_macroF1
-main.tex,919,0.552,AMBIGUOUS,declared,3,exp20_hparam_grid.csv[S2->S1 PETAL].entropy; exp20_hparam_grid.csv[S2->S1 PETAL].entropy; exp20_hparam_grid.csv[S2->S1 PETAL].entropy
-main.tex,919,0.494,AMBIGUOUS,declared,8,exp10_improve.csv[g+t (9-d equivalent)].bal; exp19_diga_impl.csv[source-only].macroF1; exp20_hparam_grid.csv[S1->S2 DIGA].macroF1
-main.tex,919,0.746,UNSOURCED,declared,0,
-main.tex,919,0.434,AMBIGUOUS,declared,4,exp10_improve.csv[g+t (9-d equivalent)].macroF1; exp10_improve.csv[g+t (9-d equivalent)].f1_music; exp17_occ_reverse.csv[target office -> source office A fit on source].macroF1
-main.tex,919,0.009,AMBIGUOUS,declared,18,exp13_occ_scaler.csv[B target   (Target_train) AdaBN].mcc_sd; exp17_occ_reverse.csv[source office -> target office B fit on adapta].mcc_sd; exp19_diga_impl.csv[repo: output-blend + Eq.10].ci_hi
-main.tex,920,0.365,AMBIGUOUS,declared,5,exp20_hparam_grid.csv[S1->S2 DIGA].entropy; exp20_hparam_grid.csv[S1->S2 DIGA].entropy; exp20_hparam_grid.csv[S2->S1 DIGA].macroF1
-main.tex,920,0.310,AMBIGUOUS,declared,3,exp10_improve.csv[g+t (9-d equivalent)].mcc; exp20_hparam_grid.csv[S2->S1 PETAL].macroF1; exp20_hparam_grid.csv[S2->S1 DIGA].macroF1
-main.tex,920,0.482,AMBIGUOUS,declared,11,exp10_improve.csv[g+t (9-d equivalent)].bal; exp10_improve.csv[g+t (9-d equivalent)].bal; exp10_improve.csv[g+t (9-d equivalent)].f1_meal_prep
-main.tex,920,0.275,AMBIGUOUS,declared,6,exp20_hparam_grid.csv[S2->S1 DIGA].mcc; exp20_hparam_grid.csv[S2->S1 DIGA].mcc; exp20_hparam_grid.csv[S2->S1 DIGA].mcc
-main.tex,920,0.056,AMBIGUOUS,declared,10,exp10_improve.csv[g+t (9-d equivalent)].f1_cleaning; exp10_improve.csv[g+t (9-d equivalent)].f1_cleaning; exp10_improve.csv[g+t (9-d equivalent)].f1_cleaning
-main.tex,929,0.534,AMBIGUOUS,declared,4,exp10_improve.csv[g+t (9-d equivalent)].acc; exp11_reverse.csv[S1->S2 13-d g+t (transferable)].src_val; exp20_hparam_grid.csv[S1->S2 DIGA].acc
-main.tex,929,0.447,AMBIGUOUS,declared,7,exp10_improve.csv[g+t (9-d equivalent)].macroF1; exp11_reverse.csv[S1->S2 13-d g+t (transferable)].tgt_f1; exp20_hparam_grid.csv[S1->S2 DIGA].macroF1
-main.tex,946,0.5341,AMBIGUOUS,declared,2,exp11_reverse.csv[S1->S2 13-d g+t (transferable)].src_val; exp5_features_causal_recording.csv[causal_recording global+temporal only (9-d) zs].src_val_macroF1
-main.tex,948,60,AMBIGUOUS,declared,18,exp10_improve.csv[all invariant (60-d)].d; exp10_improve.csv[all invariant (60-d)].d; exp14_correspondence.csv[oracle permutation (bound)].tgt_acc
-main.tex,948,0.4188,UNIQUE,declared,1,exp10_improve.csv[all invariant (60-d)].macroF1
-main.tex,949,0.3852,UNIQUE,declared,1,exp10_improve.csv[g+t (9-d equivalent)].macroF1
-main.tex,950,32,AMBIGUOUS,declared,28,exp10_improve.csv[g+s+t].mcc; exp11_reverse.csv[S1->S2 per-sensor ids only].src_val; exp11_reverse.csv[S1->S2 per-sensor ids only].tgt_acc
-main.tex,950,0.4297,AMBIGUOUS,declared,4,exp10_improve.csv[g+t (9-d equivalent)].macroF1; exp20_hparam_grid.csv[S1->S2 DIGA].mcc; exp20_hparam_grid.csv[S2->S1 DIGA].acc
-main.tex,951,0.5230,AMBIGUOUS,declared,2,exp20_hparam_grid.csv[S1->S2 DIGA].macroF1; exp5_features_causal_recording.csv[causal_recording all135 (paper) zscore_clip5].src_val_macroF1
-main.tex,951,0.4190,AMBIGUOUS,declared,2,exp10_improve.csv[g+t (9-d equivalent)].macroF1; exp20_hparam_grid.csv[S2->S1 DIGA].acc
-main.tex,952,0.5611,UNSOURCED,declared,0,
-main.tex,952,0.4330,UNSOURCED,declared,0,
-main.tex,953,0.5414,UNSOURCED,declared,0,
-main.tex,953,0.4111,AMBIGUOUS,declared,4,exp20_hparam_grid.csv[S2->S1 DIGA].acc; exp20_hparam_grid.csv[S2->S1 DIGA].acc; exp20_hparam_grid.csv[S2->S1 DIGA].acc
-main.tex,954,0.2227,UNIQUE,declared,1,exp14_correspondence.csv[learned correspondence].tgt_f1
-main.tex,956,0.5341,AMBIGUOUS,declared,2,exp11_reverse.csv[S1->S2 13-d g+t (transferable)].src_val; exp5_features_causal_recording.csv[causal_recording global+temporal only (9-d) zs].src_val_macroF1
-main.tex,956,0.4503,UNIQUE,declared,1,exp20_hparam_grid.csv[S1->S2 DIGA].mcc
-main.tex,971,0.5611,UNSOURCED,declared,0,
-main.tex,971,0.5341,AMBIGUOUS,declared,2,exp11_reverse.csv[S1->S2 13-d g+t (transferable)].src_val; exp5_features_causal_recording.csv[causal_recording global+temporal only (9-d) zs].src_val_macroF1
-main.tex,972,0.5414,UNSOURCED,declared,0,
-main.tex,982,24,AMBIGUOUS,declared,37,"exp12_lambda_bar.csv[PETAL].changed; exp12_lambda_bar.csv[DIGA  (lam=.8, P0=.9)].acc; exp17_occ_reverse.csv[target office -> source office A fit on source].mcc"
-main.tex,1000,0.0976,UNIQUE,declared,1,exp11_reverse.csv[S1->S2 all 135-d (paper)].tgt_mcc
-main.tex,1000,0.1744,UNSOURCED,declared,0,
-main.tex,1001,0.0749,AMBIGUOUS,declared,2,exp11_reverse.csv[S2->S1 all 135-d (paper)].f1_watching_tv; exp20_hparam_grid.csv[S2->S1 DIGA].entropy
-main.tex,1001,0.2348,UNSOURCED,declared,0,
-main.tex,1002,0.1738,UNIQUE,declared,1,exp20_hparam_grid.csv[S2->S1 PETAL].d_macroF1
-main.tex,1008,0.417,AMBIGUOUS,declared,12,exp20_hparam_grid.csv[S1->S2 DIGA].entropy; exp20_hparam_grid.csv[S1->S2 DIGA].entropy; exp20_hparam_grid.csv[S1->S2 DIGA].mcc
-main.tex,1008,0.174,AMBIGUOUS,declared,2,exp20_hparam_grid.csv[S2->S1 PETAL].d_macroF1; exp20_hparam_grid.csv[S2->S1 DIGA].d_mcc
-main.tex,1029,27,AMBIGUOUS,declared,133,exp11_reverse.csv[S1->S2 no per-sensor (29-d)].tgt_mcc; exp11_reverse.csv[S2->S1 13-d g+t (transferable)].tgt_mcc; exp11_reverse.csv[S2->S1 no per-sensor (29-d)].tgt_acc
-main.tex,1029,43,AMBIGUOUS,declared,82,exp10_improve.csv[g+t (9-d equivalent)].macroF1; exp10_improve.csv[g+t (9-d equivalent)].macroF1; exp10_improve.csv[g+t (9-d equivalent)].macroF1
-main.tex,1053,0.6,AMBIGUOUS,declared,400,exp10_improve.csv[g+t (9-d equivalent)].f1_toileting; exp10_improve.csv[g+t (9-d equivalent)].f1_toileting; exp10_improve.csv[g+t (9-d equivalent)].f1_watching_tv
-main.tex,1054,21.3,AMBIGUOUS,declared,4,exp21_matched.csv[S1 matched_penalty].f1; exp23_bn_channel.csv[S2->S1 TENT].macroF1; exp5_features_causal_recording.csv[causal_recording global only (5-d) zscore].tgt_macroF1
-main.tex,1063,0.4944,AMBIGUOUS,declared,3,exp19_diga_impl.csv[source-only].macroF1; exp20_hparam_grid.csv[S1->S2 DIGA].mcc; exp23_bn_channel.csv[S1->S2 source-only].macroF1
-main.tex,1063,0.3226,UNIQUE,declared,1,exp23_bn_channel.csv[S2->S1 source-only].macroF1
-main.tex,1065,0.3139,UNIQUE,declared,1,exp23_bn_channel.csv[S1->S2 AdaBN].macroF1
-main.tex,1065,-18.0,AMBIGUOUS,declared,2,exp23_bn_channel.csv[S1->S2 AdaBN].d_macroF1; exp23_bn_channel.csv[S1->S2 TENT].d_macroF1
-main.tex,1065,1784,UNIQUE,declared,1,exp23_bn_channel.csv[S1->S2 AdaBN].changed
-main.tex,1065,0.2137,UNIQUE,declared,1,exp23_bn_channel.csv[S2->S1 AdaBN].macroF1
-main.tex,1065,-10.9,AMBIGUOUS,declared,4,exp20_hparam_grid.csv[S1->S2 DIGA].d_macroF1; exp20_hparam_grid.csv[S1->S2 DIGA].d_mcc; exp23_bn_channel.csv[S2->S1 AdaBN].d_macroF1
-main.tex,1065,3143,UNIQUE,declared,1,exp23_bn_channel.csv[S2->S1 AdaBN].changed
-main.tex,1066,0.3141,UNIQUE,declared,1,exp23_bn_channel.csv[S1->S2 TENT].macroF1
-main.tex,1066,-18.0,AMBIGUOUS,declared,2,exp23_bn_channel.csv[S1->S2 AdaBN].d_macroF1; exp23_bn_channel.csv[S1->S2 TENT].d_macroF1
-main.tex,1066,1782,UNIQUE,declared,1,exp23_bn_channel.csv[S1->S2 TENT].changed
-main.tex,1066,0.2133,UNIQUE,declared,1,exp23_bn_channel.csv[S2->S1 TENT].macroF1
-main.tex,1066,-10.9,AMBIGUOUS,declared,4,exp20_hparam_grid.csv[S1->S2 DIGA].d_macroF1; exp20_hparam_grid.csv[S1->S2 DIGA].d_mcc; exp23_bn_channel.csv[S2->S1 AdaBN].d_macroF1
-main.tex,1066,3142,UNIQUE,declared,1,exp23_bn_channel.csv[S2->S1 TENT].changed
-main.tex,1067,0.4088,AMBIGUOUS,declared,2,exp23_bn_channel.csv[S1->S2 DIGA (published)].macroF1; exp23_bn_channel.csv[S1->S2 DIGA lam_BN=0.8].macroF1
-main.tex,1067,-8.6,AMBIGUOUS,declared,8,exp20_hparam_grid.csv[S1->S2 DIGA].d_macroF1; exp20_hparam_grid.csv[S1->S2 DIGA].d_macroF1; exp20_hparam_grid.csv[S1->S2 DIGA].d_macroF1
-main.tex,1067,1279,AMBIGUOUS,declared,2,exp23_bn_channel.csv[S1->S2 DIGA (published)].changed; exp23_bn_channel.csv[S1->S2 DIGA lam_BN=0.8].changed
-main.tex,1067,1031,AMBIGUOUS,declared,2,exp23_bn_channel.csv[S2->S1 DIGA (published)].changed; exp23_bn_channel.csv[S2->S1 DIGA lam_BN=0.8].changed
-main.tex,1068,0.3113,UNIQUE,declared,1,exp23_bn_channel.csv[S1->S2 PETAL (published)].macroF1
-main.tex,1068,-18.3,UNIQUE,declared,1,exp23_bn_channel.csv[S1->S2 PETAL (published)].d_macroF1
-main.tex,1068,1739,UNIQUE,declared,1,exp23_bn_channel.csv[S1->S2 PETAL (published)].changed
-main.tex,1068,0.2028,UNIQUE,declared,1,exp23_bn_channel.csv[S2->S1 PETAL (published)].macroF1
-main.tex,1068,-12.0,AMBIGUOUS,declared,3,exp20_hparam_grid.csv[S1->S2 DIGA].d_macroF1; exp20_hparam_grid.csv[S1->S2 DIGA].d_macroF1; exp23_bn_channel.csv[S2->S1 PETAL (published)].d_macroF1
-main.tex,1068,3105,UNIQUE,declared,1,exp23_bn_channel.csv[S2->S1 PETAL (published)].changed
-main.tex,1069,0.2908,UNIQUE,declared,1,exp23_bn_channel.csv[S1->S2 PeTTA (published)].macroF1
-main.tex,1069,-20.4,UNIQUE,declared,1,exp23_bn_channel.csv[S1->S2 PeTTA (published)].d_macroF1
-main.tex,1069,1845,UNIQUE,declared,1,exp23_bn_channel.csv[S1->S2 PeTTA (published)].changed
-main.tex,1069,0.2158,UNIQUE,declared,1,exp23_bn_channel.csv[S2->S1 PeTTA (published)].macroF1
-main.tex,1069,-10.7,UNIQUE,declared,1,exp23_bn_channel.csv[S2->S1 PeTTA (published)].d_macroF1
-main.tex,1069,3164,UNIQUE,declared,1,exp23_bn_channel.csv[S2->S1 PeTTA (published)].changed
-main.tex,1073,0.4947,AMBIGUOUS,declared,2,"exp23_bn_channel.csv[S1->S2 PETAL, BN channel off].macroF1; exp23_bn_channel.csv[S1->S2 PeTTA, BN channel off].macroF1"
-main.tex,1073,11,AMBIGUOUS,declared,37,exp10_improve.csv[g+t (9-d equivalent)].smooth; exp10_improve.csv[g+t (9-d equivalent)].smooth; exp10_improve.csv[g+t (9-d equivalent)].smooth
-main.tex,1073,0.3224,UNIQUE,declared,1,"exp23_bn_channel.csv[S2->S1 PETAL, BN channel off].macroF1"
-main.tex,1073,24,AMBIGUOUS,declared,37,"exp12_lambda_bar.csv[PETAL].changed; exp12_lambda_bar.csv[DIGA  (lam=.8, P0=.9)].acc; exp17_occ_reverse.csv[target office -> source office A fit on source].mcc"
-main.tex,1074,0.4947,AMBIGUOUS,declared,2,"exp23_bn_channel.csv[S1->S2 PETAL, BN channel off].macroF1; exp23_bn_channel.csv[S1->S2 PeTTA, BN channel off].macroF1"
-main.tex,1074,0.3225,UNIQUE,declared,1,"exp23_bn_channel.csv[S2->S1 PeTTA, BN channel off].macroF1"
-main.tex,1081,24,AMBIGUOUS,declared,37,"exp12_lambda_bar.csv[PETAL].changed; exp12_lambda_bar.csv[DIGA  (lam=.8, P0=.9)].acc; exp17_occ_reverse.csv[target office -> source office A fit on source].mcc"
-main.tex,1084,0.3,AMBIGUOUS,declared,1017,exp10_improve.csv[g+t (9-d equivalent)].mcc; exp10_improve.csv[g+s+t].mcc; exp10_improve.csv[g+s+r+t].mcc
-main.tex,1085,1.1,AMBIGUOUS,declared,26,exp19_diga_impl.csv[paper Eq.3 + Eq.10 (ours)].sd; exp19_diga_impl.csv[paper Eq.3 + Eq.10 (ours)].ci_hi; exp20_hparam_grid.csv[S1->S2 DIGA].d_macroF1
-main.tex,1107,-5.7,AMBIGUOUS,declared,5,exp20_hparam_grid.csv[S1->S2 DIGA].d_macroF1; exp20_hparam_grid.csv[S1->S2 DIGA].d_macroF1; exp20_hparam_grid.csv[S1->S2 DIGA].d_mcc
-main.tex,1108,0.9,AMBIGUOUS,declared,91,exp13_occ_scaler.csv[A source   (Source_train) Source-only].acc; exp13_occ_scaler.csv[A source   (Source_train) AdaBN].acc; exp13_occ_scaler.csv[A source   (Source_train) DIGA].acc
-main.tex,1108,-6.5,AMBIGUOUS,declared,4,exp20_hparam_grid.csv[S1->S2 DIGA].d_macroF1; exp20_hparam_grid.csv[S1->S2 DIGA].d_mcc; exp20_hparam_grid.csv[S1->S2 DIGA].d_mcc
-main.tex,1109,0.8,AMBIGUOUS,declared,83,exp12_lambda_bar.csv[PETAL].drift; exp13_occ_scaler.csv[A source   (Source_train) PeTTA].acc; exp13_occ_scaler.csv[A source   (Source_train) Source-only].macroF1
-main.tex,1109,-8.6,AMBIGUOUS,declared,8,exp20_hparam_grid.csv[S1->S2 DIGA].d_macroF1; exp20_hparam_grid.csv[S1->S2 DIGA].d_macroF1; exp20_hparam_grid.csv[S1->S2 DIGA].d_macroF1
-main.tex,1110,0.6,AMBIGUOUS,declared,400,exp10_improve.csv[g+t (9-d equivalent)].f1_toileting; exp10_improve.csv[g+t (9-d equivalent)].f1_toileting; exp10_improve.csv[g+t (9-d equivalent)].f1_watching_tv
-main.tex,1110,-23.3,UNIQUE,declared,1,exp23_bn_channel.csv[S1->S2 DIGA lam_BN=0.6].d_macroF1
-main.tex,1110,-12.9,UNIQUE,declared,1,exp23_bn_channel.csv[S2->S1 DIGA lam_BN=0.6].d_macroF1
-main.tex,1111,0.4,AMBIGUOUS,declared,764,exp10_improve.csv[g+t (9-d equivalent)].macroF1; exp10_improve.csv[g+t (9-d equivalent)].macroF1; exp10_improve.csv[g+s+t].macroF1
-main.tex,1111,-30.3,UNIQUE,declared,1,exp23_bn_channel.csv[S1->S2 DIGA lam_BN=0.4].d_macroF1
-main.tex,1111,-19.9,UNIQUE,declared,1,exp23_bn_channel.csv[S2->S1 DIGA lam_BN=0.4].d_macroF1
-main.tex,1112,0.2,AMBIGUOUS,declared,248,exp11_reverse.csv[S1->S2 13-d g+t (transferable)].chance; exp11_reverse.csv[S1->S2 all 135-d (paper)].chance; exp11_reverse.csv[S1->S2 per-sensor ids only].chance
-main.tex,1112,-25.9,UNIQUE,declared,1,exp23_bn_channel.csv[S1->S2 DIGA lam_BN=0.2].d_macroF1
-main.tex,1112,-22.8,UNIQUE,declared,1,exp23_bn_channel.csv[S2->S1 DIGA lam_BN=0.2].d_macroF1
-main.tex,1113,-33.0,UNIQUE,declared,1,exp23_bn_channel.csv[S1->S2 DIGA lam_BN=0.0].d_macroF1
-main.tex,1113,-20.5,UNIQUE,declared,1,exp23_bn_channel.csv[S2->S1 DIGA lam_BN=0.0].d_macroF1
-main.tex,1119,0.6,AMBIGUOUS,declared,400,exp10_improve.csv[g+t (9-d equivalent)].f1_toileting; exp10_improve.csv[g+t (9-d equivalent)].f1_toileting; exp10_improve.csv[g+t (9-d equivalent)].f1_watching_tv
-main.tex,1119,15,AMBIGUOUS,declared,22,exp11_reverse.csv[S1->S2 no per-sensor (29-d)].gap; exp11_reverse.csv[S2->S1 13-d g+t (transferable)].gap; exp20_hparam_grid.csv[S2->S1 DIGA].entropy
-main.tex,1120,15,AMBIGUOUS,declared,22,exp11_reverse.csv[S1->S2 no per-sensor (29-d)].gap; exp11_reverse.csv[S2->S1 13-d g+t (transferable)].gap; exp20_hparam_grid.csv[S2->S1 DIGA].entropy
-main.tex,1121,1026,UNIQUE,declared,1,exp23_bn_channel.csv[S1->S2 DIGA lam_BN=1.0].changed
-main.tex,1127,4.4,AMBIGUOUS,declared,8,exp17_occ_reverse.csv[target office -> source office A fit on source].mcc_sd; exp20_hparam_grid.csv[S2->S1 DIGA].d_macroF1; exp23_bn_channel.csv[S2->S1 DIGA lam_BN=1.0].d_macroF1
-main.tex,1128,2.3,AMBIGUOUS,declared,13,exp11_reverse.csv[S1->S2 per-sensor ids only].tgt_f1_sd; exp13_occ_scaler.csv[C target+  (Train+TEST) AdaBN].mcc_sd; exp17_occ_reverse.csv[source office -> target office C fit on adapta].mcc_sd
-main.tex,1146,0.4641,AMBIGUOUS,declared,113,exp12_lambda_bar.csv[source-only].macroF1; exp20_hparam_grid.csv[S1->S2 PETAL].macroF1; exp20_hparam_grid.csv[S1->S2 PeTTA].macroF1
-main.tex,1146,0.4679,AMBIGUOUS,declared,10,exp12_lambda_bar.csv[PETAL].mcc; exp12_lambda_bar.csv[source-only].mcc; exp20_hparam_grid.csv[S1->S2 PETAL].mcc
-main.tex,1155,1.0021,UNIQUE,declared,1,exp12_lambda_bar.csv[PETAL].drift
-main.tex,1155,0.4676,AMBIGUOUS,declared,2,exp12_lambda_bar.csv[PETAL].macroF1; exp20_hparam_grid.csv[S1->S2 DIGA].mcc
-main.tex,1155,0.4724,AMBIGUOUS,declared,2,exp12_lambda_bar.csv[PETAL].mcc; exp20_hparam_grid.csv[S1->S2 DIGA].mcc
-main.tex,1156,0.1,AMBIGUOUS,declared,439,exp10_improve.csv[g+t (9-d equivalent)].macroF1_sd; exp10_improve.csv[g+t (9-d equivalent)].macroF1_sd; exp10_improve.csv[g+t (9-d equivalent)].macroF1_sd
-main.tex,1156,0.8118,UNIQUE,declared,1,exp12_lambda_bar.csv[PETAL].drift
-main.tex,1156,0.4650,AMBIGUOUS,declared,3,exp12_lambda_bar.csv[PETAL].macroF1; exp20_hparam_grid.csv[S1->S2 PETAL].macroF1; exp20_hparam_grid.csv[S1->S2 DIGA].mcc
-main.tex,1156,0.4687,AMBIGUOUS,declared,5,exp12_lambda_bar.csv[PETAL].mcc; exp12_lambda_bar.csv[PeTTA (alpha0=1e-3)].mcc; exp20_hparam_grid.csv[S1->S2 PETAL].mcc
-main.tex,1157,0.3580,UNIQUE,declared,1,exp12_lambda_bar.csv[PETAL].drift
-main.tex,1157,0.4643,AMBIGUOUS,declared,2,exp12_lambda_bar.csv[PETAL].macroF1; exp20_hparam_grid.csv[S1->S2 PeTTA].macroF1
-main.tex,1157,0.4679,AMBIGUOUS,declared,10,exp12_lambda_bar.csv[PETAL].mcc; exp12_lambda_bar.csv[source-only].mcc; exp20_hparam_grid.csv[S1->S2 PETAL].mcc
-main.tex,1158,10.0,AMBIGUOUS,declared,17,exp12_lambda_bar.csv[PETAL].lambda_bar; exp12_lambda_bar.csv[PETAL].lambda_bar; exp20_hparam_grid.csv[S2->S1 DIGA].entropy
-main.tex,1158,0.1688,UNIQUE,declared,1,exp12_lambda_bar.csv[PETAL].drift
-main.tex,1158,0.4637,AMBIGUOUS,declared,2,exp12_lambda_bar.csv[PETAL].macroF1; exp20_hparam_grid.csv[S1->S2 PETAL].macroF1
-main.tex,1158,0.4677,AMBIGUOUS,declared,2,exp12_lambda_bar.csv[PETAL].mcc; exp20_hparam_grid.csv[S1->S2 PETAL].mcc
-main.tex,1182,1739,UNIQUE,declared,1,exp23_bn_channel.csv[S1->S2 PETAL (published)].changed
-main.tex,1183,18.3,UNIQUE,declared,1,exp20_hparam_grid.csv[S2->S1 PETAL].entropy
-main.tex,1191,0.7,AMBIGUOUS,declared,66,exp10_improve.csv[g+t (9-d equivalent)].f1_watching_tv; exp10_improve.csv[g+t (9-d equivalent)].f1_watching_tv; exp10_improve.csv[g+t (9-d equivalent)].f1_watching_tv
-main.tex,1191,83,AMBIGUOUS,declared,6,exp13_occ_scaler.csv[A source   (Source_train) Source-only].macroF1; exp13_occ_scaler.csv[B target   (Target_train) DIGA].macroF1; exp13_occ_scaler.csv[C target+  (Train+TEST) DIGA].macroF1
-main.tex,1192,0.9,AMBIGUOUS,declared,91,exp13_occ_scaler.csv[A source   (Source_train) Source-only].acc; exp13_occ_scaler.csv[A source   (Source_train) AdaBN].acc; exp13_occ_scaler.csv[A source   (Source_train) DIGA].acc
-main.tex,1195,0.7,AMBIGUOUS,declared,66,exp10_improve.csv[g+t (9-d equivalent)].f1_watching_tv; exp10_improve.csv[g+t (9-d equivalent)].f1_watching_tv; exp10_improve.csv[g+t (9-d equivalent)].f1_watching_tv
-main.tex,1202,71.8,UNIQUE,declared,1,exp31_petta_diga_tables.csv[tab:petta sum over embedding dims].mean_d
-main.tex,1205,1.12,AMBIGUOUS,declared,3,exp20_hparam_grid.csv[S1->S2 DIGA].d_macroF1; exp31_petta_diga_tables.csv[tab:petta per-dimension mean (released)].mean_d; exp4_windowing.csv[centered recording grouped].sf_sd
-main.tex,1205,0.56,AMBIGUOUS,declared,28,exp10_improve.csv[g+t (9-d equivalent)].f1_toileting; exp20_hparam_grid.csv[S1->S2 DIGA].entropy; exp20_hparam_grid.csv[S1->S2 DIGA].entropy
-main.tex,1223,1.000000,AMBIGUOUS,declared,242,exp10_improve.csv[g+t (9-d equivalent)].stage; exp10_improve.csv[g+t (9-d equivalent)].stage; exp10_improve.csv[g+s+t].stage
-main.tex,1223,71.8,UNIQUE,declared,1,exp31_petta_diga_tables.csv[tab:petta sum over embedding dims].mean_d
-main.tex,1224,0.5603,UNIQUE,declared,1,exp31_petta_diga_tables.csv[tab:petta per-dimension mean (released)].mean_gamma
-main.tex,1224,1.12,AMBIGUOUS,declared,3,exp20_hparam_grid.csv[S1->S2 DIGA].d_macroF1; exp31_petta_diga_tables.csv[tab:petta per-dimension mean (released)].mean_d; exp4_windowing.csv[centered recording grouped].sf_sd
-main.tex,1225,1.000000,AMBIGUOUS,declared,242,exp10_improve.csv[g+t (9-d equivalent)].stage; exp10_improve.csv[g+t (9-d equivalent)].stage; exp10_improve.csv[g+s+t].stage
-main.tex,1225,71.6,UNSOURCED,declared,0,
-main.tex,1234,10,AMBIGUOUS,declared,41,exp11_reverse.csv[S1->S2 all 135-d (paper)].tgt_mcc; exp11_reverse.csv[S2->S1 no per-sensor (29-d)].tgt_mcc; exp11_reverse.csv[S2->S1 no per-sensor (29-d)].f1_music
-main.tex,1235,20.4,AMBIGUOUS,declared,3,exp4_windowing.csv[causal label random].tm_mean; exp4_windowing.csv[causal label blocked].tm_mean; exp4_windowing.csv[causal label grouped].tm_mean
-main.tex,1240,6.9,AMBIGUOUS,declared,5,exp10_improve.csv[g+t (9-d equivalent)].macroF1_sd; exp10_improve.csv[g+t (9-d equivalent)].f1_cleaning; exp10_improve.csv[g+t (9-d equivalent)].f1_cleaning
-main.tex,1241,93.8,AMBIGUOUS,declared,2,exp31_petta_diga_tables.csv[tab:petta sum over embedding dims].mass_share; exp31_petta_diga_tables.csv[tab:petta per-dimension mean (released)].mass_share
-main.tex,1252,0.4641,AMBIGUOUS,declared,113,exp12_lambda_bar.csv[source-only].macroF1; exp20_hparam_grid.csv[S1->S2 PETAL].macroF1; exp20_hparam_grid.csv[S1->S2 PeTTA].macroF1
-main.tex,1252,0.4679,AMBIGUOUS,declared,10,exp12_lambda_bar.csv[PETAL].mcc; exp12_lambda_bar.csv[source-only].mcc; exp20_hparam_grid.csv[S1->S2 PETAL].mcc
-main.tex,1259,0.2151,AMBIGUOUS,declared,2,"exp12_lambda_bar.csv[DIGA  (lam=.8, P0=.9)].macroF1; exp31_petta_diga_tables.csv[tab:diga neg_inner | published 0.8/0.9].macroF1"
-main.tex,1259,0.1840,AMBIGUOUS,declared,2,"exp12_lambda_bar.csv[DIGA  (lam=.8, P0=.9)].mcc; exp31_petta_diga_tables.csv[tab:diga neg_inner | published 0.8/0.9].mcc"
-main.tex,1260,0.0075,AMBIGUOUS,declared,2,exp12_lambda_bar.csv[DIGA  (manuscript cfg)].macroF1; exp31_petta_diga_tables.csv[tab:diga neg_inner | retuned 0.95/0.50].macroF1
-main.tex,1260,-0.1674,AMBIGUOUS,declared,2,exp12_lambda_bar.csv[DIGA  (manuscript cfg)].mcc; exp31_petta_diga_tables.csv[tab:diga neg_inner | retuned 0.95/0.50].mcc
-main.tex,1261,0.3932,UNIQUE,declared,1,exp31_petta_diga_tables.csv[tab:diga neg_l2 | published 0.8/0.9].macroF1
-main.tex,1261,0.3610,AMBIGUOUS,declared,2,exp20_hparam_grid.csv[S1->S2 DIGA].mcc; exp31_petta_diga_tables.csv[tab:diga neg_l2 | published 0.8/0.9].mcc
-main.tex,1263,0.3232,UNIQUE,declared,1,exp31_petta_diga_tables.csv[tab:diga cosine | published 0.8/0.9].macroF1
-main.tex,1263,0.3399,AMBIGUOUS,declared,2,exp20_hparam_grid.csv[S2->S1 DIGA].macroF1; exp31_petta_diga_tables.csv[tab:diga cosine | published 0.8/0.9].mcc
-main.tex,1264,0.4750,AMBIGUOUS,declared,3,exp10_improve.csv[all invariant (60-d)].f1_toileting; exp20_hparam_grid.csv[S1->S2 DIGA].macroF1; exp31_petta_diga_tables.csv[tab:diga cosine | retuned 0.95/0.50].macroF1
-main.tex,1264,0.4825,AMBIGUOUS,declared,2,exp20_hparam_grid.csv[S1->S2 DIGA].macroF1; exp31_petta_diga_tables.csv[tab:diga cosine | retuned 0.95/0.50].mcc
-main.tex,1271,8.8,AMBIGUOUS,declared,4,exp11_reverse.csv[S1->S2 13-d g+t (transferable)].gap; exp17_occ_reverse.csv[target office -> source office C fit on adapta].mcc; exp20_hparam_grid.csv[S2->S1 DIGA].entropy
-main.tex,1338,0.4944,AMBIGUOUS,declared,3,exp19_diga_impl.csv[source-only].macroF1; exp20_hparam_grid.csv[S1->S2 DIGA].mcc; exp23_bn_channel.csv[S1->S2 source-only].macroF1
-main.tex,1348,0.4969,AMBIGUOUS,declared,2,exp19_diga_impl.csv[repo: output-blend + Eq.10].macroF1; exp20_hparam_grid.csv[S1->S2 DIGA].entropy
-main.tex,1349,0.4961,AMBIGUOUS,declared,2,exp19_diga_impl.csv[paper Eq.3 + logit-fuse].macroF1; exp20_hparam_grid.csv[S1->S2 DIGA].macroF1
-main.tex,1350,0.4946,UNIQUE,declared,1,exp19_diga_impl.csv[repo: output-blend + logit-fuse].macroF1
-main.tex,1373,24,AMBIGUOUS,declared,37,"exp12_lambda_bar.csv[PETAL].changed; exp12_lambda_bar.csv[DIGA  (lam=.8, P0=.9)].acc; exp17_occ_reverse.csv[target office -> source office A fit on source].mcc"
-main.tex,1374,16,AMBIGUOUS,declared,22,exp11_reverse.csv[S2->S1 all 135-d (paper)].src_val_sd; exp11_reverse.csv[S2->S1 all 135-d (paper)].tgt_f1; exp11_reverse.csv[S2->S1 per-sensor ids only].f1_meal_prep
-main.tex,1396,0.4944,AMBIGUOUS,declared,3,exp19_diga_impl.csv[source-only].macroF1; exp20_hparam_grid.csv[S1->S2 DIGA].mcc; exp23_bn_channel.csv[S1->S2 source-only].macroF1
-main.tex,1396,0.3226,UNIQUE,declared,1,exp23_bn_channel.csv[S2->S1 source-only].macroF1
-main.tex,1398,-0.0176,UNIQUE,declared,1,exp20_hparam_grid.csv[S2->S1 PETAL].d_macroF1
-main.tex,1398,679,AMBIGUOUS,declared,2,exp20_hparam_grid.csv[S1->S2 DIGA].changed; exp20_hparam_grid.csv[S1->S2 DIGA].changed
-main.tex,1399,578,UNSOURCED,declared,0,
-main.tex,1400,15,AMBIGUOUS,declared,22,exp11_reverse.csv[S1->S2 no per-sensor (29-d)].gap; exp11_reverse.csv[S2->S1 13-d g+t (transferable)].gap; exp20_hparam_grid.csv[S2->S1 DIGA].entropy
-main.tex,1401,-0.0001,AMBIGUOUS,declared,22,exp20_hparam_grid.csv[S1->S2 PeTTA].d_macroF1; exp20_hparam_grid.csv[S1->S2 DIGA].d_macroF1; exp20_hparam_grid.csv[S1->S2 PETAL].d_macroF1
-main.tex,1401,-0.0009,AMBIGUOUS,declared,9,exp20_hparam_grid.csv[S2->S1 PETAL].d_macroF1; exp20_hparam_grid.csv[S2->S1 PETAL].d_macroF1; exp20_hparam_grid.csv[S2->S1 PETAL].d_macroF1
-main.tex,1402,7,AMBIGUOUS,declared,67,exp10_improve.csv[g+t (9-d equivalent)].macroF1_sd; exp10_improve.csv[g+t (9-d equivalent)].macroF1_sd; exp10_improve.csv[g+t (9-d equivalent)].macroF1_sd
-main.tex,1403,-0.0003,AMBIGUOUS,declared,20,exp20_hparam_grid.csv[S1->S2 PETAL].d_macroF1; exp20_hparam_grid.csv[S1->S2 PeTTA].d_macroF1; exp20_hparam_grid.csv[S1->S2 DIGA].d_macroF1
-main.tex,1411,36,AMBIGUOUS,declared,43,exp10_improve.csv[g+s+t].mcc; exp10_improve.csv[g+t (9-d equivalent)].mcc; exp10_improve.csv[g+t (9-d equivalent)].mcc
-main.tex,1411,38,AMBIGUOUS,declared,49,exp10_improve.csv[g+s+t].macroF1; exp10_improve.csv[g+t (9-d equivalent)].mcc; exp10_improve.csv[g+t (9-d equivalent)].mcc
-main.tex,1412,0.3,AMBIGUOUS,declared,1017,exp10_improve.csv[g+t (9-d equivalent)].mcc; exp10_improve.csv[g+s+t].mcc; exp10_improve.csv[g+s+r+t].mcc
-main.tex,1422,53,AMBIGUOUS,declared,39,exp10_improve.csv[g+t (9-d equivalent)].acc; exp10_improve.csv[g+t (9-d equivalent)].acc; exp10_improve.csv[g+t (9-d equivalent)].acc
-main.tex,1423,1.8,AMBIGUOUS,declared,12,exp11_reverse.csv[S2->S1 per-sensor ids only].f1_music; exp20_hparam_grid.csv[S1->S2 DIGA].d_macroF1; exp20_hparam_grid.csv[S1->S2 DIGA].d_macroF1
-main.tex,1424,2.2,AMBIGUOUS,declared,12,exp17_occ_reverse.csv[target office -> source office B fit on adapta].mcc_sd; exp19_diga_impl.csv[source-only].sd; exp20_hparam_grid.csv[S2->S1 DIGA].d_macroF1
-main.tex,1432,0.6628,AMBIGUOUS,declared,2,exp13_occ_scaler.csv[A source   (Source_train) Source-only].mcc; exp17_occ_reverse.csv[source office -> target office A fit on source].mcc
-main.tex,1433,0.4944,AMBIGUOUS,declared,3,exp19_diga_impl.csv[source-only].macroF1; exp20_hparam_grid.csv[S1->S2 DIGA].mcc; exp23_bn_channel.csv[S1->S2 source-only].macroF1
-main.tex,1434,0.3226,UNIQUE,declared,1,exp23_bn_channel.csv[S2->S1 source-only].macroF1
-main.tex,1440,0.6,AMBIGUOUS,declared,400,exp10_improve.csv[g+t (9-d equivalent)].f1_toileting; exp10_improve.csv[g+t (9-d equivalent)].f1_toileting; exp10_improve.csv[g+t (9-d equivalent)].f1_watching_tv
-main.tex,1441,53,AMBIGUOUS,declared,39,exp10_improve.csv[g+t (9-d equivalent)].acc; exp10_improve.csv[g+t (9-d equivalent)].acc; exp10_improve.csv[g+t (9-d equivalent)].acc
-main.tex,1441,21.3,AMBIGUOUS,declared,4,exp21_matched.csv[S1 matched_penalty].f1; exp23_bn_channel.csv[S2->S1 TENT].macroF1; exp5_features_causal_recording.csv[causal_recording global only (5-d) zscore].tgt_macroF1
-main.tex,1449,28,AMBIGUOUS,declared,55,exp10_improve.csv[g+s+t].d; exp10_improve.csv[g+s+t].d; exp11_reverse.csv[S2->S1 per-sensor ids only].f1_watching_tv
-main.tex,1450,56,AMBIGUOUS,declared,27,exp10_improve.csv[g+t (9-d equivalent)].f1_toileting; exp20_hparam_grid.csv[S1->S2 DIGA].entropy; exp20_hparam_grid.csv[S1->S2 DIGA].entropy
-main.tex,1466,34,AMBIGUOUS,declared,83,exp11_reverse.csv[S1->S2 all 135-d (paper)].f1_watching_tv; exp14_correspondence.csv[identity (no matching)].tgt_acc; exp20_hparam_grid.csv[S1->S2 DIGA].entropy
-main.tex,1474,0.6412,AMBIGUOUS,declared,2,exp13_occ_scaler.csv[A source   (Source_train) AdaBN].mcc; exp17_occ_reverse.csv[source office -> target office A fit on source].mcc
-main.tex,1474,0.6461,AMBIGUOUS,declared,2,exp13_occ_scaler.csv[B target   (Target_train) AdaBN].mcc; exp17_occ_reverse.csv[source office -> target office B fit on adapta].mcc
-main.tex,1474,0.6369,AMBIGUOUS,declared,3,exp13_occ_scaler.csv[C target+  (Train+TEST) AdaBN].mcc; exp17_occ_reverse.csv[source office -> target office C fit on adapta].mcc; exp20_hparam_grid.csv[S1->S2 DIGA].acc
-main.tex,1475,0.6429,AMBIGUOUS,declared,2,exp13_occ_scaler.csv[A source   (Source_train) DIGA].mcc; exp17_occ_reverse.csv[source office -> target office A fit on source].mcc
-main.tex,1475,0.6616,AMBIGUOUS,declared,2,exp13_occ_scaler.csv[B target   (Target_train) DIGA].mcc; exp17_occ_reverse.csv[source office -> target office B fit on adapta].mcc
-main.tex,1475,0.6694,AMBIGUOUS,declared,2,exp13_occ_scaler.csv[C target+  (Train+TEST) DIGA].mcc; exp17_occ_reverse.csv[source office -> target office C fit on adapta].mcc
-main.tex,1476,0.6382,AMBIGUOUS,declared,2,exp13_occ_scaler.csv[A source   (Source_train) PETAL].mcc; exp17_occ_reverse.csv[source office -> target office A fit on source].mcc
-main.tex,1476,0.6233,AMBIGUOUS,declared,2,exp13_occ_scaler.csv[B target   (Target_train) PETAL].mcc; exp17_occ_reverse.csv[source office -> target office B fit on adapta].mcc
-main.tex,1476,0.6428,AMBIGUOUS,declared,2,exp13_occ_scaler.csv[C target+  (Train+TEST) PETAL].mcc; exp17_occ_reverse.csv[source office -> target office C fit on adapta].mcc
-main.tex,1477,0.5832,AMBIGUOUS,declared,2,exp13_occ_scaler.csv[A source   (Source_train) PeTTA].mcc; exp17_occ_reverse.csv[source office -> target office A fit on source].mcc
-main.tex,1477,0.5829,AMBIGUOUS,declared,2,exp13_occ_scaler.csv[B target   (Target_train) PeTTA].mcc; exp17_occ_reverse.csv[source office -> target office B fit on adapta].mcc
-main.tex,1477,0.6182,AMBIGUOUS,declared,2,exp13_occ_scaler.csv[C target+  (Train+TEST) PeTTA].mcc; exp17_occ_reverse.csv[source office -> target office C fit on adapta].mcc
-main.tex,1489,8.0,AMBIGUOUS,declared,11,exp11_reverse.csv[S1->S2 no per-sensor (29-d)].src_val_sd; exp20_hparam_grid.csv[S2->S1 DIGA].entropy; exp20_hparam_grid.csv[S1->S2 PETAL].changed
-main.tex,1508,-0.0763,AMBIGUOUS,declared,2,exp17_occ_reverse.csv[target office -> source office A fit on source].mcc; exp20_hparam_grid.csv[S1->S2 PETAL].d_macroF1
-main.tex,1509,0.6412,AMBIGUOUS,declared,2,exp13_occ_scaler.csv[A source   (Source_train) AdaBN].mcc; exp17_occ_reverse.csv[source office -> target office A fit on source].mcc
-main.tex,1509,0.3302,AMBIGUOUS,declared,4,exp17_occ_reverse.csv[target office -> source office A fit on source].mcc; exp20_hparam_grid.csv[S2->S1 PETAL].macroF1; exp20_hparam_grid.csv[S2->S1 PETAL].macroF1
-main.tex,1510,0.6429,AMBIGUOUS,declared,2,exp13_occ_scaler.csv[A source   (Source_train) DIGA].mcc; exp17_occ_reverse.csv[source office -> target office A fit on source].mcc
-main.tex,1510,0.2019,UNIQUE,declared,1,exp17_occ_reverse.csv[target office -> source office A fit on source].mcc
-main.tex,1511,0.6382,AMBIGUOUS,declared,2,exp13_occ_scaler.csv[A source   (Source_train) PETAL].mcc; exp17_occ_reverse.csv[source office -> target office A fit on source].mcc
-main.tex,1512,0.5832,AMBIGUOUS,declared,2,exp13_occ_scaler.csv[A source   (Source_train) PeTTA].mcc; exp17_occ_reverse.csv[source office -> target office A fit on source].mcc
-main.tex,1512,0.2353,AMBIGUOUS,declared,2,exp17_occ_reverse.csv[target office -> source office A fit on source].mcc; exp20_hparam_grid.csv[S2->S1 DIGA].mcc
-main.tex,1518,-0.0763,AMBIGUOUS,declared,2,exp17_occ_reverse.csv[target office -> source office A fit on source].mcc; exp20_hparam_grid.csv[S1->S2 PETAL].d_macroF1
-main.tex,1520,42.7,AMBIGUOUS,declared,10,exp20_hparam_grid.csv[S1->S2 DIGA].entropy; exp20_hparam_grid.csv[S1->S2 DIGA].entropy; exp20_hparam_grid.csv[S1->S2 DIGA].macroF1
-main.tex,1520,40.7,AMBIGUOUS,declared,5,exp20_hparam_grid.csv[S1->S2 DIGA].mcc; exp20_hparam_grid.csv[S1->S2 DIGA].mcc; exp20_hparam_grid.csv[S2->S1 DIGA].acc
-main.tex,1520,31.2,AMBIGUOUS,declared,3,exp20_hparam_grid.csv[S2->S1 PETAL].macroF1; exp20_hparam_grid.csv[S2->S1 PETAL].macroF1; exp20_hparam_grid.csv[S2->S1 PETAL].macroF1
-main.tex,1520,27.8,AMBIGUOUS,declared,2,"exp20_hparam_grid.csv[S2->S1 DIGA].mcc; exp23_bn_channel.csv[S2->S1 PeTTA, BN channel off].mcc"
-main.tex,1521,0.6628,AMBIGUOUS,declared,2,exp13_occ_scaler.csv[A source   (Source_train) Source-only].mcc; exp17_occ_reverse.csv[source office -> target office A fit on source].mcc
-main.tex,1521,8.0,AMBIGUOUS,declared,11,exp11_reverse.csv[S1->S2 no per-sensor (29-d)].src_val_sd; exp20_hparam_grid.csv[S2->S1 DIGA].entropy; exp20_hparam_grid.csv[S1->S2 PETAL].changed
-main.tex,1527,9,AMBIGUOUS,declared,48,exp10_improve.csv[g+s+t].f1_cleaning; exp11_reverse.csv[S1->S2 13-d g+t (transferable)].gap; exp11_reverse.csv[S1->S2 all 135-d (paper)].f1_music
-main.tex,1540,0.663,AMBIGUOUS,declared,2,exp13_occ_scaler.csv[A source   (Source_train) Source-only].mcc; exp17_occ_reverse.csv[source office -> target office A fit on source].mcc
-main.tex,1540,-2.2,AMBIGUOUS,declared,4,exp20_hparam_grid.csv[S1->S2 DIGA].d_macroF1; exp20_hparam_grid.csv[S1->S2 DIGA].d_macroF1; exp20_hparam_grid.csv[S1->S2 DIGA].d_macroF1
-main.tex,1540,-2.0,AMBIGUOUS,declared,8,exp20_hparam_grid.csv[S1->S2 DIGA].d_macroF1; exp20_hparam_grid.csv[S1->S2 DIGA].d_macroF1; exp20_hparam_grid.csv[S2->S1 DIGA].d_mcc
-main.tex,1540,-2.5,AMBIGUOUS,declared,7,exp20_hparam_grid.csv[S1->S2 DIGA].d_macroF1; exp20_hparam_grid.csv[S1->S2 DIGA].d_macroF1; exp20_hparam_grid.csv[S1->S2 DIGA].d_macroF1
-main.tex,1540,-8.0,UNSOURCED,declared,0,
-main.tex,1541,0.494,AMBIGUOUS,declared,8,exp10_improve.csv[g+t (9-d equivalent)].bal; exp19_diga_impl.csv[source-only].macroF1; exp20_hparam_grid.csv[S1->S2 DIGA].macroF1
-main.tex,1541,-18.0,AMBIGUOUS,declared,2,exp23_bn_channel.csv[S1->S2 AdaBN].d_macroF1; exp23_bn_channel.csv[S1->S2 TENT].d_macroF1
-main.tex,1541,-8.6,AMBIGUOUS,declared,8,exp20_hparam_grid.csv[S1->S2 DIGA].d_macroF1; exp20_hparam_grid.csv[S1->S2 DIGA].d_macroF1; exp20_hparam_grid.csv[S1->S2 DIGA].d_macroF1
-main.tex,1541,-18.3,UNIQUE,declared,1,exp23_bn_channel.csv[S1->S2 PETAL (published)].d_macroF1
-main.tex,1541,-20.4,UNIQUE,declared,1,exp23_bn_channel.csv[S1->S2 PeTTA (published)].d_macroF1
-main.tex,1542,0.323,AMBIGUOUS,declared,2,exp23_bn_channel.csv[S2->S1 source-only].macroF1; exp31_petta_diga_tables.csv[tab:diga cosine | published 0.8/0.9].macroF1
-main.tex,1542,-10.9,AMBIGUOUS,declared,4,exp20_hparam_grid.csv[S1->S2 DIGA].d_macroF1; exp20_hparam_grid.csv[S1->S2 DIGA].d_mcc; exp23_bn_channel.csv[S2->S1 AdaBN].d_macroF1
-main.tex,1542,-12.0,AMBIGUOUS,declared,3,exp20_hparam_grid.csv[S1->S2 DIGA].d_macroF1; exp20_hparam_grid.csv[S1->S2 DIGA].d_macroF1; exp23_bn_channel.csv[S2->S1 PETAL (published)].d_macroF1
-main.tex,1542,-10.7,UNIQUE,declared,1,exp23_bn_channel.csv[S2->S1 PeTTA (published)].d_macroF1
-main.tex,1543,-0.076,AMBIGUOUS,declared,3,exp17_occ_reverse.csv[target office -> source office A fit on source].mcc; exp20_hparam_grid.csv[S1->S2 PETAL].d_macroF1; exp20_hparam_grid.csv[S1->S2 PETAL].d_mcc
-main.tex,1550,21,AMBIGUOUS,declared,17,exp10_improve.csv[g+t (9-d equivalent)].smooth; exp10_improve.csv[g+t (9-d equivalent)].smooth; exp10_improve.csv[g+t (9-d equivalent)].smooth
-main.tex,1562,0.6,AMBIGUOUS,declared,400,exp10_improve.csv[g+t (9-d equivalent)].f1_toileting; exp10_improve.csv[g+t (9-d equivalent)].f1_toileting; exp10_improve.csv[g+t (9-d equivalent)].f1_watching_tv
-main.tex,1563,21.3,AMBIGUOUS,declared,4,exp21_matched.csv[S1 matched_penalty].f1; exp23_bn_channel.csv[S2->S1 TENT].macroF1; exp5_features_causal_recording.csv[causal_recording global only (5-d) zscore].tgt_macroF1
-main.tex,1563,83,AMBIGUOUS,declared,6,exp13_occ_scaler.csv[A source   (Source_train) Source-only].macroF1; exp13_occ_scaler.csv[B target   (Target_train) DIGA].macroF1; exp13_occ_scaler.csv[C target+  (Train+TEST) DIGA].macroF1
-main.tex,1573,0.6,AMBIGUOUS,declared,400,exp10_improve.csv[g+t (9-d equivalent)].f1_toileting; exp10_improve.csv[g+t (9-d equivalent)].f1_toileting; exp10_improve.csv[g+t (9-d equivalent)].f1_watching_tv
-main.tex,1574,53,AMBIGUOUS,declared,39,exp10_improve.csv[g+t (9-d equivalent)].acc; exp10_improve.csv[g+t (9-d equivalent)].acc; exp10_improve.csv[g+t (9-d equivalent)].acc
-main.tex,1574,21.3,AMBIGUOUS,declared,4,exp21_matched.csv[S1 matched_penalty].f1; exp23_bn_channel.csv[S2->S1 TENT].macroF1; exp5_features_causal_recording.csv[causal_recording global only (5-d) zscore].tgt_macroF1
-main.tex,1584,70,AMBIGUOUS,declared,5,exp13_occ_scaler.csv[C target+  (Train+TEST) Source-only].mcc; exp17_occ_reverse.csv[source office -> target office C fit on adapta].mcc; exp20_hparam_grid.csv[S1->S2 DIGA].entropy
-main.tex,1610,0.658,UNIQUE,declared,1,exp20_hparam_grid.csv[S1->S2 DIGA].entropy
-main.tex,1611,-0.078,AMBIGUOUS,declared,6,exp19_diga_impl.csv[paper Eq.3 + Eq.10 (ours)].ci_lo; exp20_hparam_grid.csv[S1->S2 DIGA].d_macroF1; exp20_hparam_grid.csv[S2->S1 DIGA].d_macroF1
-main.tex,1626,0.8,AMBIGUOUS,declared,83,exp12_lambda_bar.csv[PETAL].drift; exp13_occ_scaler.csv[A source   (Source_train) PeTTA].acc; exp13_occ_scaler.csv[A source   (Source_train) Source-only].macroF1
-main.tex,1632,46,AMBIGUOUS,declared,193,exp10_improve.csv[g+t (9-d equivalent)].acc; exp10_improve.csv[g+s+t].bal; exp10_improve.csv[g+t (9-d equivalent)].bal
-main.tex,1636,0.6,AMBIGUOUS,declared,400,exp10_improve.csv[g+t (9-d equivalent)].f1_toileting; exp10_improve.csv[g+t (9-d equivalent)].f1_toileting; exp10_improve.csv[g+t (9-d equivalent)].f1_watching_tv
-main.tex,1636,21.3,AMBIGUOUS,declared,4,exp21_matched.csv[S1 matched_penalty].f1; exp23_bn_channel.csv[S2->S1 TENT].macroF1; exp5_features_causal_recording.csv[causal_recording global only (5-d) zscore].tgt_macroF1
-main.tex,1650,3.3,AMBIGUOUS,declared,10,exp10_improve.csv[g+s+r+t].macroF1_sd; exp11_reverse.csv[S2->S1 all 135-d (paper)].tgt_mcc; exp13_occ_scaler.csv[A source   (Source_train) AdaBN].mcc_sd
-main.tex,1650,0.067,AMBIGUOUS,declared,10,exp10_improve.csv[g+t (9-d equivalent)].macroF1_sd; exp10_improve.csv[g+t (9-d equivalent)].f1_cleaning; exp10_improve.csv[g+t (9-d equivalent)].f1_cleaning
-main.tex,1651,113,UNSOURCED,declared,0,
-main.tex,1662,0.53,AMBIGUOUS,declared,41,exp10_improve.csv[g+t (9-d equivalent)].acc; exp10_improve.csv[g+t (9-d equivalent)].acc; exp10_improve.csv[g+t (9-d equivalent)].acc
-main.tex,1662,0.998,AMBIGUOUS,declared,7,exp4_windowing.csv[centered label random].sa_mean; exp4_windowing.csv[centered recording random].sa_mean; exp4_windowing.csv[causal label random].sa_mean
-main.tex,1664,7.3,AMBIGUOUS,declared,8,exp10_improve.csv[g+t (9-d equivalent)].f1_cleaning; exp11_reverse.csv[S1->S2 13-d g+t (transferable)].src_val_sd; exp20_hparam_grid.csv[S2->S1 DIGA].d_macroF1
-main.tex,1668,0.6,AMBIGUOUS,declared,400,exp10_improve.csv[g+t (9-d equivalent)].f1_toileting; exp10_improve.csv[g+t (9-d equivalent)].f1_toileting; exp10_improve.csv[g+t (9-d equivalent)].f1_watching_tv
-main.tex,1668,21.3,AMBIGUOUS,declared,4,exp21_matched.csv[S1 matched_penalty].f1; exp23_bn_channel.csv[S2->S1 TENT].macroF1; exp5_features_causal_recording.csv[causal_recording global only (5-d) zscore].tgt_macroF1
-main.tex,1670,8.8,AMBIGUOUS,declared,4,exp11_reverse.csv[S1->S2 13-d g+t (transferable)].gap; exp17_occ_reverse.csv[target office -> source office C fit on adapta].mcc; exp20_hparam_grid.csv[S2->S1 DIGA].entropy
-main.tex,1678,25,AMBIGUOUS,declared,26,exp14_correspondence.csv[random permutation (null)].tgt_acc; exp17_occ_reverse.csv[target office -> source office C fit on adapta].mcc; exp20_hparam_grid.csv[S2->S1 DIGA].entropy
-main.tex,1679,0.3,AMBIGUOUS,declared,1017,exp10_improve.csv[g+t (9-d equivalent)].mcc; exp10_improve.csv[g+s+t].mcc; exp10_improve.csv[g+s+r+t].mcc
-main.tex,1680,1.1,AMBIGUOUS,declared,26,exp19_diga_impl.csv[paper Eq.3 + Eq.10 (ours)].sd; exp19_diga_impl.csv[paper Eq.3 + Eq.10 (ours)].ci_hi; exp20_hparam_grid.csv[S1->S2 DIGA].d_macroF1
-main.tex,1681,-5.7,AMBIGUOUS,declared,5,exp20_hparam_grid.csv[S1->S2 DIGA].d_macroF1; exp20_hparam_grid.csv[S1->S2 DIGA].d_macroF1; exp20_hparam_grid.csv[S1->S2 DIGA].d_mcc
-main.tex,1682,-33.0,UNIQUE,declared,1,exp23_bn_channel.csv[S1->S2 DIGA lam_BN=0.0].d_macroF1
-main.tex,1686,28,AMBIGUOUS,declared,55,exp10_improve.csv[g+s+t].d; exp10_improve.csv[g+s+t].d; exp11_reverse.csv[S2->S1 per-sensor ids only].f1_watching_tv
-main.tex,1686,43,AMBIGUOUS,declared,82,exp10_improve.csv[g+t (9-d equivalent)].macroF1; exp10_improve.csv[g+t (9-d equivalent)].macroF1; exp10_improve.csv[g+t (9-d equivalent)].macroF1
-main.tex,1688,3.2,AMBIGUOUS,declared,12,exp14_correspondence.csv[identity (no matching)].tgt_mcc; exp17_occ_reverse.csv[target office -> source office C fit on adapta].mcc_sd; exp20_hparam_grid.csv[S1->S2 DIGA].d_macroF1
-main.tex,1722,60,AMBIGUOUS,declared,18,exp10_improve.csv[all invariant (60-d)].d; exp10_improve.csv[all invariant (60-d)].d; exp14_correspondence.csv[oracle permutation (bound)].tgt_acc
-main.tex,1742,70,AMBIGUOUS,declared,5,exp13_occ_scaler.csv[C target+  (Train+TEST) Source-only].mcc; exp17_occ_reverse.csv[source office -> target office C fit on adapta].mcc; exp20_hparam_grid.csv[S1->S2 DIGA].entropy
-main.tex,1743,75,AMBIGUOUS,declared,2,exp17_occ_reverse.csv[target office -> source office C fit on adapta].acc; exp31_petta_diga_tables.csv[tab:petta per-dimension mean (released)].median_d
-main.tex,1745,0.3852,UNIQUE,declared,1,exp10_improve.csv[g+t (9-d equivalent)].macroF1
-main.tex,1746,0.4818,AMBIGUOUS,declared,3,exp10_improve.csv[g+t (9-d equivalent)].bal; exp10_improve.csv[g+t (9-d equivalent)].bal; exp20_hparam_grid.csv[S1->S2 DIGA].macroF1
-main.tex,1746,0.4280,UNIQUE,declared,1,exp10_improve.csv[g+t (9-d equivalent)].bal
-main.tex,1747,113,UNSOURCED,declared,0,
+occ_01_contrast.tex,6,8,UNIQUE,declared,1,exp34_occ_version_asymmetry.csv[anonymised 9-d target->source].neg_seeds
+occ_01_contrast.tex,14,10,UNIQUE,declared,1,exp34_occ_version_asymmetry.csv[anonymised 9-d target->source].sd
+occ_01_contrast.tex,22,9,UNIQUE,declared,1,exp34_occ_version_asymmetry.csv[raw 9 shared target->source].sd
+occ_01_contrast.tex,23,9,UNIQUE,declared,1,exp34_occ_version_asymmetry.csv[raw 9 shared target->source].sd
+occ_01_contrast.tex,25,9,UNIQUE,declared,1,exp34_occ_version_asymmetry.csv[raw 9 shared target->source].sd
+occ_01_contrast.tex,25,-0.0711,UNIQUE,declared,1,exp34_occ_version_asymmetry.csv[raw 9 shared source->target].mcc
+occ_01_contrast.tex,26,9,UNIQUE,declared,1,exp34_occ_version_asymmetry.csv[raw 9 shared target->source].sd
+occ_01_contrast.tex,28,7,UNSOURCED,declared,0,
+occ_01_contrast.tex,29,7,UNSOURCED,declared,0,
+occ_01_contrast.tex,37,-0.0711,UNIQUE,declared,1,exp34_occ_version_asymmetry.csv[raw 9 shared source->target].mcc
+occ_01_contrast.tex,38,-0.42,UNIQUE,declared,1,exp34_occ_version_asymmetry.csv[raw 9 shared source->target].lo
+occ_01_contrast.tex,46,1210,UNSOURCED,declared,0,
+occ_01_contrast.tex,46,1345,UNSOURCED,declared,0,
+occ_01_contrast.tex,46,1041,UNSOURCED,declared,0,
+occ_01_contrast.tex,46,972,UNSOURCED,declared,0,
+occ_02_features.tex,7,8,UNIQUE,declared,1,exp33_occ_penalty_raw.csv[transferable (7) source office penalty].mcc
+occ_02_features.tex,29,-0.207,UNIQUE,declared,1,exp32_occ_feature_identity.csv[correlation derivative_co2 nan].r_target
+occ_02_features.tex,36,-0.202,UNIQUE,declared,1,exp32_occ_feature_identity.csv[correlation rms nan].r_target
+occ_02_features.tex,42,0.7643,UNIQUE,declared,1,exp33_occ_penalty_raw.csv[all shared (9) source office own days].mcc
+occ_02_features.tex,42,0.3624,UNIQUE,declared,1,exp33_occ_penalty_raw.csv[transferable (7) source office own days].mcc
+occ_02_features.tex,51,96,UNIQUE,declared,1,exp32_occ_feature_identity.csv[channel_dist power3 nan].src_frac_zero
+occ_02_features.tex,52,11,UNIQUE,declared,1,exp32_occ_feature_identity.csv[channel_dist power3 nan].tgt_median
+occ_02_features.tex,74,9,AMBIGUOUS,declared,2,exp32_occ_feature_identity.csv[transfer nan nan].n_features; exp32_occ_feature_identity.csv[transfer nan nan].n_features
+occ_02_features.tex,74,0.7867,UNIQUE,declared,1,exp33_occ_penalty_raw.csv[all shared (9) target office own days].mcc
+occ_02_features.tex,74,0.2138,UNIQUE,declared,1,exp33_occ_penalty_raw.csv[all shared (9) target office other office].mcc
+occ_02_features.tex,74,57.3,UNIQUE,declared,1,exp33_occ_penalty_raw.csv[all shared (9) target office penalty].mcc
+occ_02_features.tex,75,9,AMBIGUOUS,declared,2,exp32_occ_feature_identity.csv[transfer nan nan].n_features; exp32_occ_feature_identity.csv[transfer nan nan].n_features
+occ_02_features.tex,75,0.7643,UNIQUE,declared,1,exp33_occ_penalty_raw.csv[all shared (9) source office own days].mcc
+occ_02_features.tex,75,0.2924,UNIQUE,declared,1,exp33_occ_penalty_raw.csv[all shared (9) source office other office].mcc
+occ_02_features.tex,75,47.2,UNIQUE,declared,1,exp33_occ_penalty_raw.csv[all shared (9) source office penalty].mcc
+occ_02_features.tex,77,7,AMBIGUOUS,declared,3,exp32_occ_feature_identity.csv[correlation power3 nan].src_lo; exp32_occ_feature_identity.csv[transfer nan nan].n_features; exp32_occ_feature_identity.csv[transfer nan nan].n_features
+occ_02_features.tex,77,0.8225,UNIQUE,declared,1,exp33_occ_penalty_raw.csv[transferable (7) target office own days].mcc
+occ_02_features.tex,77,0.3777,UNIQUE,declared,1,exp33_occ_penalty_raw.csv[transferable (7) target office other office].mcc
+occ_02_features.tex,77,44.5,UNIQUE,declared,1,exp33_occ_penalty_raw.csv[transferable (7) target office penalty].mcc
+occ_02_features.tex,78,7,AMBIGUOUS,declared,3,exp32_occ_feature_identity.csv[correlation power3 nan].src_lo; exp32_occ_feature_identity.csv[transfer nan nan].n_features; exp32_occ_feature_identity.csv[transfer nan nan].n_features
+occ_02_features.tex,78,0.3624,UNIQUE,declared,1,exp33_occ_penalty_raw.csv[transferable (7) source office own days].mcc
+occ_02_features.tex,78,0.2866,UNIQUE,declared,1,exp33_occ_penalty_raw.csv[transferable (7) source office other office].mcc
+occ_02_features.tex,83,47.2,UNIQUE,declared,1,exp33_occ_penalty_raw.csv[all shared (9) source office penalty].mcc
+occ_02_features.tex,84,7.6,UNIQUE,declared,1,exp33_occ_penalty_raw.csv[transferable (7) source office penalty].mcc
+occ_02_features.tex,86,44.5,UNIQUE,declared,1,exp33_occ_penalty_raw.csv[transferable (7) target office penalty].mcc
+occ_03_methods.tex,31,9,UNSOURCED,declared,0,
+occ_03_methods.tex,31,-0.3818,UNIQUE,declared,1,exp35_occ_tta_raw.csv[9 shared source->target Source-only].mcc
+occ_03_methods.tex,32,9,UNSOURCED,declared,0,
+occ_03_methods.tex,32,-0.119,UNSOURCED,declared,0,
+occ_03_methods.tex,32,-0.159,UNSOURCED,declared,0,
+occ_03_methods.tex,32,-0.168,UNSOURCED,declared,0,
+occ_03_methods.tex,33,7,UNSOURCED,declared,0,
+occ_03_methods.tex,34,7,UNSOURCED,declared,0,
+occ_03_methods.tex,34,-0.009,UNSOURCED,declared,0,
+occ_03_methods.tex,36,9,UNSOURCED,declared,0,
+occ_03_methods.tex,38,9,UNSOURCED,declared,0,
+occ_03_methods.tex,38,-0.022,UNSOURCED,declared,0,
+occ_03_methods.tex,38,-0.020,UNSOURCED,declared,0,
+occ_03_methods.tex,38,-0.025,UNSOURCED,declared,0,
+occ_03_methods.tex,38,-0.080,UNSOURCED,declared,0,
+occ_03_methods.tex,39,9,UNSOURCED,declared,0,
+occ_03_methods.tex,39,-0.0763,UNSOURCED,declared,0,
+occ_03_methods.tex,45,52,UNSOURCED,declared,0,
+occ_03_methods.tex,48,12,UNSOURCED,declared,0,
+occ_03_methods.tex,58,0.355,AMBIGUOUS,declared,3,exp35_occ_tta_raw.csv[9 shared target->source Source-only].rec_occ; exp35_occ_tta_raw.csv[9 shared source->target Source-only].pred_occ_rate; exp35_occ_tta_raw.csv[7 transferable target->source PETAL].pred_occ_rate
+occ_03_methods.tex,58,0.428,AMBIGUOUS,declared,2,exp35_occ_tta_raw.csv[9 shared target->source AdaBN].rec_occ; exp35_occ_tta_raw.csv[9 shared target->source TENT].rec_occ
+occ_03_methods.tex,72,17,UNIQUE,declared,1,exp35_occ_tta_raw.csv[9 shared target->source Source-only].pred_occ_rate
+occ_03_methods.tex,72,62,AMBIGUOUS,declared,5,exp35_occ_tta_raw.csv[9 shared source->target PeTTA].acc; exp35_occ_tta_raw.csv[7 transferable source->target AdaBN].fn; exp35_occ_tta_raw.csv[7 transferable source->target TENT].fn
+occ_03_methods.tex,75,0.967,UNIQUE,declared,1,exp35_occ_tta_raw.csv[7 transferable source->target Source-only].rec_occ
+occ_03_methods.tex,76,62,AMBIGUOUS,declared,5,exp35_occ_tta_raw.csv[9 shared source->target PeTTA].acc; exp35_occ_tta_raw.csv[7 transferable source->target AdaBN].fn; exp35_occ_tta_raw.csv[7 transferable source->target TENT].fn
+occ_03_methods.tex,76,28,AMBIGUOUS,declared,4,exp35_occ_tta_raw.csv[9 shared source->target DIGA].tp; exp35_occ_tta_raw.csv[9 shared target->source AdaBN].pred_occ_rate; exp35_occ_tta_raw.csv[9 shared target->source TENT].pred_occ_rate
+occ_03_methods.tex,77,0.431,UNIQUE,declared,1,exp35_occ_tta_raw.csv[7 transferable source->target Source-only].mcc
+occ_03_methods.tex,78,0.640,UNIQUE,declared,1,exp35_occ_tta_raw.csv[7 transferable source->target Source-only].acc
+occ_03_methods.tex,78,0.720,UNSOURCED,declared,0,
