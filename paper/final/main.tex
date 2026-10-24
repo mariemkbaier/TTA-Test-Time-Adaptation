@@ -71,8 +71,9 @@ On that footing the cross-building penalty is asymmetric. Measured against a mod
 on the target building at matched sample size, it is $0.6$ \macf{} points entering one
 apartment and $21.3$ entering the other. The three methods track the asymmetry rather than
 the task: in the direction with no measurable shift all three lose ground, by $8.6$ to
-$20.4$ points, and only DIGA gains anywhere, by $2.1$ points in the direction with real
-headroom. A practitioner cannot know in advance which of the two situations a deployment
+$20.4$ points, and in the direction with real headroom only DIGA avoids doing so, at
+$+2.1$ points with a day-level bootstrap interval of $[-0.8,+4.8]$ that includes zero. The
+asymmetry is therefore between losing clearly and not moving detectably. A practitioner cannot know in advance which of the two situations a deployment
 is in, since establishing that would require the target labels TTA exists to do without.
 
 The mechanism is shared. All three methods adapt batch-normalisation statistics, and that
@@ -151,14 +152,16 @@ Our contributions are as follows.
 \item \textbf{A rigorous evaluation of DIGA, PETAL and PeTTA across two tasks.} Both
   transfer directions, both tasks, published hyperparameters, chance baselines and paired
   bootstrap intervals throughout (Sections~\ref{sec:har} and~\ref{sec:occ}). The three
-  methods track the measured penalty rather than the task: they help only where there is
-  headroom, and lose ground where there is none.
+  methods track the measured penalty rather than the task: they lose ground clearly where
+  there is none, and where there is headroom the best of them is not distinguishable from
+  doing nothing.
 
 \item \textbf{A cross-task-confirmed account of why source models fail to transfer.}
   On activity recognition, features tied to a sensor index score below stratified-random
-  guessing in both directions. On occupancy, two features reverse their correlation with
-  the label between offices, and removing them --- a diagnostic, since identifying them
-  requires target labels --- changes the sign of the transfer result.
+  guessing in both directions. On occupancy, two features correlate with occupancy in one
+  office and anti-correlate in the other, one of them with day-level intervals that exclude
+  zero, and removing both --- a diagnostic, since identifying them requires target labels
+  --- changes the sign of the transfer result.
   The same failure --- a feature whose meaning is specific to one installation --- is found
   independently on two tasks, two datasets and two sensing modalities.
 \end{itemize}
@@ -487,7 +490,7 @@ Method & \macf & $\Delta$ & changed & \macf & $\Delta$ & changed \\
 \midrule
 Source-only & $0.4944$ & --- & $0$ & $0.3226$ & --- & $0$ \\
 \addlinespace[2pt]
-DIGA  & $0.4088$ & $-8.6$  & $1279$ & $\mathbf{0.3438}$ & $\mathbf{+2.1}$ & $1031$ \\
+DIGA  & $0.4088$ & $-8.6$  & $1279$ & $0.3438$ & $+2.1$ & $1031$ \\
 PETAL & $0.3113$ & $-18.3$ & $1739$ & $0.2028$ & $-12.0$ & $3105$ \\
 PeTTA & $0.2908$ & $-20.4$ & $1845$ & $0.2158$ & $-10.7$ & $3164$ \\
 \addlinespace[2pt]
@@ -595,8 +598,10 @@ $\lambda_{BN}=1.0$ the statistics are exactly the source model's, yet $1026$ pre
 change, because DIGA's prototype classifier is still active. That row is the only
 configuration in this study where an adaptation component helps by more than a point
 without target labels, and it helps in the direction with headroom and hurts in the
-direction without. DIGA's small positive result is therefore a prototype classifier gaining
-$4.4$ points, partly spent back by a normalisation step costing $2.3$.
+direction without. What stops DIGA from losing ground in that direction is therefore its prototype
+classifier, worth $4.4$ points at this setting, partly spent back by a normalisation step
+costing $2.3$. We report the decomposition rather than a gain, since the net difference
+does not separate from zero.
 
 One objection deserves pre-empting: that the methods were simply not tuned. As a
 post-hoc robustness check only --- and explicitly not part of the label-free protocol used
@@ -634,7 +639,9 @@ cross-building transfer rather than about one dataset, it should reappear.
 $2000$ resamples drawn at the level of the \emph{recording day}, since consecutive
 occupancy records are strongly autocorrelated. \texttt{rms} is $[+0.561,+0.857]$ against
 $[-0.509,+0.029]$ and \texttt{derivative\_co2} is $[+0.038,+0.188]$ against
-$[-0.375,-0.066]$; only the latter has intervals of opposite sign that exclude zero.}
+$[-0.375,-0.066]$; only the latter has intervals of opposite sign that exclude zero, and
+is shown in bold on that basis. \texttt{rms}'s source figure is bold as the largest single
+correlation in that column.}
 \label{tab:occfeat}
 \footnotesize
 \setlength{\tabcolsep}{3pt}
@@ -650,8 +657,8 @@ Feature & Source office & Target office \\
 \texttt{door}       & $+0.255$ & $+0.307$ \\
 \texttt{power3}     & $+0.130$ & $+0.721$ \\
 \midrule
-\texttt{rms}             & $\mathbf{+0.626}$ & $\mathbf{-0.202}$ \\
-\texttt{derivative\_co2} & $+0.116$ & $-0.207$ \\
+\texttt{rms}             & $\mathbf{+0.626}$ & $-0.202$ \\
+\texttt{derivative\_co2} & $\mathbf{+0.116}$ & $\mathbf{-0.207}$ \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -677,9 +684,9 @@ established for \texttt{derivative\_co2} and as indicated but not established fo
 \texttt{rms}'s target interval at $[-0.316,-0.111]$ and made it appear decisive.
 
 The seven-feature set that appears below is defined by removing these two columns, and
-how that set is identified matters for how its rows may be read. Deciding that
-\texttt{rms} reverses requires its correlation with occupancy in \emph{both} offices, and
-the target office's correlation is computed from target labels. Every ``$7$ transferable''
+how that set is identified matters for how its rows may be read. Deciding that either feature
+reverses requires its correlation with occupancy in \emph{both} offices, and the target
+office's correlation is computed from target labels. Every ``$7$ transferable''
 row in this section is therefore a diagnostic: it bounds what a correctly-specified feature
 set could achieve and isolates the cause of the deficit, but it is not a configuration a
 deployment could have selected, because selecting it requires the labels the Tier-1 protocol
@@ -726,8 +733,8 @@ $7$ transf. & source & $0.3624$ & $0.2866$ & $\mathbf{7.6}$ \\
 
 Table~\ref{tab:occgap} applies the measurement of Section~\ref{sec:protocol} to this task;
 the raw sensor records carry timestamps, giving ten recording days in the source office and
-eight in the target. The penalty is again asymmetric, and dropping the two reversing
-columns cuts it into the source office from $47.2$ points to $7.6$. Most of what presented
+eight in the target. The penalty is again asymmetric, and dropping the two columns of
+Table~\ref{tab:occfeat} cuts it into the source office from $47.2$ points to $7.6$. Most of what presented
 as a cross-office domain gap in that direction was two features meaning opposite things in
 the two rooms. Into the target office a penalty of $44.5$ points survives the same surgery,
 so unlike the apartment pair these two environments do contain a real shift in one
@@ -764,8 +771,8 @@ single online pass over the target office in recording order, each batch predict
 the model updates on it, with the scaler fitted on the source split alone and no target
 labels used for anything.
 
-The pattern of Section~\ref{sec:har-methods} reproduces. Against the checkpoint that the
-reversing features break --- MCC $-0.3818$, meaning its predictions are anti-correlated
+The pattern of Section~\ref{sec:har-methods} reproduces. Against the checkpoint that those two features
+break --- MCC $-0.3818$, meaning its predictions are anti-correlated
 with the labels --- PETAL gains $51.9$ MCC points and PeTTA $50.9$. Against the sound
 checkpoint in the other direction they lose $15.9$ and $16.8$. The gains are large, and
 they are large because the starting point is broken.
@@ -874,7 +881,8 @@ points entering one apartment and $21.3$ entering the other.
 
 The second is the evaluation. The three methods track that asymmetry rather than the task.
 Where the penalty is negligible all three lose ground, by $8.6$ to $20.4$ points; where it
-is real, only DIGA gains, by $2.1$. Occupancy estimation reproduces the pattern on a
+is real, only DIGA avoids losing ground, at $+2.1$ points, which a day-level bootstrap does
+not separate from zero. Occupancy estimation reproduces the pattern on a
 different task, dataset and sensing modality: against a checkpoint whose predictions are
 anti-correlated with the labels, PETAL and PeTTA gain over $50$ MCC points, and against a
 sound one they lose $16$. The shared mechanism is normalisation-statistic adaptation, which
@@ -883,9 +891,11 @@ carries essentially all of their behaviour and which is a trade rather than an i
 The third is an account of why source models fail to transfer, confirmed independently on
 both tasks. On activity recognition, features that name a sensor score below
 stratified-random guessing in both directions, because an index identifies a different
-device in each apartment. On occupancy, two of nine shared features reverse their
-correlation with the label between offices; removing them, which is a diagnostic rather
-than a label-free configuration because identifying them requires target labels, moves
+device in each apartment. On occupancy, two of nine shared features correlate with
+the label in one office and anti-correlate in the other, established with day-level
+intervals for \texttt{derivative\_co2} and indicated but not established for
+\texttt{rms}; removing both, which is a diagnostic rather than a label-free configuration
+because identifying them requires target labels, moves
 cross-office transfer from MCC $-0.38$ to $+0.43$ and cuts the measured penalty in one
 direction from $47.2$ points to $7.6$. The same failure appears in both: a feature whose meaning is specific to one
 installation is not weakly informative elsewhere but actively wrong, and nothing in a
