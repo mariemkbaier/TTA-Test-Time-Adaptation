@@ -475,6 +475,24 @@ PeTTA & $0.4947$ & $+0.0$ & $5$  & $0.3225$ & $-0.0$ & $13$ \\
 \end{tabular}
 \end{table*}
 
+Three source checkpoints appear in this section, and they are deliberately different
+because they answer different questions. Table~\ref{tab:hargap} compares a model trained on
+the target building's own days against one trained on the source building, with both
+training sets subsampled to the same size and both scored on the same held-out days.
+Equalising the sample count is what isolates the cost of having no labels in the new
+building from the separate effect of having less data, and it is why that table's
+``other building'' figure ($0.3434$ entering $\text{S}_2$, from $2184$ training samples) is
+lower than the checkpoint a deployment would actually use. Table~\ref{tab:harmethods}
+reports that deployable checkpoint instead: trained on the full source split and scored over
+the entire target stream in a single pass, since a streaming adapter carries state and
+cannot be averaged across folds without resetting it. Table~\ref{tab:harfeat}'s figure is a
+third quantity again, the full source split averaged over five folds with causal smoothing
+applied, which is the best available estimate of deployable accuracy for a feature set. The
+three values entering $\text{S}_2$ --- $0.3434$, $0.4944$ and $0.4466$ --- differ by
+training-set size, fold averaging and smoothing, not by any disagreement about what is being
+scored. Only Table~\ref{tab:harmethods}'s figure is the starting point the adaptation
+methods are given.
+
 Table~\ref{tab:harmethods} gives the main activity result. In the direction where the
 penalty is $0.6$ points, all three methods lose ground, by $8.6$ to $20.4$ \macf{} points.
 In the direction where it is $21.3$, DIGA gains $2.1$ points and the other two still lose.
@@ -534,13 +552,20 @@ without target labels, and it helps in the direction with headroom and hurts in 
 direction without. DIGA's small positive result is therefore a prototype classifier gaining
 $4.4$ points, partly spent back by a normalisation step costing $2.3$.
 
-One objection deserves pre-empting: that the methods were simply not tuned. We searched
-each method's own published hyperparameter grid in both directions --- $64$ configurations
-for DIGA, $24$ for PETAL, $16$ for PeTTA. The conclusion does not move. In the direction
-without headroom $53$ of DIGA's $64$ settings lose ground and the best gains $1.1$ points;
-no setting anywhere in PETAL's or PeTTA's published space alters more than $38$ of $3412$
-predictions, so their behaviour is a property of the update rules rather than of the
-configuration.
+One objection deserves pre-empting: that the methods were simply not tuned. As a
+post-hoc robustness check only --- and explicitly not part of the label-free protocol used
+for every other result in this paper --- we additionally swept each method's own published
+hyperparameter grid in both directions, $64$ configurations for DIGA, $24$ for PETAL and
+$16$ for PeTTA. Identifying a best configuration requires scoring each one against target
+\macf, so this analysis uses target labels that no other result here touches; it bounds
+what tuning could achieve rather than reporting something a deployment could obtain.
+
+The conclusion does not move. In the direction without headroom, $53$ of DIGA's $64$
+settings lose ground and the best available --- selected with target labels, and therefore
+an upper bound --- gains $1.1$ points. No setting anywhere in PETAL's or PeTTA's published
+space alters more than $38$ of $3412$ predictions, so their behaviour is a property of the
+update rules rather than of the configuration. Every figure reported outside this paragraph
+uses each method's published settings with no target information of any kind.
 
 % ============================================================================
 \section{Occupancy estimation}

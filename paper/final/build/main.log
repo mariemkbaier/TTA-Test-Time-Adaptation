@@ -829,54 +829,54 @@ File: figures//fig_bndial.pdf Graphic file (type pdf)
 <use figures//fig_bndial.pdf>
  [5]
 LaTeX Font Info:    Font shape `T1/zi4/m/n' will be
-(Font)              scaled to size 7.65005pt on input line 565.
+(Font)              scaled to size 7.65005pt on input line 590.
 
-Underfull \hbox (badness 1082) in paragraph at lines 565--565
+Underfull \hbox (badness 1082) in paragraph at lines 590--590
 []\T1/lmss/m/n/9 Correlation with oc-cu-pancy per of-fice. Two of the nine
  []
 
 
-Underfull \hbox (badness 1728) in paragraph at lines 565--565
+Underfull \hbox (badness 1728) in paragraph at lines 590--590
 \T1/lmss/m/n/9 sign that do not over-lap, over $\LS1/stix/m/n/9 2000$ \T1/lmss/
 m/n/9 re-sam-ples: \T1/zi4/m/n/9 rms \T1/lmss/m/n/9 is
  []
 
 [6]
-Underfull \hbox (badness 1590) in paragraph at lines 692--699
+Underfull \hbox (badness 1590) in paragraph at lines 717--724
 []\T1/stix/m/n/10 Second, the source-only model in the seven-feature
  []
 
 
-Underfull \hbox (badness 1371) in paragraph at lines 692--699
+Underfull \hbox (badness 1371) in paragraph at lines 717--724
 \T1/stix/m/n/10 ac-cu-racy of $\LS1/stix/m/n/10 0\LS1/stix/m/it/10 :\LS1/stix/m
 /n/10 640$ \T1/stix/m/n/10 sits be-low the $\LS1/stix/m/n/10 0\LS1/stix/m/it/10
  :\LS1/stix/m/n/10 720$ \T1/stix/m/n/10 that pre-dict-ing
  []
 
-
-Overfull \hbox (3.73555pt too wide) in paragraph at lines 745--748
+[7]
+Overfull \hbox (3.73555pt too wide) in paragraph at lines 770--773
 []\T1/stix/m/n/10 Measure the cross-domain penalty against a model trained
  []
 
-[7]
-Underfull \hbox (badness 1062) in paragraph at lines 765--772
+
+Underfull \hbox (badness 1062) in paragraph at lines 790--797
 \T1/stix/m/n/10 pipeline; the win-dow def-i-ni-tion ac-counts for un-der two
  []
 
 
-Overfull \hbox (2.38551pt too wide) in paragraph at lines 796--803
+Overfull \hbox (2.38551pt too wide) in paragraph at lines 821--828
 \T1/stix/m/n/10 Run-ning both trans-fer di-rec-tions on each rules out a direct
 ion-
  []
 
 
-Underfull \hbox (badness 1024) in paragraph at lines 807--812
+Underfull \hbox (badness 1024) in paragraph at lines 832--837
 []\T1/stix/m/n/10 Code and ev-ery re-sult file are avail-able at [][]$\T1/zi4/m
 /n/10 https : / /
  []
 
 
-Overfull \hbox (3.57198pt too wide) in paragraph at lines 807--812
+Overfull \hbox (3.57198pt too wide) in paragraph at lines 832--837
 \T1/zi4/m/n/10 github . com / mariemkbaier / TTA-[]Test-[]Time-[]Adaptation$[][
 ]\T1/stix/m/n/10 . Each ta-
  []
@@ -887,4 +887,4 @@ Overfull \hbox (3.57198pt too wide) in paragraph at lines 807--812
 Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  )
-Output written on main.xdv (9 pages, 93508 bytes).
+Output written on main.xdv (9 pages, 97260 bytes).
