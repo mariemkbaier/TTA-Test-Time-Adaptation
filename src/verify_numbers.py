@@ -22,8 +22,12 @@ import pandas as pd, numpy as np
 ROOT = os.path.join(os.path.dirname(__file__), "..")
 RES = os.path.join(ROOT, "results")
 # values that are structural rather than measured
-EXEMPT = {"0.5", "1.0", "0.0", "2.0", "5.0", "13", "64", "128", "256", "3412", "5031",
-          "20", "40", "30", "100", "95", "2000", "50", "5", "1", "2", "3", "4"}
+# Structural constants rather than measured results: window lengths, layer widths,
+# sample counts, percentile settings. "20" is the window length and "19" the number of
+# timesteps two adjacent stride-1 windows therefore share -- the same design parameter
+# stated in the protocol section, not a figure quoted from a result table.
+EXEMPT = {"0.5", "1.0", "0.0", "2.0", "5.0", "13", "19", "20", "64", "128", "256",
+          "3412", "5031", "40", "30", "100", "95", "2000", "50", "5", "1", "2", "3", "4"}
 
 
 def load_results():

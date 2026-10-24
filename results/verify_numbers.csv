@@ -26,7 +26,6 @@ main.tex,227,28.0,UNSOURCED,declared,0,
 main.tex,306,0.1626,AMBIGUOUS,declared,3,exp4_windowing.csv[centered label random].tf_mean; exp4_windowing.csv[centered label blocked].tf_mean; exp4_windowing.csv[centered label grouped].tf_mean
 main.tex,307,0.1626,AMBIGUOUS,declared,3,exp4_windowing.csv[centered label random].tf_mean; exp4_windowing.csv[centered label blocked].tf_mean; exp4_windowing.csv[centered label grouped].tf_mean
 main.tex,308,0.1626,AMBIGUOUS,declared,3,exp4_windowing.csv[centered label random].tf_mean; exp4_windowing.csv[centered label blocked].tf_mean; exp4_windowing.csv[centered label grouped].tf_mean
-main.tex,317,19,AMBIGUOUS,declared,9,exp11_reverse.csv[S2->S1 all 135-d (paper)].tgt_acc; exp11_reverse.csv[S1->S2 per-sensor ids only].gap; exp23_bn_channel.csv[S1->S2 DIGA lam_BN=0.4].macroF1
 main.tex,325,0.9984,AMBIGUOUS,declared,2,exp4_windowing.csv[centered label random].sa_mean; exp4_windowing.csv[centered label random].sf_mean
 main.tex,325,0.5287,UNIQUE,declared,1,exp4_windowing.csv[centered label grouped].sf_mean
 main.tex,331,83,AMBIGUOUS,declared,2,exp32_occ_feature_identity.csv[channel_dist door nan].src_frac_zero; exp35_occ_tta_raw.csv[7 transferable source->target DIGA].fp
