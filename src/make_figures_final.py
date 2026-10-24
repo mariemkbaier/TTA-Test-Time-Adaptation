@@ -29,6 +29,16 @@ plt.rcParams.update({
     "pdf.fonttype": 42, "savefig.bbox": "tight", "savefig.pad_inches": 0.02,
 })
 
+# Palette: muted, print-safe, and distinguishable for the common forms of colour vision
+# deficiency. Hatching and line styles are retained alongside colour so the figures still
+# separate if a reader prints them in black and white.
+BLUE   = "#2F6690"   # the adopted / reference series
+ORANGE = "#D08C33"   # the contrasting series
+RED    = "#A63D40"   # the misleading measurement
+GREEN  = "#3E7D5A"   # the protocol this paper adopts
+PALE   = "#DCE6EF"
+MID    = "#9FC0DC"
+
 # ---- Table 1 (tab:protocol)
 SPLITS = [("Random\nover samples", 0.9984), ("Blocked\ninto runs", 0.4431),
           ("Grouped by\nrecording day", 0.5287)]
@@ -49,22 +59,24 @@ def fig1():
     n = 21
     ax.set_xlim(-0.8, n + 0.6); ax.set_ylim(-1.35, 1.62)
     # the shared span, drawn behind the boxes
-    ax.add_patch(Rectangle((1.09, 0.38), 18.82, 0.54, facecolor="0.62",
+    ax.add_patch(Rectangle((1.09, 0.38), 18.82, 0.54, facecolor=MID,
                            edgecolor="none", zorder=0))
     for t in range(n):
-        ax.add_patch(Rectangle((t + 0.09, 0.45), 0.82, 0.4, facecolor="0.90",
-                               edgecolor="0.35", linewidth=0.5, zorder=2))
+        ax.add_patch(Rectangle((t + 0.09, 0.45), 0.82, 0.4, facecolor=PALE,
+                               edgecolor=BLUE, linewidth=0.5, zorder=2))
     ax.text(n / 2, 1.30, "sensor stream, one box per timestep",
             ha="center", va="bottom", fontsize=7.5)
     ax.text(n / 2, 0.97, "shaded: 19 of 20 timesteps shared",
             ha="center", va="bottom", fontsize=7.5)
     # window spans drawn as range bars beneath
     def span(y, x0, x1, ls, lab):
-        ax.plot([x0, x1], [y, y], color="black", linewidth=1.2, linestyle=ls,
+        col = BLUE if ls == "solid" else ORANGE
+        ax.plot([x0, x1], [y, y], color=col, linewidth=1.4, linestyle=ls,
                 solid_capstyle="butt", zorder=3)
         for xe in (x0, x1):
-            ax.plot([xe, xe], [y - 0.10, y + 0.10], color="black", linewidth=1.2, zorder=3)
-        ax.text((x0 + x1) / 2, y - 0.30, lab, ha="center", va="top", fontsize=7.5)
+            ax.plot([xe, xe], [y - 0.10, y + 0.10], color=col, linewidth=1.4, zorder=3)
+        ax.text((x0 + x1) / 2, y - 0.30, lab, ha="center", va="top", fontsize=7.5,
+                color=col)
     span(0.05, 0.09, 19.91, "solid", "window $t$ \u2014 timesteps 1--20")
     span(-0.62, 1.09, 20.91, (0, (3, 1.6)), "window $t+1$ \u2014 timesteps 2--21")
     ax.axis("off")
@@ -72,17 +84,18 @@ def fig1():
 
     # --- Panel B: source macro-F1 under three splits
     lab = [s for s, _ in SPLITS]; val = [v for _, v in SPLITS]
-    hatch = ["", "///", "\\\\\\"]; shade = ["0.30", "0.72", "0.55"]
+    hatch = ["", "///", "\\\\\\"]; shade = [RED, BLUE, GREEN]
     xs = np.arange(len(val))
     for i, (x, v) in enumerate(zip(xs, val)):
         bx.bar(x, v, width=0.62, facecolor=shade[i], edgecolor="black",
-               linewidth=0.7, hatch=hatch[i])
+               linewidth=0.7, hatch=hatch[i], alpha=0.92)
         bx.text(x, v + 0.022, f"{v:.4f}", ha="center", va="bottom", fontsize=7.5)
-    bx.axhline(TARGET_F1, color="black", linestyle=(0, (4, 2)), linewidth=0.9)
+    bx.axhline(TARGET_F1, color=ORANGE, linestyle=(0, (4, 2)), linewidth=1.1)
     bx.annotate("target macro-F$_1$ = 0.1626\n(unchanged across splits)",
                 xy=(2.42, TARGET_F1), xytext=(2.42, 0.86), ha="right", va="top",
-                fontsize=7, arrowprops=dict(arrowstyle="-|>", lw=0.6, color="black",
-                                            shrinkA=1, shrinkB=1))
+                fontsize=7, color=ORANGE,
+                arrowprops=dict(arrowstyle="-|>", lw=0.6, color=ORANGE,
+                                shrinkA=1, shrinkB=1))
     bx.set_xticks(xs); bx.set_xticklabels(lab)
     bx.set_ylabel("source macro-F$_1$"); bx.set_ylim(0, 1.13)
     bx.set_yticks([0, 0.2, 0.4, 0.6, 0.8, 1.0])
@@ -93,26 +106,27 @@ def fig1():
 
 def fig2():
     fig, ax = plt.subplots(figsize=(3.35, 2.35))
-    xs = np.arange(len(GAP)); w = 0.34
+    xs = np.arange(len(GAP)); w = 0.30
     own = [g[1] for g in GAP]; oth = [g[2] for g in GAP]; pen = [g[3] for g in GAP]
-    ax.bar(xs - w / 2, own, w, facecolor="0.32", edgecolor="black", linewidth=0.7,
-           label="trained on own days")
-    ax.bar(xs + w / 2, oth, w, facecolor="0.80", edgecolor="black", linewidth=0.7,
-           hatch="///", label="trained on other building")
+    ax.bar(xs - w / 2, own, w, facecolor=BLUE, edgecolor="black", linewidth=0.7,
+           alpha=0.92, label="trained on own days")
+    ax.bar(xs + w / 2, oth, w, facecolor=ORANGE, edgecolor="black", linewidth=0.7,
+           alpha=0.92, hatch="///", label="trained on other building")
     for x, a, b, p in zip(xs, own, oth, pen):
-        for xx, v in ((x - w / 2, a), (x + w / 2, b)):
-            ax.text(xx, v + 0.009, f"{v:.4f}", ha="center", va="bottom", fontsize=7)
+        # three decimals here; the table carries the fourth
+        ax.text(x - w / 2, a + 0.010, f"{a:.3f}", ha="center", va="bottom", fontsize=7)
+        ax.text(x + w / 2, b + 0.010, f"{b:.3f}", ha="center", va="bottom", fontsize=7)
         # guide from the own-days level across to the other-building bar, then a
         # vertical double arrow spanning the drop
         xr = x + w / 2
         ax.plot([x - w / 2, xr + w / 2 + 0.03], [a, a], color="black",
                 linewidth=0.6, linestyle=(0, (2, 1.6)), zorder=1)
-        xa = xr + w / 2 + 0.10
+        xa = xr + w / 2 + 0.21
         ax.annotate("", xy=(xa, a), xytext=(xa, b),
                     arrowprops=dict(arrowstyle="<->", lw=0.7, color="black"))
-        ax.text(xa + 0.04, (a + b) / 2, f"{p} pts", ha="left", va="center", fontsize=7.5)
+        ax.text(xa + 0.05, (a + b) / 2, f"{p} pts", ha="left", va="center", fontsize=7.5)
     ax.set_xticks(xs); ax.set_xticklabels([g[0] for g in GAP])
-    ax.set_ylabel("target macro-F$_1$"); ax.set_xlim(-0.55, len(GAP) + 0.34)
+    ax.set_ylabel("target macro-F$_1$"); ax.set_xlim(-0.48, len(GAP) + 0.12)
     ax.set_ylim(0, 0.62)
     ax.legend(frameon=False, loc="upper center", ncol=1, handlelength=1.4,
               borderpad=0.15, bbox_to_anchor=(0.46, 1.02))
@@ -124,13 +138,14 @@ def fig3():
     fig, ax = plt.subplots(figsize=(3.35, 2.35))
     x = np.arange(len(LAM))
     ax.axhline(0, color="0.55", linewidth=0.7)
-    ax.plot(x, D_FWD, marker="o", ms=3.6, color="black", linewidth=1.1,
+    ax.plot(x, D_FWD, marker="o", ms=3.8, color=BLUE, linewidth=1.5,
             label="S$_1\\rightarrow$S$_2$ (penalty 0.6 pts)")
-    ax.plot(x, D_REV, marker="s", ms=3.4, color="black", linewidth=1.1,
+    ax.plot(x, D_REV, marker="s", ms=3.6, color=ORANGE, linewidth=1.5,
             linestyle=(0, (3.5, 1.8)), markerfacecolor="white",
+            markeredgecolor=ORANGE, markeredgewidth=1.1,
             label="S$_2\\rightarrow$S$_1$ (penalty 21.3 pts)")
     ipub = LAM.index(0.8)
-    ax.axvline(ipub, color="black", linestyle=(0, (1.6, 1.6)), linewidth=0.8)
+    ax.axvline(ipub, color="0.35", linestyle=(0, (1.6, 1.6)), linewidth=0.8)
     ax.text(ipub, 10.3, "published $\\lambda_{BN}=0.8$", fontsize=7,
             ha="center", va="top")
     ax.set_xticks(x); ax.set_xticklabels([f"{v:.1f}" for v in LAM])
