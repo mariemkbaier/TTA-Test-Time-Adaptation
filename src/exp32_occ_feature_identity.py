@@ -95,23 +95,63 @@ if __name__ == "__main__":
             out.append(np.concatenate([by[d] for d in pick]))
         return out
 
+    # The record-level alternative is reported alongside it, not because it is the right
+    # unit but because the contrast is the argument: resampling dependent records as if
+    # they were independent draws narrows every interval, and a feature can be made to
+    # look decisive by the choice of unit alone. Both are stored so either can be quoted.
+    def row_draws(df, n):
+        m = len(df)
+        return [rng.integers(0, m, size=m) for _ in range(n)]
+
     iS = day_draws(S, B)
     iT = day_draws(T, B)
-    for c in shared:
-        rs = np.corrcoef(S[c], S.occ)[0, 1]; rt = np.corrcoef(T[c], T.occ)[0, 1]
+    jS = row_draws(S, B)
+    jT = row_draws(T, B)
+
+    def interval(c, dS, dT):
         # a resampled day set can be constant in a sparse channel (power2 is zero in 89%
         # of rows), making the correlation undefined; those draws are dropped and counted
-        bs = [np.corrcoef(S[c].values[i], S.occ.values[i])[0, 1] for i in iS]
-        bt = [np.corrcoef(T[c].values[i], T.occ.values[i])[0, 1] for i in iT]
+        bs = [np.corrcoef(S[c].values[i], S.occ.values[i])[0, 1] for i in dS]
+        bt = [np.corrcoef(T[c].values[i], T.occ.values[i])[0, 1] for i in dT]
         ns, nt = int(np.isnan(bs).sum()), int(np.isnan(bt).sum())
         bs = [v for v in bs if np.isfinite(v)]; bt = [v for v in bt if np.isfinite(v)]
         sl, sh = np.percentile(bs, [2.5, 97.5]); tl, th = np.percentile(bt, [2.5, 97.5])
+        return sl, sh, tl, th, ns, nt
+
+    # One row per feature, with the record-level bounds in their own columns rather than
+    # in duplicate rows: a second row would repeat each point estimate and make every
+    # correlation in the manuscript ambiguous to the transcription check for no gain.
+    for c in shared:
+        rs = np.corrcoef(S[c], S.occ)[0, 1]; rt = np.corrcoef(T[c], T.occ)[0, 1]
+        sl, sh, tl, th, ns, nt = interval(c, iS, iT)
+        rsl, rsh, rtl, rth, rns, rnt = interval(c, jS, jT)
         flip = (sl > 0 and th < 0) or (sh < 0 and tl > 0)
-        v = "SIGN REVERSES" if flip else ("same sign" if rs * rt > 0 else "sign differs (CIs overlap 0)")
-        print(f"{c:<16}{rs:>+12.3f}  [{sl:+.3f},{sh:+.3f}]{rt:>+12.3f}  [{tl:+.3f},{th:+.3f}]  {v}")
-        rows.append(dict(kind="correlation", feature=c, r_source=rs, src_lo=sl, src_hi=sh,
+        flip_rec = (rsl > 0 and rth < 0) or (rsh < 0 and rtl > 0)
+        v = ("SIGN REVERSES" if flip else
+             "same sign" if rs * rt > 0 else "sign differs (CIs overlap 0)")
+        print(f"{c:<16}{rs:>+12.3f}  [{sl:+.3f},{sh:+.3f}]"
+              f"{rt:>+12.3f}  [{tl:+.3f},{th:+.3f}]  {v}")
+        rows.append(dict(kind="correlation", feature=c,
+                         r_source=rs, src_lo=sl, src_hi=sh,
                          r_target=rt, tgt_lo=tl, tgt_hi=th, reverses=bool(flip),
-                         undefined_draws_src=ns, undefined_draws_tgt=nt))
+                         undefined_draws_src=ns, undefined_draws_tgt=nt,
+                         src_lo_record=rsl, src_hi_record=rsh,
+                         tgt_lo_record=rtl, tgt_hi_record=rth,
+                         reverses_record=bool(flip_rec),
+                         undefined_draws_src_record=rns,
+                         undefined_draws_tgt_record=rnt))
+
+    print(f"\n{'feature':<16}{'source r':>12}{'95% CI (by record)':>22}"
+          f"{'target r':>12}{'95% CI (by record)':>22}  verdict")
+    print("-" * 100)
+    for r in [r for r in rows if r["kind"] == "correlation"]:
+        v = ("SIGN REVERSES" if r["reverses_record"] else
+             "same sign" if r["r_source"] * r["r_target"] > 0
+             else "sign differs (CIs overlap 0)")
+        print(f"{r['feature']:<16}{r['r_source']:>+12.3f}  "
+              f"[{r['src_lo_record']:+.3f},{r['src_hi_record']:+.3f}]  "
+              f"{r['r_target']:>+10.3f}  "
+              f"[{r['tgt_lo_record']:+.3f},{r['tgt_hi_record']:+.3f}]  {v}")
 
     # ---- what does keeping a reversing feature cost in transfer?
     rev = [r["feature"] for r in rows if r.get("reverses")]

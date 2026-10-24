@@ -813,7 +813,7 @@ Underfull \hbox (badness 1189) in paragraph at lines 277--287
  []
 
 
-Overfull \hbox (13.53433pt too wide) in paragraph at lines 317--326
+Overfull \hbox (13.53433pt too wide) in paragraph at lines 319--328
  [][] 
  []
 
@@ -821,11 +821,11 @@ File: figures//fig_leakage.pdf Graphic file (type pdf)
 <use figures//fig_leakage.pdf>
 [3] [4]
 LaTeX Font Info:    Font shape `T1/lmss/m/it' in size <9> not available
-(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 431.
+(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 433.
 File: figures//fig_penalty.pdf Graphic file (type pdf)
 <use figures//fig_penalty.pdf>
 
-Underfull \hbox (badness 1748) in paragraph at lines 538--544
+Underfull \hbox (badness 1748) in paragraph at lines 540--546
 \T1/stix/m/n/10 worth mak-ing ex-plicit. Re-sam-pling in-di-vid-ual win-dows
  []
 
@@ -834,43 +834,43 @@ File: figures//fig_bndial.pdf Graphic file (type pdf)
 <use figures//fig_bndial.pdf>
  [6]
 LaTeX Font Info:    Font shape `T1/zi4/m/n' will be
-(Font)              scaled to size 7.65005pt on input line 651.
+(Font)              scaled to size 7.65005pt on input line 653.
  [7]
-Underfull \hbox (badness 1590) in paragraph at lines 807--814
+Underfull \hbox (badness 1590) in paragraph at lines 809--816
 []\T1/stix/m/n/10 Second, the source-only model in the seven-feature
  []
 
 
-Underfull \hbox (badness 1371) in paragraph at lines 807--814
+Underfull \hbox (badness 1371) in paragraph at lines 809--816
 \T1/stix/m/n/10 ac-cu-racy of $\LS1/stix/m/n/10 0\LS1/stix/m/it/10 :\LS1/stix/m
 /n/10 640$ \T1/stix/m/n/10 sits be-low the $\LS1/stix/m/n/10 0\LS1/stix/m/it/10
  :\LS1/stix/m/n/10 720$ \T1/stix/m/n/10 that pre-dict-ing
  []
 
 [8]
-Overfull \hbox (3.73555pt too wide) in paragraph at lines 864--867
+Overfull \hbox (3.73555pt too wide) in paragraph at lines 866--869
 []\T1/stix/m/n/10 Measure the cross-domain penalty against a model trained
  []
 
 
-Underfull \hbox (badness 1062) in paragraph at lines 884--891
+Underfull \hbox (badness 1062) in paragraph at lines 886--893
 \T1/stix/m/n/10 pipeline; the win-dow def-i-ni-tion ac-counts for un-der two
  []
 
 
-Overfull \hbox (2.38551pt too wide) in paragraph at lines 919--926
+Overfull \hbox (2.38551pt too wide) in paragraph at lines 921--928
 \T1/stix/m/n/10 Run-ning both trans-fer di-rec-tions on each rules out a direct
 ion-
  []
 
 
-Underfull \hbox (badness 1024) in paragraph at lines 930--935
+Underfull \hbox (badness 1024) in paragraph at lines 932--937
 []\T1/stix/m/n/10 Code and ev-ery re-sult file are avail-able at [][]$\T1/zi4/m
 /n/10 https : / /
  []
 
 
-Overfull \hbox (3.57198pt too wide) in paragraph at lines 930--935
+Overfull \hbox (3.57198pt too wide) in paragraph at lines 932--937
 \T1/zi4/m/n/10 github . com / mariemkbaier / TTA-[]Test-[]Time-[]Adaptation$[][
 ]\T1/stix/m/n/10 . Each ta-
  []

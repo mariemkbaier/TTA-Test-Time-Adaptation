@@ -82,6 +82,11 @@ if __name__ == "__main__":
     # and non-random set of numbers unexamined.
     pat = re.compile(r"\$([+-]?\d+(?:\.\d+)?)(?:\\%)?\$")
     mathbf = re.compile(r"\\mathbf\{\s*([^{}]*?)\s*\}")
+    # Confidence intervals are written as a single math expression, $[a,b]$, so neither
+    # bound is a bare literal and both would otherwise go unchecked. Rewrite each pair
+    # into two separate literals before scanning, since the bounds are transcribed from
+    # a result file like any other number and can be mistyped like any other number.
+    interval = re.compile(r"\$\[\s*([+-]?\d+(?:\.\d+)?)\s*,\s*([+-]?\d+(?:\.\d+)?)\s*\]\$")
     srcpat = re.compile(r"%\s*source:.*?((?:results/)?\w+\.csv)")
     rows, nuniq, namb, nuns = [], 0, 0, 0
     print("=" * 100)
@@ -97,7 +102,8 @@ if __name__ == "__main__":
         use = cited or OWN
         scope = {k: v for k, v in tabs.items() if k in use} or tabs
         for ln, raw in enumerate(body.splitlines(), 1):
-            line = mathbf.sub(r"\1", raw)
+            line = interval.sub(lambda m: f"${m.group(1)}$ ${m.group(2)}$", raw)
+            line = mathbf.sub(r"\1", line)
             if line.lstrip().startswith("%"):
                 continue
             for m in pat.finditer(line):
