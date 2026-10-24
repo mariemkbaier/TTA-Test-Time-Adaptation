@@ -9,9 +9,9 @@ main.tex,74,2.1,AMBIGUOUS,declared,5,exp23_bn_channel.csv[S2->S1 DIGA (published
 main.tex,80,25,AMBIGUOUS,declared,4,exp23_bn_channel.csv[S2->S1 DIGA (published)].mcc; exp23_bn_channel.csv[S2->S1 DIGA lam_BN=0.8].mcc; exp32_occ_feature_identity.csv[transfer nan nan].sd
 main.tex,81,-5.7,UNIQUE,declared,1,exp23_bn_channel.csv[S1->S2 DIGA lam_BN=1.0].d_macroF1
 main.tex,82,-33.0,UNIQUE,declared,1,exp23_bn_channel.csv[S1->S2 DIGA lam_BN=0.0].d_macroF1
-main.tex,91,-0.38,AMBIGUOUS,declared,2,exp32_occ_feature_identity.csv[transfer nan nan].mcc; exp35_occ_tta_raw.csv[9 shared source->target Source-only].mcc
-main.tex,92,47.2,UNIQUE,declared,1,exp33_occ_penalty_raw.csv[all shared (9) source office penalty].mcc
-main.tex,92,7.6,AMBIGUOUS,declared,3,exp23_bn_channel.csv[S2->S1 AdaBN].mcc; exp23_bn_channel.csv[S2->S1 TENT].mcc; exp33_occ_penalty_raw.csv[transferable (7) source office penalty].mcc
+main.tex,93,-0.38,AMBIGUOUS,declared,2,exp32_occ_feature_identity.csv[transfer nan nan].mcc; exp35_occ_tta_raw.csv[9 shared source->target Source-only].mcc
+main.tex,94,47.2,UNIQUE,declared,1,exp33_occ_penalty_raw.csv[all shared (9) source office penalty].mcc
+main.tex,94,7.6,AMBIGUOUS,declared,3,exp23_bn_channel.csv[S2->S1 AdaBN].mcc; exp23_bn_channel.csv[S2->S1 TENT].mcc; exp33_occ_penalty_raw.csv[transferable (7) source office penalty].mcc
 main.tex,219,16,AMBIGUOUS,declared,8,exp11_reverse.csv[S2->S1 all 135-d (paper)].src_val_sd; exp11_reverse.csv[S2->S1 all 135-d (paper)].tgt_f1; exp11_reverse.csv[S2->S1 per-sensor ids only].f1_meal_prep
 main.tex,220,53,AMBIGUOUS,declared,6,exp11_reverse.csv[S1->S2 13-d g+t (transferable)].src_val; exp33_occ_penalty_raw.csv[all shared (9) target office other office].acc; exp35_occ_tta_raw.csv[9 shared source->target Source-only].rec_emp
 main.tex,221,442,UNSOURCED,declared,0,

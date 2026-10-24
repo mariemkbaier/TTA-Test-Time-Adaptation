@@ -87,11 +87,11 @@ physical device in each building.
 
 Occupancy estimation reproduces the pattern on a different task, dataset and sensing
 modality, and identifies the same cause independently. Two of the nine features shared
-between the offices correlate with occupancy in one and anti-correlate in the other;
-removing them moves cross-office transfer from MCC $-0.38$ to $+0.43$ and cuts the measured
-penalty in one direction from $47.2$ points to $7.6$. That removal is a diagnostic rather
-than a deployable configuration, since identifying which features reverse requires target
-labels; it isolates the cause of the deficit. Against the checkpoint that those
+between the offices correlate with occupancy in one and anti-correlate in the other.
+Removing them is a diagnostic rather than a deployable configuration, since identifying
+which features reverse requires target labels, but it isolates the cause: it moves
+cross-office transfer from MCC $-0.38$ to $+0.43$ and cuts the measured penalty in one
+direction from $47.2$ points to $7.6$. Against the checkpoint that those
 features break, PETAL and PeTTA gain over $50$ MCC points; against every sound checkpoint
 they lose. We conclude that in this domain the effectiveness of test-time adaptation is
 governed by the quality of the checkpoint being adapted and by the reliability of the

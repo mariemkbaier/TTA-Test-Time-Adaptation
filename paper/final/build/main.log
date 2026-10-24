@@ -762,7 +762,7 @@ File: t1zi4.fd 2018/01/14 T1/zi4 (Inconsolata)
 LaTeX Font Info:    Font shape `T1/zi4/m/n' will be
 (Font)              scaled to size 6.80005pt on input line 106.
 LaTeX Font Info:    Trying to load font information for T1+lmss on input line 1
-30.
+31.
  (t1lmss.fd
 File: t1lmss.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 ) [1
@@ -885,4 +885,4 @@ Overfull \hbox (3.57198pt too wide) in paragraph at lines 878--883
 Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  )
-Output written on main.xdv (9 pages, 103612 bytes).
+Output written on main.xdv (9 pages, 103628 bytes).
