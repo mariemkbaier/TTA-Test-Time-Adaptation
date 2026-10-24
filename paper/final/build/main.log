@@ -691,78 +691,78 @@ tim
 \openout4 = `main.abs'.
 
 LaTeX Font Info:    Trying to load font information for LS1+stixscr on input li
-ne 108.
+ne 110.
 (ls1stixscr.fd
 File: ls1stixscr.fd 2015/04/17 v1.1.2-latex STIX script LS1 font definitions
 )
 LaTeX Font Info:    Trying to load font information for LS2+stixex on input lin
-e 108.
+e 110.
  (ls2stixex.fd
 File: ls2stixex.fd 2015/04/17 v1.1.2-latex STIX extentions LS2 font definitions
 
 )
-LaTeX Font Info:    Trying to load font information for U+msa on input line 108
+LaTeX Font Info:    Trying to load font information for U+msa on input line 110
 .
  (umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 108
+LaTeX Font Info:    Trying to load font information for U+msb on input line 110
 .
  (umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 LaTeX Font Info:    Trying to load font information for LS1+stixfrak on input l
-ine 108.
+ine 110.
  (ls1stixfrak.fd
 File: ls1stixfrak.fd 2015/04/17 v1.1.2-latex STIX fraktur LS1 font definitions
 )
 LaTeX Font Info:    Trying to load font information for LS1+stixbb on input lin
-e 108.
+e 110.
 
 (ls1stixbb.fd
 File: ls1stixbb.fd 2015/04/17 v1.1.2-latex STIX blackboard LS1 font definitions
 
 )
 LaTeX Font Info:    Trying to load font information for LS2+stixcal on input li
-ne 108.
+ne 110.
  (ls2stixcal.fd
 File: ls2stixcal.fd 2015/04/17 v1.1.2-latex STIX calligraphic LS2 font definiti
 ons
 )
 LaTeX Font Info:    Trying to load font information for LS1+stixsf on input lin
-e 108.
+e 110.
  (ls1stixsf.fd
 File: ls1stixsf.fd 2015/04/17 v1.1.2-latex STIX sans-serif LS1 font definitions
 
 )
 LaTeX Font Info:    Trying to load font information for LS2+stixtt on input lin
-e 108.
+e 110.
  (ls2stixtt.fd
 File: ls2stixtt.fd 2015/04/17 v1.1.2-latex STIX typewriter LS2 font definitions
 
 )
-Overfull \hbox (123.62721pt too wide) detected at line 108
+Overfull \hbox (123.62721pt too wide) detected at line 110
 []
  []
 
 (main.abs)
 
-Package hyperref Warning: Ignoring empty anchor on input line 108.
+Package hyperref Warning: Ignoring empty anchor on input line 110.
 
 
-Package hyperref Warning: Ignoring empty anchor on input line 108.
+Package hyperref Warning: Ignoring empty anchor on input line 110.
 
 File: thumbnails/cas-email.jpeg Graphic file (type bmp)
 <thumbnails/cas-email.jpeg>
-LaTeX Font Info:    Trying to load font information for T1+zi4 on input line 10
-8.
+LaTeX Font Info:    Trying to load font information for T1+zi4 on input line 11
+0.
 (t1zi4.fd
 File: t1zi4.fd 2018/01/14 T1/zi4 (Inconsolata)
 )
 LaTeX Font Info:    Font shape `T1/zi4/m/n' will be
-(Font)              scaled to size 6.80005pt on input line 108.
+(Font)              scaled to size 6.80005pt on input line 110.
 LaTeX Font Info:    Trying to load font information for T1+lmss on input line 1
-32.
+34.
  (t1lmss.fd
 File: t1lmss.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 ) [1
@@ -770,50 +770,50 @@ File: t1lmss.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 
 ]
 LaTeX Font Info:    Trying to load font information for TS1+stix on input line 
-145.
+147.
  (ts1stix.fd
 File: ts1stix.fd 2015/04/17 v1.1.2-latex STIX TS1 font definitions
 )
-Overfull \hbox (2.04384pt too wide) in paragraph at lines 152--158
+Overfull \hbox (2.04384pt too wide) in paragraph at lines 154--160
 []\T1/stix/b/n/10 A rig-or-ous eval-u-a-tion of DIGA, PETAL and PeTTA
  []
 
 
-Overfull \hbox (6.73637pt too wide) in paragraph at lines 152--158
+Overfull \hbox (6.73637pt too wide) in paragraph at lines 154--160
 \T1/stix/m/n/10 pub-lished hy-per-pa-ram-e-ters, chance base-lines and paired
  []
 
 
-Underfull \hbox (badness 2253) in paragraph at lines 159--167
+Underfull \hbox (badness 2253) in paragraph at lines 161--169
 []\T1/stix/b/n/10 A cross-task-confirmed ac-count of why source
  []
 
 
-Underfull \hbox (badness 1796) in paragraph at lines 159--167
+Underfull \hbox (badness 1796) in paragraph at lines 161--169
 \T1/stix/b/n/10 mod-els fail to trans-fer. \T1/stix/m/n/10 On ac-tiv-ity recog-
 ni-tion,
  []
 
 
-Overfull \hbox (7.89636pt too wide) in paragraph at lines 181--189
+Overfull \hbox (7.89636pt too wide) in paragraph at lines 183--191
 \T1/stix/m/n/10 adap-ta-tion with and with-out source ac-cess [[]], and cluster
 ing-
  []
 
 LaTeX Font Info:    Font shape `T1/zi4/m/n' will be
-(Font)              scaled to size 8.50006pt on input line 222.
+(Font)              scaled to size 8.50006pt on input line 224.
 
-Underfull \hbox (badness 1199) in paragraph at lines 230--237
+Underfull \hbox (badness 1199) in paragraph at lines 232--239
 []\T1/stix/m/n/10 The oc-cu-pancy data comes from two of-fices at the
  []
 
 [2]
-Underfull \hbox (badness 1189) in paragraph at lines 275--285
+Underfull \hbox (badness 1189) in paragraph at lines 277--287
 []\T1/stix/m/n/10 Classes are un-bal-anced in both tasks, so we re-port
  []
 
 
-Overfull \hbox (13.53433pt too wide) in paragraph at lines 315--324
+Overfull \hbox (13.53433pt too wide) in paragraph at lines 317--326
  [][] 
  []
 
@@ -821,11 +821,11 @@ File: figures//fig_leakage.pdf Graphic file (type pdf)
 <use figures//fig_leakage.pdf>
 [3] [4]
 LaTeX Font Info:    Font shape `T1/lmss/m/it' in size <9> not available
-(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 429.
+(Font)              Font shape `T1/lmss/m/sl' tried instead on input line 431.
 File: figures//fig_penalty.pdf Graphic file (type pdf)
 <use figures//fig_penalty.pdf>
 
-Underfull \hbox (badness 1748) in paragraph at lines 536--542
+Underfull \hbox (badness 1748) in paragraph at lines 538--544
 \T1/stix/m/n/10 worth mak-ing ex-plicit. Re-sam-pling in-di-vid-ual win-dows
  []
 
@@ -834,51 +834,49 @@ File: figures//fig_bndial.pdf Graphic file (type pdf)
 <use figures//fig_bndial.pdf>
  [6]
 LaTeX Font Info:    Font shape `T1/zi4/m/n' will be
-(Font)              scaled to size 7.65005pt on input line 644.
+(Font)              scaled to size 7.65005pt on input line 651.
  [7]
-Underfull \hbox (badness 1590) in paragraph at lines 800--807
+Underfull \hbox (badness 1590) in paragraph at lines 807--814
 []\T1/stix/m/n/10 Second, the source-only model in the seven-feature
  []
 
 
-Underfull \hbox (badness 1371) in paragraph at lines 800--807
+Underfull \hbox (badness 1371) in paragraph at lines 807--814
 \T1/stix/m/n/10 ac-cu-racy of $\LS1/stix/m/n/10 0\LS1/stix/m/it/10 :\LS1/stix/m
 /n/10 640$ \T1/stix/m/n/10 sits be-low the $\LS1/stix/m/n/10 0\LS1/stix/m/it/10
  :\LS1/stix/m/n/10 720$ \T1/stix/m/n/10 that pre-dict-ing
  []
 
-
-Overfull \hbox (3.73555pt too wide) in paragraph at lines 854--857
+[8]
+Overfull \hbox (3.73555pt too wide) in paragraph at lines 864--867
 []\T1/stix/m/n/10 Measure the cross-domain penalty against a model trained
  []
 
-[8]
-Underfull \hbox (badness 1062) in paragraph at lines 874--881
+
+Underfull \hbox (badness 1062) in paragraph at lines 884--891
 \T1/stix/m/n/10 pipeline; the win-dow def-i-ni-tion ac-counts for un-der two
  []
 
 
-Overfull \hbox (2.38551pt too wide) in paragraph at lines 909--916
+Overfull \hbox (2.38551pt too wide) in paragraph at lines 919--926
 \T1/stix/m/n/10 Run-ning both trans-fer di-rec-tions on each rules out a direct
 ion-
  []
 
 
-Underfull \hbox (badness 1024) in paragraph at lines 920--925
+Underfull \hbox (badness 1024) in paragraph at lines 930--935
 []\T1/stix/m/n/10 Code and ev-ery re-sult file are avail-able at [][]$\T1/zi4/m
 /n/10 https : / /
  []
 
 
-Overfull \hbox (3.57198pt too wide) in paragraph at lines 920--925
+Overfull \hbox (3.57198pt too wide) in paragraph at lines 930--935
 \T1/zi4/m/n/10 github . com / mariemkbaier / TTA-[]Test-[]Time-[]Adaptation$[][
 ]\T1/stix/m/n/10 . Each ta-
  []
 
-[9] [10
-
-] (main.aux)
+[9] [10] (main.aux)
 Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  )
-Output written on main.xdv (10 pages, 109364 bytes).
+Output written on main.xdv (10 pages, 110964 bytes).

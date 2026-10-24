@@ -45,7 +45,7 @@ if __name__ == "__main__":
             ("S2->S1", X2, y2, d2, X1, y1, d1),
             ("S1->S2", X1, y1, d1, X2, y2, d2)):
         folds = np.array_split(np.unique(ds), 5)
-        P0, PD = [], []
+        P0, PD, PP = [], [], []
         for sd in SEEDS:
             va = np.isin(ds, folds[-1]); tr = ~va
             tf = TRANSFORMS["zscore"](Xs[tr])
@@ -60,32 +60,37 @@ if __name__ == "__main__":
                 return pr
             P0.append(run(lambda: SourceOnly(src)))
             PD.append(run(lambda: DIGAFaithful(src)))
+            # lam_BN = 1.0 leaves the normalisation statistics untouched, so this
+            # variant isolates the prototype classifier from the normalisation step
+            PP.append(run(lambda: DIGAFaithful(src, cfg=dict(lam_bn=1.0))))
 
-        pt = np.mean([metrics(yt, d)["macroF1"] - metrics(yt, p)["macroF1"]
-                      for p, d in zip(P0, PD)]) * 100
         days = np.unique(dt)
         idx_by_day = {d: np.where(dt == d)[0] for d in days}
         print(f"\n{dirn}: target has {len(yt)} windows over {len(days)} recording days")
-        print(f"  point estimate  {pt:+.2f} macro-F1 points")
 
-        for unit in ("recording day", "window"):
-            rng = np.random.default_rng(0); draws = []
-            for _ in range(B):
-                if unit == "recording day":
-                    pick = rng.choice(days, size=len(days), replace=True)
-                    idx = np.concatenate([idx_by_day[d] for d in pick])
-                else:
-                    idx = rng.integers(0, len(yt), len(yt))
-                yr = yt[idx]
-                if len(np.unique(yr)) < 2: continue
-                draws.append(np.mean([metrics(yr, d[idx])["macroF1"]
-                                      - metrics(yr, p[idx])["macroF1"]
-                                      for p, d in zip(P0, PD)]) * 100)
-            lo, hi = np.percentile(draws, [2.5, 97.5])
-            inc = "INCLUDES zero" if lo <= 0 <= hi else "excludes zero"
-            print(f"  resampled by {unit:<14} 95% CI [{lo:+.2f}, {hi:+.2f}]  {inc}")
-            rows.append(dict(direction=dirn, unit=unit, delta_pts=pt,
-                             ci_lo=lo, ci_hi=hi, includes_zero=bool(lo <= 0 <= hi),
-                             n_windows=len(yt), n_days=len(days)))
+        for variant, PX in (("DIGA, published", PD), ("DIGA, lam_BN=1.0", PP)):
+            pt = np.mean([metrics(yt, d)["macroF1"] - metrics(yt, p)["macroF1"]
+                          for p, d in zip(P0, PX)]) * 100
+            print(f"  {variant:<20} point estimate {pt:+.2f} macro-F1 points")
+
+            for unit in ("recording day", "window"):
+                rng = np.random.default_rng(0); draws = []
+                for _ in range(B):
+                    if unit == "recording day":
+                        pick = rng.choice(days, size=len(days), replace=True)
+                        idx = np.concatenate([idx_by_day[d] for d in pick])
+                    else:
+                        idx = rng.integers(0, len(yt), len(yt))
+                    yr = yt[idx]
+                    if len(np.unique(yr)) < 2: continue
+                    draws.append(np.mean([metrics(yr, d[idx])["macroF1"]
+                                          - metrics(yr, p[idx])["macroF1"]
+                                          for p, d in zip(P0, PX)]) * 100)
+                lo, hi = np.percentile(draws, [2.5, 97.5])
+                inc = "INCLUDES zero" if lo <= 0 <= hi else "excludes zero"
+                print(f"    resampled by {unit:<14} 95% CI [{lo:+.2f}, {hi:+.2f}]  {inc}")
+                rows.append(dict(direction=dirn, variant=variant, unit=unit, delta_pts=pt,
+                                 ci_lo=lo, ci_hi=hi, includes_zero=bool(lo <= 0 <= hi),
+                                 n_windows=len(yt), n_days=len(days)))
     pd.DataFrame(rows).to_csv(os.path.join(R, "exp36_diga_ci.csv"), index=False)
     print("\n-> results/exp36_diga_ci.csv")

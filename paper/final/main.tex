@@ -93,9 +93,11 @@ with day-level bootstrap intervals that exclude zero.
 Removing them is a diagnostic rather than a deployable configuration, since identifying
 which features reverse requires target labels, but it isolates the cause: it moves
 cross-office transfer from MCC $-0.38$ to $+0.43$ and cuts the measured penalty in one
-direction from $47.2$ points to $7.6$. Against the checkpoint that those
-features break, PETAL and PeTTA gain over $50$ MCC points; against every sound checkpoint
-they lose. We conclude that in this domain the effectiveness of test-time adaptation is
+direction from $47.2$ points to $7.6$. Against the checkpoint whose predictions those
+features undermine, PETAL and PeTTA gain over $50$ MCC points. Under the label-free
+protocol both lose against the sound checkpoint in the other direction; restricting the
+analysis to the seven diagnostic features leaves no broken checkpoint and reduces every
+method's effect to at most $12$ points. We conclude that in this domain the effectiveness of test-time adaptation is
 governed by the quality of the checkpoint being adapted and by the reliability of the
 measurement, more than by the merits of the adaptation method.
 \end{abstract}
@@ -554,7 +556,8 @@ PeTTA within $2.3$, having changed much the same predictions.
 \centering
 \caption{DIGA as $\lambda_{BN}$ moves from source statistics ($1.0$) to target statistics
 ($0.0$), $\Delta$\macf{} against source-only. At $\lambda_{BN}=1.0$ the statistics are
-untouched, so that row isolates the prototype classifier from the normalisation.}
+untouched, so that row isolates the prototype classifier from the normalisation; its
+day-level bootstrap intervals are $[-8.9,-2.1]$ and $[+1.4,+7.4]$.}
 \label{tab:bndial}
 \small
 \begin{tabular}{@{}lcc@{}}
@@ -599,9 +602,13 @@ change, because DIGA's prototype classifier is still active. That row is the onl
 configuration in this study where an adaptation component helps by more than a point
 without target labels, and it helps in the direction with headroom and hurts in the
 direction without. What stops DIGA from losing ground in that direction is therefore its prototype
-classifier, worth $4.4$ points at this setting, partly spent back by a normalisation step
-costing $2.3$. We report the decomposition rather than a gain, since the net difference
-does not separate from zero.
+classifier, worth $4.4$ points at this setting with a day-level bootstrap interval of
+$[+1.4,+7.4]$ that excludes zero, partly spent back by a normalisation step costing $2.3$.
+The component gain is therefore established where the method's net effect is not: the
+prototype classifier separates from zero, the full method at its published
+$\lambda_{BN}=0.8$ does not, and the difference between them is the normalisation step. In
+the other direction the same configuration loses $5.7$ points, interval
+$[-8.9,-2.1]$, so the component helps only where there is headroom.
 
 One objection deserves pre-empting: that the methods were simply not tuned. As a
 post-hoc robustness check only --- and explicitly not part of the label-free protocol used
@@ -813,10 +820,13 @@ Two things govern whether test-time adaptation helps on this data, and neither i
 property of the adaptation method.
 
 The first is the quality of the checkpoint being adapted. Across both tasks and both
-directions, the methods gain where the starting model is poor and lose where it is sound.
-The clearest instance is occupancy, where a checkpoint whose predictions are
-anti-correlated with the labels yields gains above $50$ MCC points for two of the three
-methods, while the sound checkpoint in the other direction yields losses of $16$. The
+directions, the methods help only where the starting model is poor, and lose ground where
+it is sound. The asymmetry is not symmetric in strength: the losses separate from zero,
+while the one non-negative entry on the activity task does not.
+The clearest instance is occupancy, where under the label-free protocol a checkpoint
+whose predictions are anti-correlated with the labels yields gains above $50$ MCC points
+for two of the three methods, while the sound checkpoint in the other direction yields
+losses of $16$. The
 activity task shows the same ordering more gently. The practical reading is that an
 adaptation gain reported against a single checkpoint is, in large part, a statement about
 that checkpoint. A method evaluated only against a weak source model will appear to work,
@@ -883,9 +893,9 @@ The second is the evaluation. The three methods track that asymmetry rather than
 Where the penalty is negligible all three lose ground, by $8.6$ to $20.4$ points; where it
 is real, only DIGA avoids losing ground, at $+2.1$ points, which a day-level bootstrap does
 not separate from zero. Occupancy estimation reproduces the pattern on a
-different task, dataset and sensing modality: against a checkpoint whose predictions are
-anti-correlated with the labels, PETAL and PeTTA gain over $50$ MCC points, and against a
-sound one they lose $16$. The shared mechanism is normalisation-statistic adaptation, which
+different task, dataset and sensing modality: under the label-free protocol, against a
+checkpoint whose predictions are anti-correlated with the labels PETAL and PeTTA gain over
+$50$ MCC points, and against the sound checkpoint in the other direction they lose $16$. The shared mechanism is normalisation-statistic adaptation, which
 carries essentially all of their behaviour and which is a trade rather than an improvement.
 
 The third is an account of why source models fail to transfer, confirmed independently on
