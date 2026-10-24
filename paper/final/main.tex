@@ -5,6 +5,14 @@
 % ===========================================================================
 \documentclass[a4paper,fleqn]{cas-dc}
 
+% cas-common.sty puts "<short authors>: Preprint submitted to Elsevier" in the footer of
+% every page, through \__first_footerline:, which both the title-page footer and the
+% running footer call. Emptying it removes the line everywhere while leaving the rule and
+% the "Page n of m" counter in place.
+\ExplSyntaxOn
+\cs_set:Npn \__first_footerline: { }
+\ExplSyntaxOff
+
 \usepackage[numbers]{natbib}
 \usepackage{amsmath,amssymb}
 \usepackage{booktabs}
