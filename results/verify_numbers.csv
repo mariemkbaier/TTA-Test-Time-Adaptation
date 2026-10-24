@@ -5,10 +5,12 @@ main.tex,71,0.6,AMBIGUOUS,declared,53,exp21_matched.csv[S2 matched_penalty].f1; 
 main.tex,72,21.3,AMBIGUOUS,declared,2,exp21_matched.csv[S1 matched_penalty].f1; exp23_bn_channel.csv[S2->S1 TENT].macroF1
 main.tex,73,8.6,AMBIGUOUS,declared,2,exp11_reverse.csv[S1->S2 all 135-d (paper)].f1_music; exp32_occ_feature_identity.csv[correlation power3 nan].src_lo
 main.tex,74,20.4,AMBIGUOUS,declared,3,exp4_windowing.csv[causal label random].tm_mean; exp4_windowing.csv[causal label blocked].tm_mean; exp4_windowing.csv[causal label grouped].tm_mean
+main.tex,75,2.1,AMBIGUOUS,declared,5,exp23_bn_channel.csv[S2->S1 DIGA (published)].d_macroF1; exp23_bn_channel.csv[S2->S1 DIGA lam_BN=0.8].d_macroF1; exp4_windowing.csv[causal recording blocked].sa_sd
 main.tex,81,25,AMBIGUOUS,declared,3,exp23_bn_channel.csv[S2->S1 DIGA (published)].mcc; exp23_bn_channel.csv[S2->S1 DIGA lam_BN=0.8].mcc; exp35_occ_tta_raw.csv[7 transferable source->target DIGA].pred_occ_rate
 main.tex,82,-5.7,UNIQUE,declared,1,exp23_bn_channel.csv[S1->S2 DIGA lam_BN=1.0].d_macroF1
 main.tex,83,-33.0,UNIQUE,declared,1,exp23_bn_channel.csv[S1->S2 DIGA lam_BN=0.0].d_macroF1
 main.tex,95,-0.38,AMBIGUOUS,declared,2,exp32_occ_feature_identity.csv[transfer nan nan].mcc; exp35_occ_tta_raw.csv[9 shared source->target Source-only].mcc
+main.tex,95,0.43,AMBIGUOUS,declared,6,exp23_bn_channel.csv[S1->S2 DIGA lam_BN=0.9].macroF1; exp35_occ_tta_raw.csv[7 transferable source->target Source-only].mcc; exp35_occ_tta_raw.csv[9 shared source->target PeTTA].rec_occ
 main.tex,96,47.2,UNIQUE,declared,1,exp33_occ_penalty_raw.csv[all shared (9) source office penalty].mcc
 main.tex,96,7.6,AMBIGUOUS,declared,3,exp23_bn_channel.csv[S2->S1 AdaBN].mcc; exp23_bn_channel.csv[S2->S1 TENT].mcc; exp33_occ_penalty_raw.csv[transferable (7) source office penalty].mcc
 main.tex,223,16,AMBIGUOUS,declared,9,exp11_reverse.csv[S2->S1 all 135-d (paper)].src_val_sd; exp11_reverse.csv[S2->S1 all 135-d (paper)].tgt_f1; exp11_reverse.csv[S2->S1 per-sensor ids only].f1_meal_prep
@@ -31,12 +33,17 @@ main.tex,344,83,AMBIGUOUS,declared,2,exp32_occ_feature_identity.csv[channel_dist
 main.tex,347,0.1626,AMBIGUOUS,declared,3,exp4_windowing.csv[centered label random].tf_mean; exp4_windowing.csv[centered label blocked].tf_mean; exp4_windowing.csv[centered label grouped].tf_mean
 main.tex,348,0.2356,AMBIGUOUS,declared,3,exp4_windowing.csv[causal recording random].tf_mean; exp4_windowing.csv[causal recording blocked].tf_mean; exp4_windowing.csv[causal recording grouped].tf_mean
 main.tex,374,0.200,AMBIGUOUS,declared,8,exp11_reverse.csv[S1->S2 13-d g+t (transferable)].chance; exp11_reverse.csv[S1->S2 all 135-d (paper)].chance; exp11_reverse.csv[S1->S2 per-sensor ids only].chance
+main.tex,382,0.4466,UNIQUE,declared,1,exp11_reverse.csv[S1->S2 13-d g+t (transferable)].tgt_f1
+main.tex,382,0.3068,UNIQUE,declared,1,exp11_reverse.csv[S2->S1 13-d g+t (transferable)].tgt_f1
 main.tex,383,29,AMBIGUOUS,declared,6,exp11_reverse.csv[S1->S2 no per-sensor (29-d)].d; exp11_reverse.csv[S2->S1 no per-sensor (29-d)].d; exp23_bn_channel.csv[S1->S2 PeTTA (published)].macroF1
 main.tex,383,0.3630,UNIQUE,declared,1,exp11_reverse.csv[S1->S2 no per-sensor (29-d)].tgt_f1
 main.tex,383,0.2271,UNIQUE,declared,1,exp11_reverse.csv[S2->S1 no per-sensor (29-d)].tgt_f1
 main.tex,384,135,AMBIGUOUS,declared,2,exp11_reverse.csv[S1->S2 all 135-d (paper)].d; exp11_reverse.csv[S2->S1 all 135-d (paper)].d
 main.tex,384,0.2118,UNIQUE,declared,1,exp11_reverse.csv[S1->S2 all 135-d (paper)].tgt_f1
+main.tex,384,0.1583,UNIQUE,declared,1,exp11_reverse.csv[S2->S1 all 135-d (paper)].tgt_f1
 main.tex,385,106,AMBIGUOUS,declared,2,exp11_reverse.csv[S1->S2 per-sensor ids only].d; exp11_reverse.csv[S2->S1 per-sensor ids only].d
+main.tex,385,0.1350,UNIQUE,declared,1,exp11_reverse.csv[S1->S2 per-sensor ids only].tgt_f1
+main.tex,385,0.1702,UNIQUE,declared,1,exp11_reverse.csv[S2->S1 per-sensor ids only].tgt_f1
 main.tex,387,0.1997,AMBIGUOUS,declared,4,exp11_reverse.csv[S1->S2 13-d g+t (transferable)].chance; exp11_reverse.csv[S1->S2 all 135-d (paper)].chance; exp11_reverse.csv[S1->S2 per-sensor ids only].chance
 main.tex,387,0.2003,AMBIGUOUS,declared,4,exp11_reverse.csv[S2->S1 13-d g+t (transferable)].chance; exp11_reverse.csv[S2->S1 all 135-d (paper)].chance; exp11_reverse.csv[S2->S1 per-sensor ids only].chance
 main.tex,392,0.1350,UNIQUE,declared,1,exp11_reverse.csv[S1->S2 per-sensor ids only].tgt_f1
@@ -50,6 +57,7 @@ main.tex,409,0.3068,UNIQUE,declared,1,exp11_reverse.csv[S2->S1 13-d g+t (transfe
 main.tex,412,5.1,UNIQUE,declared,1,exp11_reverse.csv[S1->S2 all 135-d (paper)].f1_cleaning
 main.tex,436,0.3497,UNIQUE,declared,1,exp21_matched.csv[S2 matched_oracle (target's own days)].f1
 main.tex,436,0.3434,UNIQUE,declared,1,exp21_matched.csv[S2 matched_transfer (source building)].f1
+main.tex,436,0.6,AMBIGUOUS,declared,53,exp21_matched.csv[S2 matched_penalty].f1; exp23_bn_channel.csv[S1->S2 PeTTA (published)].sd; exp32_occ_feature_identity.csv[correlation rms nan].r_source
 main.tex,437,0.4897,UNIQUE,declared,1,exp21_matched.csv[S1 matched_oracle (target's own days)].f1
 main.tex,437,0.2767,UNIQUE,declared,1,exp21_matched.csv[S1 matched_transfer (source building)].f1
 main.tex,437,21.3,AMBIGUOUS,declared,2,exp21_matched.csv[S1 matched_penalty].f1; exp23_bn_channel.csv[S2->S1 TENT].macroF1
@@ -64,6 +72,7 @@ main.tex,493,0.4088,AMBIGUOUS,declared,2,exp23_bn_channel.csv[S1->S2 DIGA (publi
 main.tex,493,-8.6,AMBIGUOUS,declared,3,exp23_bn_channel.csv[S2->S1 DIGA lam_BN=0.0].mcc; exp23_bn_channel.csv[S1->S2 DIGA (published)].d_macroF1; exp23_bn_channel.csv[S1->S2 DIGA lam_BN=0.8].d_macroF1
 main.tex,493,1279,AMBIGUOUS,declared,2,exp23_bn_channel.csv[S1->S2 DIGA (published)].changed; exp23_bn_channel.csv[S1->S2 DIGA lam_BN=0.8].changed
 main.tex,493,0.3438,AMBIGUOUS,declared,2,exp23_bn_channel.csv[S2->S1 DIGA (published)].macroF1; exp23_bn_channel.csv[S2->S1 DIGA lam_BN=0.8].macroF1
+main.tex,493,2.1,AMBIGUOUS,declared,5,exp23_bn_channel.csv[S2->S1 DIGA (published)].d_macroF1; exp23_bn_channel.csv[S2->S1 DIGA lam_BN=0.8].d_macroF1; exp4_windowing.csv[causal recording blocked].sa_sd
 main.tex,493,1031,AMBIGUOUS,declared,2,exp23_bn_channel.csv[S2->S1 DIGA (published)].changed; exp23_bn_channel.csv[S2->S1 DIGA lam_BN=0.8].changed
 main.tex,494,0.3113,UNIQUE,declared,1,exp23_bn_channel.csv[S1->S2 PETAL (published)].macroF1
 main.tex,494,-18.3,UNIQUE,declared,1,exp23_bn_channel.csv[S1->S2 PETAL (published)].d_macroF1
@@ -104,16 +113,20 @@ main.tex,527,0.6,AMBIGUOUS,declared,53,exp21_matched.csv[S2 matched_penalty].f1;
 main.tex,527,8.6,AMBIGUOUS,declared,2,exp11_reverse.csv[S1->S2 all 135-d (paper)].f1_music; exp32_occ_feature_identity.csv[correlation power3 nan].src_lo
 main.tex,527,20.4,AMBIGUOUS,declared,3,exp4_windowing.csv[causal label random].tm_mean; exp4_windowing.csv[causal label blocked].tm_mean; exp4_windowing.csv[causal label grouped].tm_mean
 main.tex,528,21.3,AMBIGUOUS,declared,2,exp21_matched.csv[S1 matched_penalty].f1; exp23_bn_channel.csv[S2->S1 TENT].macroF1
+main.tex,529,2.1,AMBIGUOUS,declared,5,exp23_bn_channel.csv[S2->S1 DIGA (published)].d_macroF1; exp23_bn_channel.csv[S2->S1 DIGA lam_BN=0.8].d_macroF1; exp4_windowing.csv[causal recording blocked].sa_sd
 main.tex,531,-8.6,AMBIGUOUS,declared,3,exp23_bn_channel.csv[S2->S1 DIGA lam_BN=0.0].mcc; exp23_bn_channel.csv[S1->S2 DIGA (published)].d_macroF1; exp23_bn_channel.csv[S1->S2 DIGA lam_BN=0.8].d_macroF1
 main.tex,547,11,AMBIGUOUS,declared,5,"exp11_reverse.csv[S2->S1 per-sensor ids only].src_val_sd; exp11_reverse.csv[S1->S2 per-sensor ids only].f1_watching_tv; exp23_bn_channel.csv[S1->S2 PETAL, BN channel off].changed"
 main.tex,547,24,AMBIGUOUS,declared,8,"exp21_matched.csv[S2 matched_transfer (source building)].mcc; exp23_bn_channel.csv[S2->S1 PETAL, BN channel off].changed; exp32_occ_feature_identity.csv[correlation power2 nan].tgt_lo"
 main.tex,549,0.3,AMBIGUOUS,declared,75,exp11_reverse.csv[S1->S2 per-sensor ids only].src_val; exp11_reverse.csv[S2->S1 13-d g+t (transferable)].tgt_f1; exp11_reverse.csv[S1->S2 no per-sensor (29-d)].tgt_mcc
 main.tex,550,2.3,AMBIGUOUS,declared,5,exp11_reverse.csv[S1->S2 per-sensor ids only].tgt_f1_sd; exp4_windowing.csv[centered label blocked].sm_sd; exp4_windowing.csv[causal label random].tf_sd
 main.tex,564,-5.7,UNIQUE,declared,1,exp23_bn_channel.csv[S1->S2 DIGA lam_BN=1.0].d_macroF1
+main.tex,564,4.4,UNIQUE,declared,1,exp23_bn_channel.csv[S2->S1 DIGA lam_BN=1.0].d_macroF1
 main.tex,565,0.9,AMBIGUOUS,declared,23,exp23_bn_channel.csv[S2->S1 TENT].sd; exp23_bn_channel.csv[S2->S1 DIGA lam_BN=0.9].sd; exp32_occ_feature_identity.csv[channel_dist power2 nan].src_frac_zero
 main.tex,565,-6.5,UNIQUE,declared,1,exp23_bn_channel.csv[S1->S2 DIGA lam_BN=0.9].d_macroF1
+main.tex,565,2.4,AMBIGUOUS,declared,3,exp23_bn_channel.csv[S1->S2 DIGA lam_BN=0.2].sd; exp23_bn_channel.csv[S2->S1 DIGA lam_BN=0.9].d_macroF1; exp4_windowing.csv[causal recording blocked].sm_sd
 main.tex,566,0.8,AMBIGUOUS,declared,36,exp23_bn_channel.csv[S2->S1 AdaBN].sd; exp23_bn_channel.csv[S2->S1 DIGA lam_BN=1.0].sd; exp32_occ_feature_identity.csv[channel_dist door nan].src_frac_zero
 main.tex,566,-8.6,AMBIGUOUS,declared,3,exp23_bn_channel.csv[S2->S1 DIGA lam_BN=0.0].mcc; exp23_bn_channel.csv[S1->S2 DIGA (published)].d_macroF1; exp23_bn_channel.csv[S1->S2 DIGA lam_BN=0.8].d_macroF1
+main.tex,566,2.1,AMBIGUOUS,declared,5,exp23_bn_channel.csv[S2->S1 DIGA (published)].d_macroF1; exp23_bn_channel.csv[S2->S1 DIGA lam_BN=0.8].d_macroF1; exp4_windowing.csv[causal recording blocked].sa_sd
 main.tex,567,0.6,AMBIGUOUS,declared,53,exp21_matched.csv[S2 matched_penalty].f1; exp23_bn_channel.csv[S1->S2 PeTTA (published)].sd; exp32_occ_feature_identity.csv[correlation rms nan].r_source
 main.tex,567,-23.3,AMBIGUOUS,declared,2,exp23_bn_channel.csv[S1->S2 DIGA lam_BN=0.6].d_macroF1; exp32_occ_feature_identity.csv[transfer nan nan].mcc
 main.tex,567,-12.9,UNIQUE,declared,1,exp23_bn_channel.csv[S2->S1 DIGA lam_BN=0.6].d_macroF1
@@ -143,8 +156,27 @@ main.tex,610,16,AMBIGUOUS,declared,9,exp11_reverse.csv[S2->S1 all 135-d (paper)]
 main.tex,614,53,AMBIGUOUS,declared,6,exp11_reverse.csv[S1->S2 13-d g+t (transferable)].src_val; exp33_occ_penalty_raw.csv[all shared (9) target office other office].acc; exp35_occ_tta_raw.csv[9 shared source->target Source-only].rec_emp
 main.tex,616,1.1,AMBIGUOUS,declared,8,exp23_bn_channel.csv[S1->S2 DIGA (published)].sd; exp23_bn_channel.csv[S1->S2 DIGA lam_BN=0.9].sd; exp23_bn_channel.csv[S1->S2 DIGA lam_BN=0.8].sd
 main.tex,617,38,AMBIGUOUS,declared,7,exp11_reverse.csv[S2->S1 all 135-d (paper)].gap; exp32_occ_feature_identity.csv[correlation co2 nan].r_source; exp33_occ_penalty_raw.csv[transferable (7) target office other office].mcc
+main.tex,652,0.502,UNIQUE,declared,1,exp32_occ_feature_identity.csv[correlation sum_power nan].r_source
+main.tex,652,0.780,UNIQUE,declared,1,exp32_occ_feature_identity.csv[correlation sum_power nan].r_target
+main.tex,653,0.378,AMBIGUOUS,declared,2,exp32_occ_feature_identity.csv[correlation co2 nan].r_source; exp33_occ_penalty_raw.csv[transferable (7) target office other office].mcc
+main.tex,653,0.671,AMBIGUOUS,declared,2,exp11_reverse.csv[S1->S2 13-d g+t (transferable)].f1_watching_tv; exp32_occ_feature_identity.csv[correlation co2 nan].r_target
+main.tex,654,0.352,AMBIGUOUS,declared,2,exp32_occ_feature_identity.csv[correlation power1 nan].r_source; exp35_occ_tta_raw.csv[7 transferable target->source PeTTA].mcc
+main.tex,654,0.462,AMBIGUOUS,declared,2,exp23_bn_channel.csv[S1->S2 PETAL (published)].sd; exp32_occ_feature_identity.csv[correlation power1 nan].r_target
+main.tex,655,0.348,UNIQUE,declared,1,exp32_occ_feature_identity.csv[correlation motion nan].r_source
+main.tex,655,0.544,UNIQUE,declared,1,exp32_occ_feature_identity.csv[correlation motion nan].r_target
+main.tex,656,0.263,UNIQUE,declared,1,exp32_occ_feature_identity.csv[correlation power2 nan].r_source
+main.tex,656,0.423,AMBIGUOUS,declared,2,exp11_reverse.csv[S2->S1 13-d g+t (transferable)].tgt_acc; exp32_occ_feature_identity.csv[correlation power2 nan].r_target
+main.tex,657,0.255,AMBIGUOUS,declared,2,exp11_reverse.csv[S2->S1 per-sensor ids only].tgt_acc; exp32_occ_feature_identity.csv[correlation door nan].r_source
+main.tex,657,0.307,AMBIGUOUS,declared,3,exp11_reverse.csv[S2->S1 13-d g+t (transferable)].tgt_f1; exp32_occ_feature_identity.csv[correlation door nan].r_target; exp35_occ_tta_raw.csv[9 shared source->target Source-only].macroF1
+main.tex,658,0.130,AMBIGUOUS,declared,3,exp11_reverse.csv[S2->S1 13-d g+t (transferable)].f1_cleaning; exp32_occ_feature_identity.csv[correlation power3 nan].r_source; exp4_windowing.csv[centered label random].sm_sd
+main.tex,658,0.721,AMBIGUOUS,declared,2,exp32_occ_feature_identity.csv[correlation power3 nan].r_target; exp35_occ_tta_raw.csv[7 transferable source->target PeTTA].macroF1
+main.tex,660,0.626,UNIQUE,declared,1,exp32_occ_feature_identity.csv[correlation rms nan].r_source
 main.tex,660,-0.202,UNIQUE,declared,1,exp32_occ_feature_identity.csv[correlation rms nan].r_target
+main.tex,661,0.116,UNIQUE,declared,1,exp32_occ_feature_identity.csv[correlation derivative_co2 nan].r_source
+main.tex,661,-0.207,UNIQUE,declared,1,exp32_occ_feature_identity.csv[correlation derivative_co2 nan].r_target
+main.tex,668,0.626,UNIQUE,declared,1,exp32_occ_feature_identity.csv[correlation rms nan].r_source
 main.tex,669,-0.202,UNIQUE,declared,1,exp32_occ_feature_identity.csv[correlation rms nan].r_target
+main.tex,670,0.116,UNIQUE,declared,1,exp32_occ_feature_identity.csv[correlation derivative_co2 nan].r_source
 main.tex,670,-0.207,UNIQUE,declared,1,exp32_occ_feature_identity.csv[correlation derivative_co2 nan].r_target
 main.tex,689,7,AMBIGUOUS,declared,6,exp11_reverse.csv[S1->S2 13-d g+t (transferable)].src_val_sd; exp11_reverse.csv[S2->S1 13-d g+t (transferable)].src_val_sd; exp11_reverse.csv[S2->S1 no per-sensor (29-d)].src_val_sd
 main.tex,693,9,AMBIGUOUS,declared,12,exp11_reverse.csv[S1->S2 13-d g+t (transferable)].gap; exp11_reverse.csv[S1->S2 all 135-d (paper)].f1_music; exp11_reverse.csv[S2->S1 13-d g+t (transferable)].f1_music
@@ -166,6 +198,7 @@ main.tex,728,44.5,UNIQUE,declared,1,exp33_occ_penalty_raw.csv[transferable (7) t
 main.tex,729,7,AMBIGUOUS,declared,6,exp11_reverse.csv[S1->S2 13-d g+t (transferable)].src_val_sd; exp11_reverse.csv[S2->S1 13-d g+t (transferable)].src_val_sd; exp11_reverse.csv[S2->S1 no per-sensor (29-d)].src_val_sd
 main.tex,729,0.3624,UNIQUE,declared,1,exp33_occ_penalty_raw.csv[transferable (7) source office own days].mcc
 main.tex,729,0.2866,UNIQUE,declared,1,exp33_occ_penalty_raw.csv[transferable (7) source office other office].mcc
+main.tex,729,7.6,AMBIGUOUS,declared,3,exp23_bn_channel.csv[S2->S1 AdaBN].mcc; exp23_bn_channel.csv[S2->S1 TENT].mcc; exp33_occ_penalty_raw.csv[transferable (7) source office penalty].mcc
 main.tex,737,47.2,UNIQUE,declared,1,exp33_occ_penalty_raw.csv[all shared (9) source office penalty].mcc
 main.tex,737,7.6,AMBIGUOUS,declared,3,exp23_bn_channel.csv[S2->S1 AdaBN].mcc; exp23_bn_channel.csv[S2->S1 TENT].mcc; exp33_occ_penalty_raw.csv[transferable (7) source office penalty].mcc
 main.tex,739,44.5,UNIQUE,declared,1,exp33_occ_penalty_raw.csv[transferable (7) target office penalty].mcc
@@ -173,14 +206,32 @@ main.tex,750,9,AMBIGUOUS,declared,12,exp11_reverse.csv[S1->S2 13-d g+t (transfer
 main.tex,751,7,AMBIGUOUS,declared,6,exp11_reverse.csv[S1->S2 13-d g+t (transferable)].src_val_sd; exp11_reverse.csv[S2->S1 13-d g+t (transferable)].src_val_sd; exp11_reverse.csv[S2->S1 no per-sensor (29-d)].src_val_sd
 main.tex,760,9,AMBIGUOUS,declared,12,exp11_reverse.csv[S1->S2 13-d g+t (transferable)].gap; exp11_reverse.csv[S1->S2 all 135-d (paper)].f1_music; exp11_reverse.csv[S2->S1 13-d g+t (transferable)].f1_music
 main.tex,760,-0.3818,AMBIGUOUS,declared,2,exp32_occ_feature_identity.csv[transfer nan nan].mcc; exp35_occ_tta_raw.csv[9 shared source->target Source-only].mcc
+main.tex,760,0.075,AMBIGUOUS,declared,2,exp11_reverse.csv[S2->S1 all 135-d (paper)].f1_watching_tv; exp11_reverse.csv[S2->S1 no per-sensor (29-d)].f1_cleaning
+main.tex,760,0.519,UNSOURCED,declared,0,
+main.tex,760,0.509,UNSOURCED,declared,0,
+main.tex,760,0.521,UNSOURCED,declared,0,
+main.tex,760,0.521,UNSOURCED,declared,0,
 main.tex,761,9,AMBIGUOUS,declared,12,exp11_reverse.csv[S1->S2 13-d g+t (transferable)].gap; exp11_reverse.csv[S1->S2 all 135-d (paper)].f1_music; exp11_reverse.csv[S2->S1 13-d g+t (transferable)].f1_music
+main.tex,761,0.3579,AMBIGUOUS,declared,2,exp32_occ_feature_identity.csv[transfer nan nan].mcc; exp35_occ_tta_raw.csv[9 shared target->source Source-only].mcc
+main.tex,761,0.011,AMBIGUOUS,declared,8,exp23_bn_channel.csv[S1->S2 DIGA (published)].sd; exp23_bn_channel.csv[S1->S2 DIGA lam_BN=0.9].sd; exp23_bn_channel.csv[S1->S2 DIGA lam_BN=0.8].sd
 main.tex,761,-0.159,UNSOURCED,declared,0,
 main.tex,761,-0.168,UNSOURCED,declared,0,
 main.tex,761,-0.119,UNSOURCED,declared,0,
 main.tex,761,-0.119,UNSOURCED,declared,0,
 main.tex,763,7,AMBIGUOUS,declared,6,exp11_reverse.csv[S1->S2 13-d g+t (transferable)].src_val_sd; exp11_reverse.csv[S2->S1 13-d g+t (transferable)].src_val_sd; exp11_reverse.csv[S2->S1 no per-sensor (29-d)].src_val_sd
+main.tex,763,0.4314,UNIQUE,declared,1,exp35_occ_tta_raw.csv[7 transferable source->target Source-only].mcc
+main.tex,763,0.110,UNSOURCED,declared,0,
+main.tex,763,0.122,UNSOURCED,declared,0,
+main.tex,763,0.028,AMBIGUOUS,declared,3,exp4_windowing.csv[causal label random].ta_sd; exp4_windowing.csv[causal label blocked].ta_sd; exp4_windowing.csv[causal label grouped].ta_sd
+main.tex,763,0.083,UNSOURCED,declared,0,
+main.tex,763,0.083,UNSOURCED,declared,0,
 main.tex,764,7,AMBIGUOUS,declared,6,exp11_reverse.csv[S1->S2 13-d g+t (transferable)].src_val_sd; exp11_reverse.csv[S2->S1 13-d g+t (transferable)].src_val_sd; exp11_reverse.csv[S2->S1 no per-sensor (29-d)].src_val_sd
+main.tex,764,0.3465,UNIQUE,declared,1,exp35_occ_tta_raw.csv[7 transferable target->source Source-only].mcc
+main.tex,764,0.019,AMBIGUOUS,declared,2,exp23_bn_channel.csv[S2->S1 DIGA lam_BN=0.0].sd; exp4_windowing.csv[causal label blocked].sa_sd
 main.tex,764,-0.009,UNSOURCED,declared,0,
+main.tex,764,0.005,AMBIGUOUS,declared,2,exp23_bn_channel.csv[S1->S2 PETAL (published)].sd; exp23_bn_channel.csv[S2->S1 DIGA lam_BN=0.6].sd
+main.tex,764,0.046,UNIQUE,declared,1,exp11_reverse.csv[S2->S1 all 135-d (paper)].tgt_f1_sd
+main.tex,764,0.046,UNIQUE,declared,1,exp11_reverse.csv[S2->S1 all 135-d (paper)].tgt_f1_sd
 main.tex,775,-0.3818,AMBIGUOUS,declared,2,exp32_occ_feature_identity.csv[transfer nan nan].mcc; exp35_occ_tta_raw.csv[9 shared source->target Source-only].mcc
 main.tex,776,51.9,UNSOURCED,declared,0,
 main.tex,776,50.9,UNSOURCED,declared,0,
@@ -191,6 +242,8 @@ main.tex,791,17,AMBIGUOUS,declared,2,exp11_reverse.csv[S2->S1 per-sensor ids onl
 main.tex,791,62,AMBIGUOUS,declared,9,exp32_occ_feature_identity.csv[correlation sum_power nan].src_hi; exp33_occ_penalty_raw.csv[all shared (9) source office other office].macroF1; exp33_occ_penalty_raw.csv[all shared (9) target office other office].balacc
 main.tex,795,0.355,AMBIGUOUS,declared,3,exp35_occ_tta_raw.csv[9 shared target->source Source-only].rec_occ; exp35_occ_tta_raw.csv[9 shared source->target Source-only].pred_occ_rate; exp35_occ_tta_raw.csv[7 transferable target->source PETAL].pred_occ_rate
 main.tex,796,0.428,AMBIGUOUS,declared,2,exp35_occ_tta_raw.csv[9 shared target->source AdaBN].rec_occ; exp35_occ_tta_raw.csv[9 shared target->source TENT].rec_occ
+main.tex,796,0.358,AMBIGUOUS,declared,2,exp32_occ_feature_identity.csv[transfer nan nan].mcc; exp35_occ_tta_raw.csv[9 shared target->source Source-only].mcc
+main.tex,796,0.239,AMBIGUOUS,declared,2,exp35_occ_tta_raw.csv[9 shared target->source AdaBN].mcc; exp35_occ_tta_raw.csv[9 shared target->source TENT].mcc
 main.tex,801,0.967,UNIQUE,declared,1,exp35_occ_tta_raw.csv[7 transferable source->target Source-only].rec_occ
 main.tex,801,62,AMBIGUOUS,declared,9,exp32_occ_feature_identity.csv[correlation sum_power nan].src_hi; exp33_occ_penalty_raw.csv[all shared (9) source office other office].macroF1; exp33_occ_penalty_raw.csv[all shared (9) target office other office].balacc
 main.tex,802,28,AMBIGUOUS,declared,10,exp11_reverse.csv[S2->S1 per-sensor ids only].f1_watching_tv; exp21_matched.csv[S1 matched_transfer (source building)].f1; exp23_bn_channel.csv[S2->S1 source-only].mcc
@@ -209,7 +262,9 @@ main.tex,879,0.6,AMBIGUOUS,declared,53,exp21_matched.csv[S2 matched_penalty].f1;
 main.tex,880,21.3,AMBIGUOUS,declared,2,exp21_matched.csv[S1 matched_penalty].f1; exp23_bn_channel.csv[S2->S1 TENT].macroF1
 main.tex,883,8.6,AMBIGUOUS,declared,2,exp11_reverse.csv[S1->S2 all 135-d (paper)].f1_music; exp32_occ_feature_identity.csv[correlation power3 nan].src_lo
 main.tex,883,20.4,AMBIGUOUS,declared,3,exp4_windowing.csv[causal label random].tm_mean; exp4_windowing.csv[causal label blocked].tm_mean; exp4_windowing.csv[causal label grouped].tm_mean
+main.tex,884,2.1,AMBIGUOUS,declared,5,exp23_bn_channel.csv[S2->S1 DIGA (published)].d_macroF1; exp23_bn_channel.csv[S2->S1 DIGA lam_BN=0.8].d_macroF1; exp4_windowing.csv[causal recording blocked].sa_sd
 main.tex,888,16,AMBIGUOUS,declared,9,exp11_reverse.csv[S2->S1 all 135-d (paper)].src_val_sd; exp11_reverse.csv[S2->S1 all 135-d (paper)].tgt_f1; exp11_reverse.csv[S2->S1 per-sensor ids only].f1_meal_prep
 main.tex,899,-0.38,AMBIGUOUS,declared,2,exp32_occ_feature_identity.csv[transfer nan nan].mcc; exp35_occ_tta_raw.csv[9 shared source->target Source-only].mcc
+main.tex,899,0.43,AMBIGUOUS,declared,6,exp23_bn_channel.csv[S1->S2 DIGA lam_BN=0.9].macroF1; exp35_occ_tta_raw.csv[7 transferable source->target Source-only].mcc; exp35_occ_tta_raw.csv[9 shared source->target PeTTA].rec_occ
 main.tex,900,47.2,UNIQUE,declared,1,exp33_occ_penalty_raw.csv[all shared (9) source office penalty].mcc
 main.tex,900,7.6,AMBIGUOUS,declared,3,exp23_bn_channel.csv[S2->S1 AdaBN].mcc; exp23_bn_channel.csv[S2->S1 TENT].mcc; exp33_occ_penalty_raw.csv[transferable (7) source office penalty].mcc

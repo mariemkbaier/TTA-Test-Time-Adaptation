@@ -75,8 +75,13 @@ if __name__ == "__main__":
     for f in files:
         OWN |= {os.path.basename(m) for m in srcpat0.findall(open(f).read())}
     # only math-mode literals: this is how every measured value is written in these
-    # files, and it excludes column widths, line-number citations and \ref targets
-    pat = re.compile(r"\$(-?\d+(?:\.\d+)?)(?:\\%)?\$")
+    # files, and it excludes column widths, line-number citations and \ref targets.
+    # An optional leading "+" is accepted, because every positive delta in these papers
+    # is written that way, and \mathbf{} is stripped first, because the emphasised cells
+    # in a table are exactly the values a reader checks. Omitting either leaves a large
+    # and non-random set of numbers unexamined.
+    pat = re.compile(r"\$([+-]?\d+(?:\.\d+)?)(?:\\%)?\$")
+    mathbf = re.compile(r"\\mathbf\{\s*([^{}]*?)\s*\}")
     srcpat = re.compile(r"%\s*source:.*?((?:results/)?\w+\.csv)")
     rows, nuniq, namb, nuns = [], 0, 0, 0
     print("=" * 100)
@@ -91,11 +96,12 @@ if __name__ == "__main__":
         cited = {os.path.basename(m) for m in srcpat.findall(body)}
         use = cited or OWN
         scope = {k: v for k, v in tabs.items() if k in use} or tabs
-        for ln, line in enumerate(body.splitlines(), 1):
+        for ln, raw in enumerate(body.splitlines(), 1):
+            line = mathbf.sub(r"\1", raw)
             if line.lstrip().startswith("%"):
                 continue
             for m in pat.finditer(line):
-                t = m.group(1)
+                t = m.group(1).lstrip("+")
                 if t in EXEMPT or t.lstrip("-").replace(".", "").strip("0") == "":
                     continue
                 try:
