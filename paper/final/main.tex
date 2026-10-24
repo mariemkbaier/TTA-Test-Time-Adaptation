@@ -12,7 +12,7 @@
 \usepackage{multirow}
 \usepackage{array}
 
-\graphicspath{{./}}
+\graphicspath{{./}{figures/}}
 \newcommand{\macf}{macro-F\textsubscript{1}}
 
 \makeatletter
@@ -310,7 +310,17 @@ Grouped by recording day & $\mathbf{0.5287}\pm0.007$ & $0.1626$ \\
 \end{tabular}
 \end{table}
 
-Table~\ref{tab:protocol} separates the two. Changing the window definition --- causal
+% source: src/make_figures_final.py, values transcribed from Table~\ref{tab:protocol}
+\begin{figure*}[t]
+\centering
+\includegraphics[width=0.96\textwidth]{fig_leakage.pdf}
+\caption{Overlapping-window leakage. Left: adjacent stride-$1$ windows share $19$ of
+$20$ timesteps. Right: source \macf{} under three validation splits; the window
+definition accounts for under two points of the difference, the split for forty-six.}
+\label{fig:leakage}
+\end{figure*}
+
+Table~\ref{tab:protocol} and Figure~\ref{fig:leakage} separate the two. Changing the window definition --- causal
 against centred, and how segments are delimited --- moves the source figure by under two
 points. Changing the split moves it by forty-six, from $0.9984$ to $0.5287$. The inflation
 is a property of the split, not of the window, and a pipeline that fixes the window while
@@ -401,7 +411,16 @@ $\text{S}_1$ held-out days & $0.4897$ & $0.2767$ & $21.3$ pts \\
 \end{tabular}
 \end{table}
 
-Table~\ref{tab:hargap} reports the penalty measured as described in
+% source: src/make_figures_final.py, values transcribed from Table~\ref{tab:hargap}
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{fig_penalty.pdf}
+\caption{The cross-building penalty is asymmetric: negligible entering $\text{S}_2$,
+substantial entering $\text{S}_1$.}
+\label{fig:penalty}
+\end{figure}
+
+Table~\ref{tab:hargap} and Figure~\ref{fig:penalty} report the penalty measured as described in
 Section~\ref{sec:protocol}. It is not one number. Entering $\text{S}_2$ it is $0.6$ points,
 which against a between-fold standard deviation of $0.15$ is not distinguishable from
 zero: a model that has never seen $\text{S}_2$ performs on $\text{S}_2$ as well as a model
@@ -494,8 +513,18 @@ $0.0$ (target) & $-33.0$ & $-20.5$ \\
 \end{tabular}
 \end{table}
 
+% source: src/make_figures_final.py, values transcribed from Table~\ref{tab:bndial}
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{fig_bndial.pdf}
+\caption{Cost of the shared normalisation-adaptation mechanism. Moving from source
+statistics ($\lambda_{BN}=1.0$) to target statistics ($\lambda_{BN}=0.0$) degrades
+performance monotonically in both directions.}
+\label{fig:bndial}
+\end{figure}
+
 The channel is a continuum rather than a switch, and DIGA's $\lambda_{BN}$ exposes it
-directly. Table~\ref{tab:bndial} sweeps it. The cost rises monotonically with the share of
+directly. Table~\ref{tab:bndial} and Figure~\ref{fig:bndial} sweep it. The cost rises monotonically with the share of
 target statistics mixed in, in both directions, and steeply: moving from the published
 $0.8$ to $0.6$ costs about fifteen points either way. The top row is also informative. At
 $\lambda_{BN}=1.0$ the statistics are exactly the source model's, yet $1026$ predictions
